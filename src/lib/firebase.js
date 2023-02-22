@@ -4,12 +4,12 @@ import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBhJ2upniUaTltbaKdBCd6_PXy0437pRc8",
-  authDomain: "attirely-b72e6.firebaseapp.com",
-  projectId: "attirely-b72e6",
-  storageBucket: "attirely-b72e6.appspot.com",
-  messagingSenderId: "312018619885",
-  appId: "1:312018619885:web:2983e5656a228d21a32be4",
+    apiKey: "AIzaSyC3GAHhE21VAbZ4vtcG7Rkn1j7Ar5mCMuY",
+  authDomain: "attierly.firebaseapp.com",
+  projectId: "attierly",
+  storageBucket: "attierly.appspot.com",
+  messagingSenderId: "33803488889",
+  appId: "1:33803488889:web:f76378498dd84f7ba08ea8"
 };
 
 // Initialize Firebase
