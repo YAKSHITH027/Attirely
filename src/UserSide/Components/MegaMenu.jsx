@@ -79,7 +79,7 @@ const MegaMenu = () => {
         width="15%"
         justify={"center"}
       >
-        Kids
+        Home&Living
       </Flex>
       <Flex
         className="dropDown"
@@ -88,7 +88,7 @@ const MegaMenu = () => {
         width="15%"
         justify={"center"}
       >
-        Mens
+        Beauty
       </Flex>
       <Flex
         className="dropDown"
