@@ -6,22 +6,26 @@ import { AiOutlineHeart } from "react-icons/ai";
 import MegaMenu from "./MegaMenu";
 const Navbar = () => {
   return (
-    <Box position={"sticky"} top="0" zIndex={"100"} bg="white">
+    <Box
+      position={"sticky"}
+      top="0"
+      zIndex={"100"}
+      bg="white"
+      boxShadow=" 0px 7px 7px -5px rgba(120,108,120,0.2)"
+    >
       <Flex
-        height={"4.94rem"}
-        px="3rem"
+        height={{ base: "3.2rem", md: "4.94rem" }}
+        px={{ base: "1rem", md: "3rem" }}
         gap="2rem"
         justify={"space-between"}
         align={"center"}
-        Box
-        boxShadow=" 0px 7px 7px -5px rgba(120,108,120,0.2)"
       >
         <Box>
           <Image
             src="https://i.ibb.co/7jfCzLZ/Attirely-removebg-preview.png"
             alt="logo"
             width="7rem"
-            height={"100%"}
+            height={{ base: "3rem", md: "100%" }}
           />
         </Box>
         <MegaMenu />
@@ -33,7 +37,7 @@ const Navbar = () => {
         >
           <Searchbar />
         </Box>
-        <Flex gap="2rem">
+        <Flex gap={{ base: "1rem", md: "2rem" }}>
           <Flex flexDir={"column"} align={"center"}>
             <Text>
               <BsPerson fontSize={"1.26rem"} />
@@ -41,6 +45,7 @@ const Navbar = () => {
             <Text
               fontSize={"0.8rem"}
               fontWeight="bold"
+              display={{ base: "none", md: "block" }}
               color={"blackAlpha.600"}
             >
               Profile
@@ -53,6 +58,7 @@ const Navbar = () => {
             <Text
               fontSize={"0.8rem"}
               fontWeight="bold"
+              display={{ base: "none", md: "block" }}
               color={"blackAlpha.600"}
             >
               Wishlist
@@ -65,6 +71,7 @@ const Navbar = () => {
             <Text
               fontSize={"0.8rem"}
               fontWeight="bold"
+              display={{ base: "none", md: "block" }}
               color={"blackAlpha.600"}
             >
               Bag
