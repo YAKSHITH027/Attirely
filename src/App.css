@@ -1,0 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Assistant&family=Open+Sans&family=Roboto&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  /* outline: 2px solid blue !important; */
+}
+.dropDown:hover > .child {
+  height: 60vh;
+}

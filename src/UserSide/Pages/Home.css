@@ -1,0 +1,11 @@
+.slick-arrow {
+  display: none !important;
+}
+
+.dropDown:hover > .child {
+  height: 60vh;
+  /* background-color: red; */
+}
+.dropDown:hover {
+  border-bottom: 4px solid pink;
+}
