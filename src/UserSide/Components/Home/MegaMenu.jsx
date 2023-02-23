@@ -8,6 +8,7 @@ const MegaMenu = () => {
       align="center"
       display={{ base: "none", lg: "Flex" }}
       width="36%"
+      minW={"28rem"}
       justify={"space-around"}
       pos="relative"
     >
@@ -79,7 +80,7 @@ const MegaMenu = () => {
         width="15%"
         justify={"center"}
       >
-        Kids
+        Home&Living
       </Flex>
       <Flex
         className="dropDown"
@@ -88,16 +89,7 @@ const MegaMenu = () => {
         width="15%"
         justify={"center"}
       >
-        Mens
-      </Flex>
-      <Flex
-        className="dropDown"
-        height="100%"
-        align={"center"}
-        width="15%"
-        justify={"center"}
-      >
-        Studio
+        Beauty
       </Flex>
     </Flex>
   );

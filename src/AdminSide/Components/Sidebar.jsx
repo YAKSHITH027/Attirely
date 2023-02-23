@@ -31,6 +31,7 @@ import {HiUsers} from "react-icons/hi"
 import {TbReportMoney} from "react-icons/tb"
 import {BsBagCheck , BsBag ,BsShop} from "react-icons/bs"
 import {AiOutlineBars} from "react-icons/ai"
+
 import { NavLink } from "react-router-dom";
 
 
@@ -44,13 +45,16 @@ const LinkItems = [
   { name: "Users", icon: HiUsers  },
   { name: "Sellers", icon: BsShop  },
   { name: "Transactions", icon: TbReportMoney  },
-];
+
 
 export default function Sidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
+
     <Box fontFamily={"Assistant, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif"}  bg={useColorModeValue("gray.100", "gray.900")}>
+
+   
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", md: "block" }}
@@ -106,10 +110,12 @@ const SidebarContent = ({ onClose, ...rest }) => {
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
+
         <NavItem key={link.name} icon={link.icon} onClick={Changedirectory}>
          
           {link.name}
         
+
         </NavItem>
       ))}
      
@@ -121,7 +127,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
 const NavItem = ({ icon, children, ...rest }) => {
   return (
     <Link
-      href="#"
+      
       style={{ textDecoration: "none" }}
       _focus={{ boxShadow: "none" }}
     >

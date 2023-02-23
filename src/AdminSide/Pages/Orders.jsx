@@ -1,3 +1,4 @@
+
 import { Box, Heading } from "@chakra-ui/react";
 import React from "react";
 import OrdersTable from "../Components/OrdersTable";
@@ -18,3 +19,4 @@ const Orders = () => {
 };
 
 export default Orders;
+

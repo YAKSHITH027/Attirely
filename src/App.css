@@ -6,6 +6,3 @@
   font-family: "Roboto", sans-serif;
   /* outline: 2px solid blue !important; */
 }
-.dropDown:hover > .child {
-  height: 60vh;
-}
