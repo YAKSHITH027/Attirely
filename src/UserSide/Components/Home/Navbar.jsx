@@ -20,7 +20,7 @@ const Navbar = () => {
         justify={"space-between"}
         align={"center"}
       >
-        <Box>
+        <Box minW={"6rem"}>
           <Image
             src="https://i.ibb.co/7jfCzLZ/Attirely-removebg-preview.png"
             alt="logo"
