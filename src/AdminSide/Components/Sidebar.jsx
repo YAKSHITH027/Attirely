@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import {
   IconButton,
   Avatar,
@@ -14,8 +14,6 @@ import {
   DrawerContent,
   Text,
   useDisclosure,
-  BoxProps,
-  FlexProps,
   Menu,
   MenuButton,
   MenuDivider,
@@ -33,16 +31,13 @@ import {HiUsers} from "react-icons/hi"
 import {TbReportMoney} from "react-icons/tb"
 import {BsBagCheck , BsBag ,BsShop} from "react-icons/bs"
 import {AiOutlineBars} from "react-icons/ai"
-import { IconType } from "react-icons";
-import { ReactText } from "react";
+import { NavLink } from "react-router-dom";
 
-interface LinkItemProps {
-  name: string;
-  icon: IconType;
-}
-const LinkItems: Array<LinkItemProps> = [
-  { name: "DashBoard", icon: FiHome },
-  { name: "Products", icon: BsBag },
+
+
+const LinkItems = [
+  { name: "DashBoard", icon: FiHome,  },
+  { name: "Products", icon: BsBag ,path:"/adminproduct"},
   { name: "Add products", icon: MdAddShoppingCart },
   { name: "Categories", icon: AiOutlineBars },
   { name: "Orders", icon:BsBagCheck  },
@@ -51,11 +46,11 @@ const LinkItems: Array<LinkItemProps> = [
   { name: "Transactions", icon: TbReportMoney  },
 ];
 
-export default function Sidebar({ children }: { children: ReactNode }) {
+export default function Sidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-    <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
+    <Box fontFamily={"Assistant, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif"}  bg={useColorModeValue("gray.100", "gray.900")}>
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", md: "block" }}
@@ -76,7 +71,7 @@ export default function Sidebar({ children }: { children: ReactNode }) {
       {/* mobilenav */}
       <MobileNav onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
-        {children}
+       {children}  
       </Box>
     </Box>
     </>
@@ -84,11 +79,14 @@ export default function Sidebar({ children }: { children: ReactNode }) {
   );
 }
 
-interface SidebarProps extends BoxProps {
-  onClose: () => void;
-}
 
-const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
+
+const SidebarContent = ({ onClose, ...rest }) => {
+ 
+  const Changedirectory=()=>{
+    console.log("productspage")
+  }
+
   return (
     <Box
       transition="3s ease"
@@ -102,25 +100,25 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <img src="/Attirely_admin_logo.png" alt="admin_logo" width={"120px"}  />
-        <Text color="#D53F8C" fontSize="2xl" fontFamily="monospace" fontWeight="bold">
+        <Text  fontSize="2xl" fontWeight="extrabold" fontFamily="monospace">
           Admin
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
+        <NavItem key={link.name} icon={link.icon} onClick={Changedirectory}>
+         
           {link.name}
+        
         </NavItem>
       ))}
+     
     </Box>
   );
 };
 
-interface NavItemProps extends FlexProps {
-  icon: IconType;
-  children: ReactText;
-}
-const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
+
+const NavItem = ({ icon, children, ...rest }) => {
   return (
     <Link
       href="#"
@@ -156,10 +154,8 @@ const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
   );
 };
 
-interface MobileProps extends FlexProps {
-  onOpen: () => void;
-}
-const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
+
+const MobileNav = ({ onOpen, ...rest }) => {
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -228,6 +224,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
           </Menu>
         </Flex>
       </HStack>
+      
     </Flex>
   );
 };
