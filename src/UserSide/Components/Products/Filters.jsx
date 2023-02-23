@@ -13,6 +13,7 @@ const Filters = ({
   setDiscountRange,
 }) => {
   const handleCategories = (e) => {
+    // console.log(e);
     setCategory(e);
   };
   const handleBrands = (e) => {
@@ -39,8 +40,8 @@ const Filters = ({
           onChange={handleCategories}
         >
           <Stack spacing={"1"} color="gray.500" textTransform={"capitalize"}>
-            <Checkbox value="shirt">shirt</Checkbox>
-            <Checkbox value="jagoo">jagoo</Checkbox>
+            <Checkbox value="Shirt">shirt</Checkbox>
+            <Checkbox value="Chino">Chino</Checkbox>
           </Stack>
         </CheckboxGroup>
       </Box>
@@ -55,7 +56,7 @@ const Filters = ({
         >
           <Stack spacing={"1"} color="gray.500">
             <Checkbox value="Roadster">Roadster</Checkbox>
-            <Checkbox value="Tommy Hilfiger">Tommy Hilfiger</Checkbox>
+            <Checkbox value="HIGHLANDER">HIGHLANDER</Checkbox>
             <Checkbox value="U.S. Polo Assn">U.S. Polo Assn</Checkbox>
             <Checkbox value="Jack & Jones">Jack & Jones</Checkbox>
             <Checkbox value="WROGN">WROGN</Checkbox>

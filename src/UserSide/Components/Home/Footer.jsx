@@ -7,7 +7,7 @@ import { FaTwitter } from "react-icons/fa";
 const Footer = () => {
   return (
     <Box
-      mt="4rem"
+      // mt="4rem"
       minH={"30vh"}
       bg="gray.100"
       padding={{ base: "0.5rem", lg: "3rem" }}

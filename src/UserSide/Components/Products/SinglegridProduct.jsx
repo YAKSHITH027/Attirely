@@ -19,7 +19,8 @@ const SinglegridProduct = ({
     <Box
       className="shadow"
       transition={"all 0.3s"}
-      width="210px"
+      height={{ base: "320px", md: "350px" }}
+      width={{ base: "160px", md: "210px" }}
       onMouseEnter={() => {
         setShow(true);
       }}
@@ -36,7 +37,7 @@ const SinglegridProduct = ({
         </Text>
         <Box position={"relative"} bg="white">
           <Text fontSize={"0.9rem"} color="gray.700" pl="10px">
-            {title.substring(0, 25)}
+            {title.substring(0, 20)}
           </Text>
           <Flex
             height={!show && "0"}

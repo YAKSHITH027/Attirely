@@ -100,7 +100,7 @@ const Home = () => {
           gap="0"
         />
       </Box>
-      <Box mt="3rem">
+      <Box mt="3rem" mb={"4rem"}>
         <ListHeading text="stylecast hottest finds" />
         <ProductSlider
           imageData={styleCastHottestList}
