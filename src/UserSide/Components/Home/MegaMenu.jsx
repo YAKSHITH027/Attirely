@@ -25,7 +25,7 @@ const MegaMenu = () => {
           className="child"
           left="-2rem"
           pos={"absolute"}
-          width="80vw"
+          width="1000px"
           transition={"all 0.3s"}
           height={"0vh"}
           overflow="hidden"
@@ -51,7 +51,7 @@ const MegaMenu = () => {
           className="child"
           left="-2rem"
           pos={"absolute"}
-          width="80vw"
+          width="1000px"
           transition={"all 0.4s"}
           height={"0vh"}
           bg="gray.400"
@@ -77,10 +77,10 @@ const MegaMenu = () => {
         className="dropDown"
         height="100%"
         align={"center"}
-        width="15%"
+        width="24%"
         justify={"center"}
       >
-        Home&Living
+        Home & Living
       </Flex>
       <Flex
         className="dropDown"
