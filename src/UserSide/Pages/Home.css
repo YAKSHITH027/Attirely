@@ -1,0 +1,17 @@
+.slick-arrow {
+  display: none !important;
+}
+
+.dropDown:hover > .child {
+  height: 60vh;
+  /* background-color: red; */
+}
+.dropDown {
+  font-weight: 700;
+}
+.dropDown:hover {
+  border-bottom: 4px solid pink;
+}
+.footerChild > * {
+  font-size: 0.9rem;
+}
