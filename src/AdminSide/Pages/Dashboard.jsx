@@ -9,7 +9,7 @@ const Dashboard = () => {
     <Box minH="100vh" bg={'gray.100'}>
      <Sidebar /> 
      <Box marginTop={'-180px'} fontFamily={'sans-serif'}>
-      <BasicStatistics /> 
+      {/* <BasicStatistics />  */}
      </Box>
       
     

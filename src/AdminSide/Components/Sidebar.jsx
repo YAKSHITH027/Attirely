@@ -35,27 +35,28 @@ import {BsBagCheck , BsBag ,BsShop} from "react-icons/bs"
 import {AiOutlineBars} from "react-icons/ai"
 import { IconType } from "react-icons";
 import { ReactText } from "react";
+import { Link as RouterLink} from "react-router-dom";
 
 interface LinkItemProps {
   name: string;
   icon: IconType;
 }
 const LinkItems: Array<LinkItemProps> = [
-  { name: "DashBoard", icon: FiHome },
-  { name: "Products", icon: BsBag },
-  { name: "Add products", icon: MdAddShoppingCart },
-  { name: "Categories", icon: AiOutlineBars },
-  { name: "Orders", icon:BsBagCheck  },
-  { name: "Users", icon: HiUsers  },
-  { name: "Sellers", icon: BsShop  },
-  { name: "Transactions", icon: TbReportMoney  },
+  { name: "DashBoard", icon: FiHome, href:"/dashboard" },
+  { name: "Products", icon: BsBag, href:"/products" },
+  { name: "Add products", icon: MdAddShoppingCart, href:"/addproducts" },
+  { name: "Categories", icon: AiOutlineBars, href:"/categories"},
+  { name: "Orders", icon:BsBagCheck, href:"/orders"},
+  { name: "Users", icon: HiUsers , href:"/users" },
+  { name: "Sellers", icon: BsShop , href:"/sellers"  },
+  { name: "Transactions", icon: TbReportMoney, href:"/transactions"  },
 ];
 
 export default function Sidebar({ children }: { children: ReactNode }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-    <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
+    <Box bg={useColorModeValue("gray.100", "gray.900")}>
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", md: "block" }}
@@ -109,7 +110,10 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       </Flex>
       {LinkItems.map((link) => (
         <NavItem key={link.name} icon={link.icon}>
-          {link.name}
+         <RouterLink to={link.href}>
+         {link.name}
+         </RouterLink>
+         
         </NavItem>
       ))}
     </Box>
@@ -123,7 +127,7 @@ interface NavItemProps extends FlexProps {
 const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
   return (
     <Link
-      href="#"
+      
       style={{ textDecoration: "none" }}
       _focus={{ boxShadow: "none" }}
     >

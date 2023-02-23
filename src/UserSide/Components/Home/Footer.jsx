@@ -143,7 +143,7 @@ const Footer = () => {
         margin={"auto"}
         my="2rem"
         letterSpacing="1px"
-        fontSize={"0.5rem"}
+        fontSize={"0.8rem"}
       >
         Makeup | Dresses For Girls | T-Shirts | Sandals | Headphones | Babydolls
         | Blazers | For Men | Handbags | Ladies Watches | Bags | Sport | Shoes |
