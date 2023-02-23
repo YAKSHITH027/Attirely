@@ -1,5 +1,6 @@
-import { Button, Center, Grid, GridItem, Input, Text } from '@chakra-ui/react'
+import { Button, Center, Flex, Grid, GridItem, Input, Text } from '@chakra-ui/react'
 import React from 'react'
+import { BsTag } from "react-icons/bs";
 import css from "./cart.css"
 const Cart = () => {
   return (
@@ -12,7 +13,11 @@ const Cart = () => {
                 </div>
               </GridItem>
                <GridItem w={"30%"} >
-               
+               <div style={{border:"1px solid grey",padding:"15px",display:"flex"}}>
+               <p>Coupons</p>
+               <Flex><BsTag/>1 Coupon Applied</Flex>
+               <p>You save Addiotiona 200</p>
+               </div>
                
                
                
