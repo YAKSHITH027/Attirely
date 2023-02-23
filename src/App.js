@@ -13,17 +13,14 @@ import { AllRoutes } from "./lib/AllRoutes";
 
 
 
+
 function App() {
   return (
     <div className="App">
 
       {/* <Dashboard /> */}
-      {/* <Home /> */}
-     
-  
 
-
-
+ 
       <Home />
       <AllRoutes/>
       
