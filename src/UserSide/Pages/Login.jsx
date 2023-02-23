@@ -19,7 +19,7 @@ const Login = () => {
     <div className="login">
       <div className="loginContainer">
         <div className="loginImage">
-          <img src="./assets/signup.jpg" alt="" />
+          <img src="./myntra2.jpg" alt="" />
         </div>
         <div className="loginDetail">
           <div>
@@ -44,7 +44,7 @@ const Login = () => {
               <p>
                 New User ? <Link to="/signup">Signup .</Link>
               </p>
-              <button type="submit"></button>
+              <button type="submit">Login</button>
             </form>
           </div>
         </div>
