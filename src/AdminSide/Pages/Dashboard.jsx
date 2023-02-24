@@ -7,6 +7,7 @@ import Chart from "../Components/Chart";
 const Dashboard = () => {
   return (
     <>
+
       <Heading fontWeight={"thiner"} as="h2" size="xl">
         Dashboard
       </Heading>
@@ -25,7 +26,8 @@ const Dashboard = () => {
           <Chart />
         </Box>
       </Box>
-    </>
+
+      
   );
 };
 

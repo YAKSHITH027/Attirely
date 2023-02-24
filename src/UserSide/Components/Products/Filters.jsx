@@ -2,7 +2,7 @@ import { Checkbox, CheckboxGroup } from "@chakra-ui/checkbox";
 import { Box, Stack, Text } from "@chakra-ui/layout";
 import { Radio, RadioGroup } from "@chakra-ui/radio";
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 const Filters = ({
   category,
@@ -11,14 +11,24 @@ const Filters = ({
   setBrand,
   discountRange,
   setDiscountRange,
+  setPage,
 }) => {
+  // let location = useLocation();
+  // useEffect(() => {}, [location.search]);
+  // console.log(category, brand, discountRange);
   const handleCategories = (e) => {
+    // console.log(e);
+    setPage(1);
     setCategory(e);
+    setDiscountRange("");
   };
   const handleBrands = (e) => {
+    setPage(1);
     setBrand(e);
+    setDiscountRange("");
   };
   const handleDiscountRange = (e) => {
+    setPage(1);
     setDiscountRange(e);
   };
 
@@ -35,12 +45,13 @@ const Filters = ({
         </Text>
         <CheckboxGroup
           colorScheme="pink"
+          value={category}
           defaultValue={category}
           onChange={handleCategories}
         >
           <Stack spacing={"1"} color="gray.500" textTransform={"capitalize"}>
-            <Checkbox value="shirt">shirt</Checkbox>
-            <Checkbox value="jagoo">jagoo</Checkbox>
+            <Checkbox value="Shirt">shirt</Checkbox>
+            <Checkbox value="Chino">Chino</Checkbox>
           </Stack>
         </CheckboxGroup>
       </Box>
@@ -51,11 +62,12 @@ const Filters = ({
         <CheckboxGroup
           colorScheme="pink"
           defaultValue={brand}
+          value={brand}
           onChange={handleBrands}
         >
           <Stack spacing={"1"} color="gray.500">
             <Checkbox value="Roadster">Roadster</Checkbox>
-            <Checkbox value="Tommy Hilfiger">Tommy Hilfiger</Checkbox>
+            <Checkbox value="HIGHLANDER">HIGHLANDER</Checkbox>
             <Checkbox value="U.S. Polo Assn">U.S. Polo Assn</Checkbox>
             <Checkbox value="Jack & Jones">Jack & Jones</Checkbox>
             <Checkbox value="WROGN">WROGN</Checkbox>

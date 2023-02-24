@@ -1,13 +1,14 @@
 import React from "react";
 import "./Signup.css";
 import { Link } from "react-router-dom";
+import myntra from "./assets/myntra.jpg";
 
 const Signup = () => {
   return (
     <div className="signup">
       <div className="signupContainer">
         <div className="signupImage">
-          <img src="../component/assets/myntra.jpg" alt="" />
+          <img src={myntra} alt="img" />
         </div>
         <div className="signupDetail">
           <div>

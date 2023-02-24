@@ -19,7 +19,7 @@ export default class SingleProductImageSlider extends Component {
   render() {
     return (
       <Box
-        height="280px"
+        height={{ base: "240px", md: "280px" }}
         onMouseEnter={this.onMove}
         onMouseLeave={this.onLeave}
       >
@@ -33,7 +33,10 @@ export default class SingleProductImageSlider extends Component {
             autoplay: this.slide,
           }}
         >
-          <Box width={"210px"} height="280px">
+          <Box
+            width={{ base: "150px", md: "210px" }}
+            height={{ base: "240px", md: "280px" }}
+          >
             <Image src={this.props.images[0]} />
           </Box>
         </Slider>
