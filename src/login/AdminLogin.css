@@ -108,3 +108,10 @@ span {
     margin: 2px 0;
   }
 }
+.error {
+  color: red;
+  /* background-color: lightsalmon; */
+  padding: 5px;
+  margin: 10px;
+  font-weight: bold;
+}
