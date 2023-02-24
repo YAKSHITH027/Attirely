@@ -11,8 +11,7 @@ import { Box } from "@chakra-ui/react";
 const Dashboard = () => {
   return (
     <>
-
-      <Sidebar />
+      {/* <Sidebar /> */}
       <Box ml={"3rem"}>
         {" "}
         <BasicStatistics />{" "}
@@ -25,10 +24,6 @@ const Dashboard = () => {
 
       <Users />
       <Orders />
-
-    
-   
-
     </>
   );
 };

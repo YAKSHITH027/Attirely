@@ -1,9 +1,23 @@
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import {
+  PopoverHeader,
+  Box,
+  Flex,
+  Image,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverTrigger,
+  Text,
+  Button,
+} from "@chakra-ui/react";
 import React from "react";
 import Searchbar from "./Searchbar";
 import { BsBag, BsFillBagFill, BsPerson } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import MegaMenu from "./MegaMenu";
+import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <Box
@@ -20,14 +34,16 @@ const Navbar = () => {
         justify={"space-between"}
         align={"center"}
       >
-        <Box minW={"6rem"}>
-          <Image
-            src="https://i.ibb.co/7jfCzLZ/Attirely-removebg-preview.png"
-            alt="logo"
-            width="7rem"
-            height={{ base: "3rem", md: "100%" }}
-          />
-        </Box>
+        <Link to="/">
+          <Box minW={"6rem"}>
+            <Image
+              src="https://i.ibb.co/7jfCzLZ/Attirely-removebg-preview.png"
+              alt="logo"
+              width="7rem"
+              height={{ base: "3rem", md: "100%" }}
+            />
+          </Box>
+        </Link>
         <MegaMenu />
 
         <Box
@@ -38,19 +54,34 @@ const Navbar = () => {
           <Searchbar />
         </Box>
         <Flex gap={{ base: "1rem", md: "2rem" }}>
-          <Flex flexDir={"column"} align={"center"}>
-            <Text>
-              <BsPerson fontSize={"1.26rem"} />
-            </Text>
-            <Text
-              fontSize={"0.8rem"}
-              fontWeight="bold"
-              display={{ base: "none", md: "block" }}
-              color={"blackAlpha.600"}
-            >
-              Profile
-            </Text>
-          </Flex>
+          <Popover>
+            <PopoverTrigger>
+              <Flex flexDir={"column"} align={"center"} cursor="pointer">
+                <Text>
+                  <BsPerson fontSize={"1.26rem"} />
+                </Text>
+                <Text
+                  fontSize={"0.8rem"}
+                  fontWeight="bold"
+                  display={{ base: "none", md: "block" }}
+                  color={"blackAlpha.600"}
+                >
+                  Profile
+                </Text>
+              </Flex>
+            </PopoverTrigger>
+            <PopoverContent>
+              <PopoverArrow />
+              <PopoverCloseButton />
+              <PopoverHeader>Profile</PopoverHeader>
+              <PopoverBody>
+                <Link to="/login">
+                  <Text>Signin / Signup</Text>
+                </Link>
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
+
           <Flex flexDir={"column"} align={"center"}>
             <Text>
               <AiOutlineHeart fontSize={"1.26rem"} />
@@ -64,19 +95,21 @@ const Navbar = () => {
               Wishlist
             </Text>
           </Flex>
-          <Flex flexDir={"column"} align={"center"}>
-            <Text>
-              <BsBag fontSize={"1.26rem"} />
-            </Text>
-            <Text
-              fontSize={"0.8rem"}
-              fontWeight="bold"
-              display={{ base: "none", md: "block" }}
-              color={"blackAlpha.600"}
-            >
-              Bag
-            </Text>
-          </Flex>
+          <Link to="/cart">
+            <Flex flexDir={"column"} align={"center"}>
+              <Text>
+                <BsBag fontSize={"1.26rem"} />
+              </Text>
+              <Text
+                fontSize={"0.8rem"}
+                fontWeight="bold"
+                display={{ base: "none", md: "block" }}
+                color={"blackAlpha.600"}
+              >
+                Bag
+              </Text>
+            </Flex>
+          </Link>
         </Flex>
       </Flex>
       <Box padding={"8px"} display={{ lg: "none" }}>

@@ -35,7 +35,6 @@
 // import { NavLink } from "react-router-dom";
 
 
-
 // const LinkItems = [
 //   { name: "DashBoard", icon: FiHome,  },
 //   { name: "Products", icon: BsBag ,path:"/adminproduct"},
@@ -54,7 +53,6 @@
 
 //     <Box fontFamily={"Assistant, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif"}  bg={useColorModeValue("gray.100", "gray.900")}>
 
-   
 //       <SidebarContent
 //         onClose={() => onClose}
 //         display={{ base: "none", md: "block" }}
@@ -75,6 +73,7 @@
 //       {/* mobilenav */}
 //       <MobileNav onOpen={onOpen} />
 //       <Box ml={{ base: 0, md: 60 }} p="4">
+
 //        {children}  
 //       </Box>
 //     </Box>
@@ -87,6 +86,7 @@
 
 // const SidebarContent = ({ onClose, ...rest }) => {
  
+
 //   const Changedirectory=()=>{
 //     console.log("productspage")
 //   }
@@ -112,6 +112,7 @@
 //       {LinkItems.map((link) => (
 
 //         <NavItem key={link.name} icon={link.icon} onClick={Changedirectory}>
+
          
 //           {link.name}
         
@@ -119,15 +120,18 @@
 //         </NavItem>
 //       ))}
      
+
 //     </Box>
 //   );
 // };
+
 
 
 // const NavItem = ({ icon, children, ...rest }) => {
 //   return (
 //     <Link
       
+
 //       style={{ textDecoration: "none" }}
 //       _focus={{ boxShadow: "none" }}
 //     >
@@ -230,7 +234,7 @@
 //           </Menu>
 //         </Flex>
 //       </HStack>
-      
+
 //     </Flex>
 //   );
 // };

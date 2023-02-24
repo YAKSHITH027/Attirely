@@ -2,7 +2,7 @@ import { Checkbox, CheckboxGroup } from "@chakra-ui/checkbox";
 import { Box, Stack, Text } from "@chakra-ui/layout";
 import { Radio, RadioGroup } from "@chakra-ui/radio";
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 const Filters = ({
   category,
@@ -11,15 +11,24 @@ const Filters = ({
   setBrand,
   discountRange,
   setDiscountRange,
+  setPage,
 }) => {
+  // let location = useLocation();
+  // useEffect(() => {}, [location.search]);
+  // console.log(category, brand, discountRange);
   const handleCategories = (e) => {
     // console.log(e);
+    setPage(1);
     setCategory(e);
+    setDiscountRange("");
   };
   const handleBrands = (e) => {
+    setPage(1);
     setBrand(e);
+    setDiscountRange("");
   };
   const handleDiscountRange = (e) => {
+    setPage(1);
     setDiscountRange(e);
   };
 
@@ -36,6 +45,7 @@ const Filters = ({
         </Text>
         <CheckboxGroup
           colorScheme="pink"
+          value={category}
           defaultValue={category}
           onChange={handleCategories}
         >
@@ -52,6 +62,7 @@ const Filters = ({
         <CheckboxGroup
           colorScheme="pink"
           defaultValue={brand}
+          value={brand}
           onChange={handleBrands}
         >
           <Stack spacing={"1"} color="gray.500">
