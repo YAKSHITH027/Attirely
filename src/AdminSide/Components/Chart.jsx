@@ -15,6 +15,7 @@ const data = {
   labels: ["Red", "Yellow", "Blue"],
 };
 
+
 const Chart = () => {
   return (
     <Box width={"25%"}>
