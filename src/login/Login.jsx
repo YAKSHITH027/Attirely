@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
+import myntra3 from "./assets/myntra3.png";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -19,7 +20,7 @@ const Login = () => {
     <div className="login">
       <div className="loginContainer">
         <div className="loginImage">
-          <img src="../component/assets/myntra2.jpg" alt="" />
+          <img src={myntra3} alt="myntra2" />
         </div>
         <div className="loginDetail">
           <div>

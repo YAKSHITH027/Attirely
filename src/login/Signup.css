@@ -1,5 +1,5 @@
 .signup {
-  padding-top: 5rem;
+  padding-top: 2rem;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -13,9 +13,10 @@
   background-color: rgb(255, 255, 255);
 }
 .signupImage {
-  width: 43%;
+  width: 47%;
 }
 .signupImage img {
+  margin: 105px 0 0 20px;
   width: 100%;
 }
 .signupDetail {
