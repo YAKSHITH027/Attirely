@@ -1,8 +1,8 @@
 import { Box, Heading } from "@chakra-ui/react";
 import React from "react";
-import Navbar from "../Components/Navbar";
-import SimpleSlider from "../Components/FullScreenSlider";
-import ProductSlider from "../Components/ProductSlider";
+import Navbar from "../../Components/Home/Navbar";
+import SimpleSlider from "../../Components/Home/FullScreenSlider";
+import ProductSlider from "../../Components/Home/ProductSlider";
 import {
   categoriesToBagList1,
   categoriesToBagList2,
@@ -15,10 +15,10 @@ import {
   imageList3,
   styleCastHottestList,
   topPicksList,
-} from "../../Utils/ProductImages";
+} from "../../../Utils/ProductImages";
 import "./Home.css";
-import ListHeading from "../Components/ListHeading";
-import Footer from "../Components/Footer";
+import ListHeading from "../../Components/Home/ListHeading";
+import Footer from "../../Components/Home/Footer";
 
 const Home = () => {
   return (
@@ -100,7 +100,7 @@ const Home = () => {
           gap="0"
         />
       </Box>
-      <Box mt="3rem">
+      <Box mt="3rem" mb={"4rem"}>
         <ListHeading text="stylecast hottest finds" />
         <ProductSlider
           imageData={styleCastHottestList}
