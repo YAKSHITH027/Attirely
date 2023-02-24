@@ -8,7 +8,7 @@ import Sellers from "../AdminSide/Pages/Sellers";
 import Transactions from "../AdminSide/Pages/Transactions";
 import Users from "../AdminSide/Pages/Users";
 import Categories from "../AdminSide/Pages/Categories";
-import Home from "../UserSide/Pages/Home";
+import Home from "../UserSide/Pages/Home/Home";
 
 export const AllRoutes= ()=>{
     return(
@@ -22,6 +22,7 @@ export const AllRoutes= ()=>{
             <Route path="/users" element={<Users/>}></Route>
             <Route path="/categories" element={<Categories/>}></Route>
             <Route path="/" element={<Home/>}></Route>
+            
         </Routes>
     )
 }
