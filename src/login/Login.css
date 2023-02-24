@@ -1,5 +1,5 @@
 .login {
-  padding-top: 5rem;
+  padding-top: 2rem;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -13,10 +13,11 @@
   background-color: rgb(255, 255, 255);
 }
 .loginImage {
-  width: 43%;
+  width: 50%;
 }
 .loginImage img {
-  width: 100%;
+  margin: 65px 0 0 90px;
+  width: 65%;
 }
 .loginDetail {
   padding: 2rem 4rem;
