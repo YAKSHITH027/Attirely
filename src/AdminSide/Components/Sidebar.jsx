@@ -34,6 +34,7 @@
 
 // import { NavLink } from "react-router-dom";
 
+
 // const LinkItems = [
 //   { name: "DashBoard", icon: FiHome,  },
 //   { name: "Products", icon: BsBag ,path:"/adminproduct"},
@@ -43,6 +44,7 @@
 //   { name: "Users", icon: HiUsers  },
 //   { name: "Sellers", icon: BsShop  },
 //   { name: "Transactions", icon: TbReportMoney  },
+
 
 // export default function Sidebar({ children }) {
 //   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -71,15 +73,19 @@
 //       {/* mobilenav */}
 //       <MobileNav onOpen={onOpen} />
 //       <Box ml={{ base: 0, md: 60 }} p="4">
-//        {children}
+
+//        {children}  
 //       </Box>
 //     </Box>
 //     </>
-
+    
 //   );
 // }
 
+
+
 // const SidebarContent = ({ onClose, ...rest }) => {
+ 
 
 //   const Changedirectory=()=>{
 //     console.log("productspage")
@@ -107,18 +113,24 @@
 
 //         <NavItem key={link.name} icon={link.icon} onClick={Changedirectory}>
 
+         
 //           {link.name}
+        
 
 //         </NavItem>
 //       ))}
+     
 
 //     </Box>
 //   );
 // };
 
+
+
 // const NavItem = ({ icon, children, ...rest }) => {
 //   return (
 //     <Link
+      
 
 //       style={{ textDecoration: "none" }}
 //       _focus={{ boxShadow: "none" }}
@@ -151,6 +163,7 @@
 //     </Link>
 //   );
 // };
+
 
 // const MobileNav = ({ onOpen, ...rest }) => {
 //   return (
