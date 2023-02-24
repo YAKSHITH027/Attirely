@@ -1,17 +1,20 @@
 
 import { Box, Heading } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import OrdersTable from "../Components/OrdersTable";
 
 const Orders = () => {
+  
+  
+  
   return (
     <>
-      <Box m={"1rem 2rem 2rem 18rem"}>
-        <Heading fontWeight={"thiner"} as="h2" size="xl">
+     
+        <Heading fontWeight={"thiner"} as="h2" size="xl" mb={"30px"}>
           Orders
         </Heading>
-      </Box>
-      <Box ml={"18rem"}>
+     
+      <Box >
         <OrdersTable />
       </Box>
     </>

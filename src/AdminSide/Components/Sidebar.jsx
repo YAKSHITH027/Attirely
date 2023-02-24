@@ -20,77 +20,65 @@ import {
   MenuItem,
   MenuList,
 } from "@chakra-ui/react";
-import {
-  FiHome,
-  FiMenu,
-  FiBell,
-  FiChevronDown,
-} from "react-icons/fi";
-import {MdAddShoppingCart} from "react-icons/md"
-import {HiUsers} from "react-icons/hi"
-import {TbReportMoney} from "react-icons/tb"
-import {BsBagCheck , BsBag ,BsShop} from "react-icons/bs"
-import {AiOutlineBars} from "react-icons/ai"
+import { FiHome, FiMenu, FiBell, FiChevronDown } from "react-icons/fi";
+import { MdAddShoppingCart } from "react-icons/md";
+import { HiUsers } from "react-icons/hi";
+import { TbReportMoney } from "react-icons/tb";
+import { BsBagCheck, BsBag, BsShop } from "react-icons/bs";
+import { AiOutlineBars } from "react-icons/ai";
 
 import { NavLink } from "react-router-dom";
 
-
-
 const LinkItems = [
-  { name: "DashBoard", icon: FiHome,  },
-  { name: "Products", icon: BsBag ,path:"/adminproduct"},
-  { name: "Add products", icon: MdAddShoppingCart },
-  { name: "Categories", icon: AiOutlineBars },
-  { name: "Orders", icon:BsBagCheck  },
-  { name: "Users", icon: HiUsers  },
-  { name: "Sellers", icon: BsShop  },
-  { name: "Transactions", icon: TbReportMoney  },
-
+  { name: "DashBoard", icon: FiHome , path: "/dashboard" },
+  { name: "Products", icon: BsBag, path: "/adminproduct" },
+  { name: "Add products", icon: MdAddShoppingCart, path: "/addproduct" },
+  { name: "Categories", icon: AiOutlineBars, path: "/categories" },
+  { name: "Orders", icon: BsBagCheck, path: "/orders" },
+  { name: "Users", icon: HiUsers, path: "/users" },
+  { name: "Sellers", icon: BsShop , path: "/sellers"},
+  { name: "Transactions", icon: TbReportMoney, path: "/transactions" },
+];
 
 export default function Sidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <>
-
-    <Box fontFamily={"Assistant, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif"}  bg={useColorModeValue("gray.100", "gray.900")}>
-
-   
-      <SidebarContent
-        onClose={() => onClose}
-        display={{ base: "none", md: "block" }}
-      />
-      <Drawer
-        autoFocus={false}
-        isOpen={isOpen}
-        placement="left"
-        onClose={onClose}
-        returnFocusOnClose={false}
-        onOverlayClick={onClose}
-        size="full"
+      <Box
+        fontFamily={
+          "Assistant, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif"
+        }
+        bg={useColorModeValue("gray.100", "gray.900")}
       >
-        <DrawerContent>
-          <SidebarContent onClose={onClose} />
-        </DrawerContent>
-      </Drawer>
-      {/* mobilenav */}
-      <MobileNav onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
-       {children}  
+        <SidebarContent
+          onClose={() => onClose}
+          display={{ base: "none", md: "block" }}
+        />
+        <Drawer
+          autoFocus={false}
+          isOpen={isOpen}
+          placement="left"
+          onClose={onClose}
+          returnFocusOnClose={false}
+          onOverlayClick={onClose}
+          size="full"
+        >
+          <DrawerContent>
+            <SidebarContent onClose={onClose} />
+          </DrawerContent>
+        </Drawer>
+        {/* mobilenav */}
+        <MobileNav onOpen={onOpen} />
+        <Box ml={{ base: 0, md: 60 }} p="4" backgroundColor={"#FED7E2"}>
+          {children}
+        </Box>
       </Box>
-    </Box>
     </>
-    
   );
 }
 
-
-
 const SidebarContent = ({ onClose, ...rest }) => {
- 
-  const Changedirectory=()=>{
-    console.log("productspage")
-  }
-
   return (
     <Box
       transition="3s ease"
@@ -103,34 +91,26 @@ const SidebarContent = ({ onClose, ...rest }) => {
       {...rest}
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <img src="/Attirely_admin_logo.png" alt="admin_logo" width={"120px"}  />
-        <Text  fontSize="2xl" fontWeight="extrabold" fontFamily="monospace">
+        <img src="/Attirely_admin_logo.png" alt="admin_logo" width={"120px"} />
+        <Text fontSize="2xl" fontWeight="extrabold" fontFamily="monospace">
           Admin
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-
-        <NavItem key={link.name} icon={link.icon} onClick={Changedirectory}>
-         
-          {link.name}
-        
-
-        </NavItem>
+        <NavLink to={link.path} key={link.name}>
+          <NavItem key={link.name} icon={link.icon}>
+            {link.name}
+          </NavItem>
+        </NavLink>
       ))}
-     
     </Box>
   );
 };
 
-
 const NavItem = ({ icon, children, ...rest }) => {
   return (
-    <Link
-      
-      style={{ textDecoration: "none" }}
-      _focus={{ boxShadow: "none" }}
-    >
+    <Link style={{ textDecoration: "none" }} _focus={{ boxShadow: "none" }}>
       <Flex
         align="center"
         p="4"
@@ -159,7 +139,6 @@ const NavItem = ({ icon, children, ...rest }) => {
     </Link>
   );
 };
-
 
 const MobileNav = ({ onOpen, ...rest }) => {
   return (
@@ -218,10 +197,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
                 </Box>
               </HStack>
             </MenuButton>
-            <MenuList
-              // bg={useColorModeValue("white", "gray.900")}
-              // borderColor={useColorModeValue("gray.200", "gray.700")}
-            >
+            <MenuList>
               <MenuItem>Profile</MenuItem>
               <MenuItem>Settings</MenuItem>
               <MenuDivider />
@@ -230,7 +206,6 @@ const MobileNav = ({ onOpen, ...rest }) => {
           </Menu>
         </Flex>
       </HStack>
-      
     </Flex>
   );
 };

@@ -21,7 +21,7 @@ import {
         py={'5'}
         shadow={'xl'}
         border={'1px solid'}
-        borderColor={useColorModeValue('gray.800', 'gray.500')}
+        borderColor={useColorModeValue('white', 'gray.500')}
         rounded={'lg'}>
         <Flex justifyContent={'space-between'}>
           <Box pl={{ base: 2, md: 4 }}>
@@ -46,13 +46,8 @@ import {
   export default function BasicStatistics() {
     return (
         <>
-        <Box fontFamily={"Assistant, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif"} maxW="5xl" mx={'auto'} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
-        <chakra.h1
-          fontSize={'3xl'}
-          
-          fontWeight={'bold'}>
-          Dashboard
-        </chakra.h1>
+        <Box fontFamily={"Assistant, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif"} maxW="7xl" mx={'auto'} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
+        
         <SimpleGrid columns={{ base: 1, md: 1 ,lg:3}}  spacing={{ base: 5, lg: 8 }}>
           <StatsCard
             title={'Users'}
