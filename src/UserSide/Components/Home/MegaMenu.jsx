@@ -1,5 +1,6 @@
 import { Box, Flex } from "@chakra-ui/react";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const MegaMenu = () => {
   return (
@@ -19,7 +20,7 @@ const MegaMenu = () => {
         justify={"center"}
         className="dropDown"
       >
-        Mens
+        <Link to="/product/MensData">Mens</Link>
         <Box
           top="5rem"
           className="child"
@@ -45,7 +46,7 @@ const MegaMenu = () => {
         className="dropDown"
         justify={"center"}
       >
-        Womens
+        <Link to="/product/WomensData">Womens</Link>
         <Box
           top="5rem"
           className="child"
