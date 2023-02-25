@@ -26,6 +26,9 @@ const Dashboard = () => {
           <Chart />
         </Box>
       </Box>
+
+   
+
 </>
       
   );

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Signup.css";
 import { Link, useNavigate } from "react-router-dom";
-import myntra from "./assets/myntra.jpg";
+
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -45,7 +45,7 @@ const Signup = () => {
     <div className="signup">
       <div className="signupContainer">
         <div className="signupImage">
-          <img src={myntra} alt="img" />
+          <img src="/myntra3.png" alt="img" />
         </div>
         <div className="signupDetail">
           <div>

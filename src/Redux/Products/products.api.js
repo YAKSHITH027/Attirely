@@ -12,3 +12,4 @@ export const getProductAPI = async (field, params) => {
 
   return { data, totalCount };
 };
+
