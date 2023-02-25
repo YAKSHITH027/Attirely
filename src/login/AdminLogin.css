@@ -1,48 +1,50 @@
-.signup {
+.login {
   padding-top: 2rem;
   height: 100vh;
   display: flex;
   align-items: center;
   background-color: #fdeeeb;
 }
-.signupContainer {
+
+.loginContainer {
   width: 900px;
   margin: auto;
   padding: 2rem 0;
   display: flex;
   background-color: rgb(255, 255, 255);
 }
-.signupImage {
-  width: 47%;
-}
-.signupImage img {
-  margin: 105px 0 0 20px;
-  width: 100%;
-}
-.signupDetail {
-  padding: 2rem 4rem;
+.loginImage {
   width: 50%;
 }
-.signupDetail > div:nth-child(1) {
+.loginImage img {
+  margin: 65px 0 0 90px;
+  width: 65%;
+}
+.loginDetail {
+  padding: 2rem 4rem;
+  width: 50%;
+  /* height: 300px; */
+}
+.loginDetail > div:nth-child(1) {
   display: flex;
   align-items: center;
   gap: 11px;
 }
-.signupDetail > div:nth-child(1) h3,
+.loginDetail > div:nth-child(1) h3,
 span {
   color: rgb(57, 57, 57);
 }
-.signupDetail > div:nth-child(2) input {
+.loginDetail > div:nth-child(2) input {
   width: 100%;
   padding: 10px;
-  margin: 0.7rem 0;
+  margin: 1rem 0;
   font-size: 15px;
   letter-spacing: 1px;
   outline: none;
   border: 1px solid rgb(187, 187, 187);
   color: gray;
 }
-.signupDetail > div:nth-child(2) button {
+.loginDetail > div:nth-child(2) button {
   width: 100%;
   padding: 10px;
   margin: 1rem 0;
@@ -54,54 +56,54 @@ span {
   cursor: pointer;
   font-weight: 700;
 }
-.signupDetail > div:nth-child(2) p {
+.loginDetail > div:nth-child(2) p {
   color: gray;
   font-size: 14px;
   margin: 5px 0;
 }
-.signupDetail > div:nth-child(2) p a {
+.loginDetail > div:nth-child(2) p a {
   color: #fd436e;
   font-weight: 500;
   cursor: pointer;
 }
 @media (max-width: 1000px) {
-  .signupContainer {
+  .loginContainer {
     width: 500px;
     padding: 0;
   }
-  .signupImage {
+  .loginImage {
     display: none;
   }
-  .signupDetail {
+  .loginDetail {
     padding: 2rem 3rem;
     width: 100%;
   }
 }
 @media (max-width: 570px) {
-  .signup {
+  .login {
     padding-top: 0rem;
   }
-  .signupContainer {
+  .loginContainer {
     width: 320px;
   }
-  .signupDetail {
+  .loginDetail {
     padding: 1rem 1rem;
   }
-  .signupDetail > div:nth-child(2) p {
+  .loginDetail > div:nth-child(2) p {
     font-size: 14px;
   }
 }
 @media (max-width: 350px) {
-  .signup {
+  .login {
     background-color: white;
   }
-  .signupContainer {
+  .loginContainer {
     width: 280px;
   }
-  .signupDetail {
+  .loginDetail {
     padding: 10px;
   }
-  .signupDetail > div:nth-child(2) p {
+  .loginDetail > div:nth-child(2) p {
     font-size: 11px;
     margin: 2px 0;
   }
