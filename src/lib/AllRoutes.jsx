@@ -176,7 +176,7 @@ export const AllRoutes = () => {
 
      
 
-    </Routes>
-  );
-};
+    // </Routes>
+  // );
+// };
 
