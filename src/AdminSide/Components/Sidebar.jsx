@@ -32,8 +32,8 @@ import { NavLink } from "react-router-dom";
 
 const LinkItems = [
   { name: "DashBoard", icon: FiHome , path: "/dashboard" },
-  { name: "Products", icon: BsBag, path: "/adminproduct" },
-  { name: "Add products", icon: MdAddShoppingCart, path: "/addproduct" },
+  { name: "Products", icon: BsBag, path: "/products" },
+  { name: "Add products", icon: MdAddShoppingCart, path: "/addproducts" },
   { name: "Categories", icon: AiOutlineBars, path: "/categories" },
   { name: "Orders", icon: BsBagCheck, path: "/orders" },
   { name: "Users", icon: HiUsers, path: "/users" },
