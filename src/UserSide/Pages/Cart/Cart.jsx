@@ -1,6 +1,6 @@
 import { Box, Button, Center, Flex, Grid, GridItem, Image, Input, Text,Select,ModalBody,
    useDisclosure, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalHeader, ModalFooter } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BsTag } from "react-icons/bs";
 import { CiPercent} from "react-icons/ci";
 import { Checkbox, CheckboxGroup } from '@chakra-ui/react'
@@ -8,72 +8,31 @@ import { TbTruckDelivery} from "react-icons/tb";
 import { MdMoreTime} from "react-icons/md";
 import gift from "./gift.png"
 import css from "./cart.css"
+import { useDispatch, useSelector } from 'react-redux';
+import { getCart } from '../../../Redux/Cart/cart.actions';
 const Cart = () => {
   const [qty,setqty]=useState(1)
+  const dispach=useDispatch()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [address,setaddres]=useState({name:"Sudhir Manoharrao Nandane",city:"Ashti",other:"at post bharaswada"})
 
-  const [data,setdata]=useState([
-    {
-    "id": "M6",
-    "category": "Mens",
-    "subCategory": "Jeans",
-    "brand": "Roadster",
-    "title": "Men Slim Fit Jeans",
-    "offerPrice": "719",
-    "originalPrice": "1499",
-    "discount": "52%",
-    "quantity": 32,
-    "images": [
-      "https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/2356421/2019/5/3/a89c3143-0c54-454b-8d7a-f6668d2458731556873152837-Roadster-Men-Black-Slim-Fit-Mid-Rise-Clean-Look-Jeans-339155-1.jpg",
-      "https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_210,c_limit,fl_progressive/assets/images/2356421/2019/5/3/a89c3143-0c54-454b-8d7a-f6668d2458731556873152837-Roadster-Men-Black-Slim-Fit-Mid-Rise-Clean-Look-Jeans-339155-1.jpg",
-      "https://assets.myntassets.com/f_webp,dpr_1.8,q_60,w_210,c_limit,fl_progressive/assets/images/2356421/2019/5/3/a89c3143-0c54-454b-8d7a-f6668d2458731556873152837-Roadster-Men-Black-Slim-Fit-Mid-Rise-Clean-Look-Jeans-339155-1.jpg",
-      "https://assets.myntassets.com/f_webp,dpr_2.0,q_60,w_210,c_limit,fl_progressive/assets/images/2356421/2019/5/3/a89c3143-0c54-454b-8d7a-f6668d2458731556873152837-Roadster-Men-Black-Slim-Fit-Mid-Rise-Clean-Look-Jeans-339155-1.jpg",
-      "https://assets.myntassets.com/f_webp,dpr_2.2,q_60,w_210,c_limit,fl_progressive/assets/images/2356421/2019/5/3/a89c3143-0c54-454b-8d7a-f6668d2458731556873152837-Roadster-Men-Black-Slim-Fit-Mid-Rise-Clean-Look-Jeans-339155-1.jpg",
-      "https://assets.myntassets.com/f_webp,dpr_2.4,q_60,w_210,c_limit,fl_progressive/assets/images/2356421/2019/5/3/a89c3143-0c54-454b-8d7a-f6668d2458731556873152837-Roadster-Men-Black-Slim-Fit-Mid-Rise-Clean-Look-Jeans-339155-1.jpg",
-      "https://assets.myntassets.com/f_webp,dpr_2.6,q_60,w_210,c_limit,fl_progressive/assets/images/2356421/2019/5/3/a89c3143-0c54-454b-8d7a-f6668d2458731556873152837-Roadster-Men-Black-Slim-Fit-Mid-Rise-Clean-Look-Jeans-339155-1.jpg",
-      "https://assets.myntassets.com/f_webp,dpr_2.8,q_60,w_210,c_limit,fl_progressive/assets/images/2356421/2019/5/3/a89c3143-0c54-454b-8d7a-f6668d2458731556873152837-Roadster-Men-Black-Slim-Fit-Mid-Rise-Clean-Look-Jeans-339155-1.jpg"
-    ],
-    "size": ["28", "30", "32", "34", "36", "38", "40"],
-    "cartQuantity": ["1", "2", "3", "4", "5", "6", "7","8","9"],
-    "rating": "3.8",
-    "ratingCount": "6.6k"
-  },
-  {
-    "id": "M7",
-    "category": "Mens",
-    "subCategory": "Jeans",
-    "brand": "HIGHLANDER",
-    "title": "Men Slim Fit Jeans",
-    "offerPrice": "558",
-    "originalPrice": "1299",
-    "discount": "57%",
-    "quantity": 40,
-    "images": [
-      "https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/productimage/2019/2/22/d80c3d85-a70b-4a20-8e49-6793311901ea1550824145033-1.jpg",
-      "https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_210,c_limit,fl_progressive/assets/images/productimage/2019/2/22/d80c3d85-a70b-4a20-8e49-6793311901ea1550824145033-1.jpg",
-      "https://assets.myntassets.com/f_webp,dpr_1.8,q_60,w_210,c_limit,fl_progressive/assets/images/productimage/2019/2/22/d80c3d85-a70b-4a20-8e49-6793311901ea1550824145033-1.jpg",
-      "https://assets.myntassets.com/f_webp,dpr_2.0,q_60,w_210,c_limit,fl_progressive/assets/images/productimage/2019/2/22/d80c3d85-a70b-4a20-8e49-6793311901ea1550824145033-1.jpg",
-      "https://assets.myntassets.com/f_webp,dpr_2.2,q_60,w_210,c_limit,fl_progressive/assets/images/productimage/2019/2/22/d80c3d85-a70b-4a20-8e49-6793311901ea1550824145033-1.jpg",
-      "https://assets.myntassets.com/f_webp,dpr_2.4,q_60,w_210,c_limit,fl_progressive/assets/images/productimage/2019/2/22/d80c3d85-a70b-4a20-8e49-6793311901ea1550824145033-1.jpg",
-      "https://assets.myntassets.com/f_webp,dpr_2.6,q_60,w_210,c_limit,fl_progressive/assets/images/productimage/2019/2/22/d80c3d85-a70b-4a20-8e49-6793311901ea1550824145033-1.jpg",
-      "https://assets.myntassets.com/f_webp,dpr_2.8,q_60,w_210,c_limit,fl_progressive/assets/images/productimage/2019/2/22/d80c3d85-a70b-4a20-8e49-6793311901ea1550824145033-1.jpg"
-    ],
-    "size": ["30", "32", "34", "36", "38"],
-    "cartQuantity": ["1", "2", "3", "4", "5", "6", "7","8","9"],
-    "rating": "3.8",
-    "ratingCount": "9k"
-  }])
+ 
+
+  const data=useSelector((store)=>store.cartReducer.cart)
+  useEffect(()=>{
+    dispach(getCart())
+  },[])
+
 
 // delet logic ***************************
 
   const handledelet=(el)=>{
-    setdata(data.filter((t)=>t.id===el.id))
+    (data.filter((t)=>t.id===el.id))
   }
   // login of cart ********************************
-let value=0
+let value=1
   let total=data.map((el)=>{
-    return value=value+Number(el.originalPrice)
+    return value=value+Number(el.originalPrice)*qty
   })
   let valueafterdicount=0
   let total1=data.map((el)=>{
@@ -96,7 +55,8 @@ const handleaddres1=(e)=>{
 const handleaddres2=(e)=>{
   setaddres({...address,city:e.target.value})
 }
-
+// *****************************************
+let cartQuantity=[1,2,3,4,5,6,7,8,9]
   return (
     <Center w={"100vw"} >
           <Grid className="cart_grid" m="10" gap={5}  >
@@ -120,10 +80,7 @@ const handleaddres2=(e)=>{
                  <Input mt={5} placeholder='Address' value={address.other} onChange={handleaddres1} />
                 <Input mt={5} placeholder='city' value={address.city} onChange={handleaddres2}/>
              </Box>
-           
-           
               </ModalBody>
-
               <ModalFooter>
               <Button width={'full'} colorScheme='#ef506a' mr={3} onClick={onClose}>
                  ADD ADDRESS
@@ -169,13 +126,14 @@ const handleaddres2=(e)=>{
                         <Select w={"80px"} style={{fontSize:"12px"}} h={"20px"}
                          borderRadius={"0%"} placeholder='size'>
                             {el.size.map((el)=>{
-                              return <option value={+el}>{+el}</option>
+                              return <option value={el}>{el}</option>
                             })}   
                          </Select>
-                         <Select w={"80px"} h={"20px"}  style={{fontSize:"12px"}} onChange={(e)=>setqty(e.target.value)}
+                         <Select w={"80px"} h={"20px"}  style={{fontSize:"12px"}} 
+                         onChange={(e)=>setqty(e.target.value)}
                           borderRadius={"0%"} placeholder='Quantity'>
-                         {el.cartQuantity.map((el)=>{
-                              return <option value={+el}>{+el}</option>
+                         {cartQuantity.map((el)=>{
+                              return <option value={el}>{el}</option>
                             })}
                          </Select>
 
@@ -236,14 +194,11 @@ const handleaddres2=(e)=>{
                   <p style={{fontSize:"12px",padding:"10px",marginLeft:"120px",fontWeight:"bold"}}>Rs. {valueafterdicount}</p>
                   <hr /> 
                 </Flex>
-               
+            
                 <Button width={["100%","80%"]} borderRadius={"0%"} color={"white"}
                           backgroundColor={"#ef506a"}>Place Order</Button>
-                  </Box> 
-                  
-                  
-              </GridItem>
-             
+                  </Box>    
+              </GridItem>   
           </Grid>
         </Center>
   )

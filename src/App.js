@@ -8,6 +8,7 @@ import Products from "./AdminSide/Pages/Products";
 
 
 import { AllRoutes } from "./lib/AllRoutes";
+import Cart from "./UserSide/Pages/Cart/Cart";
 
 function App() {
   return (
@@ -18,9 +19,9 @@ function App() {
       {/* <Home /> */}
 
   
+<Cart/>
 
-
-      <AllRoutes />
+      {/* <AllRoutes /> */}
 
     </div>
   );
