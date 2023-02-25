@@ -111,11 +111,13 @@ const Dummy = () => {
   //adding order to the firebase
   const addOrders = async (id, cartData, address) => {
     try {
-      let res = await addDoc(collection(db, "orders"), {
+      const sameId = Date.now() + id;
+      let res = await setDoc(doc(db, "orders", sameId), {
         cart: cartData, // this should be array of objects cart
         userId: id, //"userId which you get from authreducer",
         address: address,
         timestamp: Date.now(), // this can be used for sorting
+        orderId: sameId,
         status: "pending",
       });
       console.log(res);
@@ -125,6 +127,7 @@ const Dummy = () => {
   };
 
   // get all orders
+
   const getOrders = async () => {
     const querySnapshot = await getDocs(collection(db, "orders"));
     const orders = [];
@@ -133,6 +136,14 @@ const Dummy = () => {
     });
     console.log(orders);
     return orders;
+  };
+
+  //toggle status
+  const toggleStatus = async (orderId) => {
+    console.log(orderId);
+    const orderref = doc(db, "orders", orderId);
+    let res = await updateDoc(orderref, { status: "delivered" });
+    console.log(res);
   };
 
   //get all users
@@ -173,6 +184,7 @@ const Dummy = () => {
 
   useEffect(() => {
     // addOrders(userid, cart, address);
+    //check
     // getOrders();
     // setUser("userid2", {
     //   email: "dfyakshti@gmail.com",
@@ -180,6 +192,7 @@ const Dummy = () => {
     //   name: "22yakshith",
     // });
     // getUsers();
+    toggleStatus("1677339990146userIddfsfdsjfdsjf");
   }, []);
   //end
   return <div>dummy</div>;
