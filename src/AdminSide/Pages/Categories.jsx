@@ -83,19 +83,19 @@ const Categories = () => {
         Categories
       </Heading>
 
-      <Box  display={"flex"} justifyContent={"space-between"} gap="10px" border={"1px solid white"}>
+      <Box  display={"flex"} justifyContent={"space-between"} gap="10px" border={"1px solid gray"}>
         
         <Box  p={"20px"} width={"33%"}>
           <Box as="form">
             <FormControl id="name" isRequired>
               <FormLabel>Name</FormLabel>
-              <Input type="text" border={"1px solid white"} value={categoryName} onChange={(e) => setCategoryName(e.target.value)}/>
+              <Input type="text" border={"1px solid gray"} value={categoryName} onChange={(e) => setCategoryName(e.target.value)}/>
               <FormHelperText mb={"10px"}>Enter the name of the category.</FormHelperText>
             </FormControl>
 
             <FormControl id="image" isRequired>
               <FormLabel>Image</FormLabel>
-              <Input type="file" border={"1px solid white"} onChange={handleImageChange} />
+              <Input type="file" border={"1px solid gray"} onChange={handleImageChange} />
               <FormHelperText mb={"10px"}>
                 Choose an image to represent the category.
               </FormHelperText>
@@ -103,13 +103,13 @@ const Categories = () => {
 
             <FormControl id="description" isRequired>
               <FormLabel>Description</FormLabel>
-              <Textarea border={"1px solid white"} value={categoryDescription} onChange={(e) => setCategoryDescription(e.target.value)}/>
+              <Textarea border={"1px solid gray"} value={categoryDescription} onChange={(e) => setCategoryDescription(e.target.value)}/>
               <FormHelperText mb={"10px"}>
                 Provide a description of the category.
               </FormHelperText>
             </FormControl>
 
-            <Button mt={4} colorScheme="teal" type="submit" w={"100%"} onClick={handleCreateCategory} >
+            <Button mt={4} colorScheme="blue" type="submit" w={"100%"} onClick={handleCreateCategory} >
               Create Category
             </Button>
           </Box>

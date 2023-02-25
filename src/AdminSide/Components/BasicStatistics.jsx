@@ -8,6 +8,8 @@ import {
     StatNumber,
     useColorModeValue,
   } from '@chakra-ui/react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
   import { BsPerson } from 'react-icons/bs';
   import { HiShoppingBag } from 'react-icons/hi';
   import { TfiShoppingCartFull } from 'react-icons/tfi';
@@ -15,14 +17,18 @@ import {
   
   function StatsCard(props) {
     const { title, stat, icon } = props;
+    
+
+
     return (
       <Stat
         px={{ base: 2, md: 4 }}
         py={'5'}
         shadow={'xl'}
         border={'1px solid'}
-        borderColor={useColorModeValue('white', 'gray.500')}
-        rounded={'lg'}>
+        borderColor={useColorModeValue('gray.500', 'gray.500')}
+        >
+          
         <Flex justifyContent={'space-between'}>
           <Box pl={{ base: 2, md: 4 }}>
             <StatLabel fontWeight={'medium'} isTruncated>
@@ -44,6 +50,34 @@ import {
   }
   
   export default function BasicStatistics() {
+    const [totalProducts, setTotalProducts] = useState(0);
+
+  useEffect(() => {
+   
+    const fetchData = async () => {
+      try {
+
+        const menRes = await axios.get("https://rc201-jsondata-serverapi.onrender.com/MensData");
+        const womenRes = await axios.get("https://rc201-jsondata-serverapi.onrender.com/WomensData");
+        const childrenRes = await axios.get("https://rc201-jsondata-serverapi.onrender.com/ChildrensData");
+
+        const menProducts = menRes.data.length;
+        const womenProducts = womenRes.data.length;
+        const childrenProducts = childrenRes.data.length;
+
+        setTotalProducts ( menProducts + womenProducts + childrenProducts);
+      
+      } catch (error) {
+
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+    
+  
+      
     return (
         <>
         <Box fontFamily={"Assistant, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif"} maxW="7xl" mx={'auto'} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
@@ -61,7 +95,7 @@ import {
           />
           <StatsCard
             title={'Total Products'}
-            stat={'3,000'} //MAPED TOTAL INVENTORY PRODUCTS NUMBER 
+            stat={totalProducts} //MAPED TOTAL INVENTORY PRODUCTS NUMBER 
             icon={<TfiShoppingCartFull size={'3em'} />}
           />
         </SimpleGrid>
