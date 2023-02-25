@@ -161,7 +161,7 @@ const Products = () => {
           />
         </Box>
         <Box width="full" minH={"80vh"}>
-          {prod.length == 0 && !isLoading ? (
+          {prod.length ===0 && !isLoading ? (
             <Flex justify={"center"} align="center" padding={"2rem"}>
               <Image
                 src="https://media.tenor.com/OyUVgQi-l-QAAAAC/404.gif"
