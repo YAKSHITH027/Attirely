@@ -42,7 +42,7 @@ let value=1
   let total2=data.map((el)=>{
     return dicount=dicount+Math.floor(Number(valueafterdicount/el.discount.replace("%","")*10).toFixed(2))
   })
-//*****************************"
+
 
 const handleaddres=(e)=>{
   setaddres({...address,name:e.target.value})
