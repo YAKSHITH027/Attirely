@@ -7,8 +7,9 @@ import {
   query,
   getDocs,
 } from "firebase/firestore";
-// import { collection, query, where } from "firebase/firestore";
 import { db } from "../../lib/firebase";
+// import { collection, query, where } from "firebase/firestore";
+// import { db } from "../../lib/firebase";
 export const cartAPI = async (id) => {
   try {
     // console.log(id);

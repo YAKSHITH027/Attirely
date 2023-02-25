@@ -22,8 +22,7 @@ import {
   
   export default function SingleAdminProd({props}) {
     
-    // let arr = new Array(props.size.length).fill(props.size);
-    // console.log(arr); 
+    
     
     
     
@@ -155,7 +154,11 @@ import {
                     <Text as={'span'} fontWeight={'bold'}>
                       Size - 
                     </Text>{' '}
-                   {props.size}
+                   {/* {props.size} */}
+                   {props.size.map((item)=>{
+                    console.log(item);
+                    return <Button>{item}</Button>
+                   })}
                   </ListItem>
                 </List>
                 </Center>
