@@ -15,6 +15,8 @@ const SinglegridProduct = ({
   offerPrice,
   originalPrice,
   discount,
+  rating,
+  ratingCount,
   products,
 }) => {
   const [show, setShow] = useState(false);
@@ -33,7 +35,11 @@ const SinglegridProduct = ({
         }}
       >
         <Box>
-          <SingleProductImageSlider images={images} />
+          <SingleProductImageSlider
+            images={images}
+            rating={rating}
+            ratingCount={ratingCount}
+          />
         </Box>
         <Box px="0px" py="9px" bg="white">
           <Text fontWeight={"600"} fontSize="0.94rem" pl="10px">
@@ -83,7 +89,7 @@ const SinglegridProduct = ({
             </Flex>
           </Box>
           <Text fontWeight={"bold"} fontSize="0.84rem" my="0.1rem" pl="10px">
-            Rs. {offerPrice}{" "}
+            Rs. {offerPrice || 456}{" "}
             <Text
               as="span"
               textDecoration={"line-through"}
@@ -93,7 +99,7 @@ const SinglegridProduct = ({
               Rs.{originalPrice}
             </Text>
             <Text as="span" color={"pink.400"} fontSize="0.7rem" px="4px">
-              ({discount}off)
+              ({discount || "54%"}off)
             </Text>
           </Text>
         </Box>
