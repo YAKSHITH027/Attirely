@@ -86,6 +86,7 @@ import Cart from "../UserSide/Pages/Cart/Cart";
  import Login from "../login/Login";
  import Signup from "../login/Signup";
  import SingleProduct from "../UserSide/Pages/SingleProductPage/SingleProduct";
+import Payment from "../UserSide/Pages/Payment/Paymet";
 //  import  UserProduct from "../UserSide/Pages/Products/Products";
 
 export const AllRoutes= ()=>{
@@ -107,6 +108,7 @@ export const AllRoutes= ()=>{
       <Route path="/login" element={<Login />}></Route>
       <Route path="/cart" element={<Cart />}></Route>
       <Route path="/signup" element={<Signup />}></Route>
+      <Route path="/payment" element={<Payment/>}></Route>
        </Routes>  
     )
 }

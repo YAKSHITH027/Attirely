@@ -11,7 +11,7 @@ import {
 import { db } from "../../lib/firebase";
 export const cartAPI = async (id) => {
   try {
-    console.log(id);
+    // console.log(id);
     const citiesRef = collection(db, "cart");
     const q = query(citiesRef, where("id", "==", id));
     const querySnapshot = await getDocs(q);
