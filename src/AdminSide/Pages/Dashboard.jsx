@@ -26,10 +26,14 @@ const Dashboard = () => {
           <Chart />
         </Box>
       </Box>
+<<<<<<< HEAD
+      </>
+=======
 
    
 
 </>
+>>>>>>> c7da0a8e871abd91c409fae7ad1aa16dbaffc667
       
   );
 };
