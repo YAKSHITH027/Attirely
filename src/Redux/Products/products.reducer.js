@@ -14,7 +14,6 @@ const reducer = (state = initialState, action) => {
     case types.PRODUCT_ERROR:
       return { ...state, isLoading: false, isError: true };
     case types.PRODUCT_SUCCESS:
-      console.log("paylog", payload);
       return {
         ...state,
         isLoading: false,
