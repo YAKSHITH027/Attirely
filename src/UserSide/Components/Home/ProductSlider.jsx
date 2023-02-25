@@ -14,7 +14,7 @@ const ProductSlider = ({ imageData, width, height, gap }) => {
         }}
       >
         {imageData.map((item) => {
-          return <Image src={item} width={width} height={height} />;
+          return <Image key={Math.random()+item+"abc"} src={item} width={width} height={height} />;
         })}
       </Flex>
     </Box>

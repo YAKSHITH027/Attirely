@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
-import myntra3 from "./assets/myntra3.png";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -30,7 +30,7 @@ const Login = () => {
     if (validateForm()) {
       try {
         // await login(email, password);
-        navigate("/home");
+        navigate("/");
       } catch (err) {
         setError(err);
       }
@@ -41,7 +41,7 @@ const Login = () => {
     <div className="login">
       <div className="loginContainer">
         <div className="loginImage">
-          <img src={myntra3} alt="myntra2" />
+          <img src="/myntra3.png" alt="myntra2" />
         </div>
         <div className="loginDetail">
           <div>

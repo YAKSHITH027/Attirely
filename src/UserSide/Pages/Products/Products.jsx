@@ -18,7 +18,8 @@ import {
   BreadcrumbLink,
 } from "@chakra-ui/breadcrumb";
 import { sortedLastIndexOf } from "lodash";
-const UserProduct = () => {
+
+const Products = () => {
   const dispatch = useDispatch();
   let { products } = useParams();
 
@@ -244,4 +245,4 @@ const UserProduct = () => {
   );
 };
 
-export default UserProduct;
+export default Products;
