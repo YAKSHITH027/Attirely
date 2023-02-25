@@ -67,8 +67,9 @@
 //       <Route path="/signup" element={<Signup />}></Route>
 
 import { Routes, Route } from "react-router-dom";
+// admin side imports
+import Sidebar from "../AdminSide/Components/Sidebar";
 import AddProducts from "../AdminSide/Pages/AddProducts";
-// import {AdminProducts} from "../Pages/AdminProducts";
 import Dashboard from "../AdminSide/Pages/Dashboard";
 import Orders from "../AdminSide/Pages/Orders";
 import Products from "../AdminSide/Pages/Products";
@@ -77,13 +78,23 @@ import Transactions from "../AdminSide/Pages/Transactions";
 import Users from "../AdminSide/Pages/Users";
 import Categories from "../AdminSide/Pages/Categories";
 
+
 import Home from "../UserSide/Pages/Home/Home"
-import Sidebar from "../AdminSide/Components/Sidebar";
+import Cart from "../UserSide/Pages/Cart/Cart"
+
+
+
+
 
 export const AllRoutes= ()=>{
     return(
         <Routes>
-             <Route path="/" element={<Home/>}></Route>
+          
+            <Route path="/" element={<Home/>}></Route>
+            <Route path="/cart" element={<Cart />}></Route>
+          
+            
+          
             <Route path="/dashboard" element={<Sidebar><Dashboard/></Sidebar> }></Route>
             <Route path="/addproducts" element={<Sidebar><AddProducts/></Sidebar>}></Route>
             <Route path="/orders" element={<Sidebar><Orders/></Sidebar>}></Route>
