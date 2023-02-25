@@ -72,7 +72,7 @@ const MegaMenu = () => {
         justify={"center"}
         className="dropDown"
       >
-        Kids
+        <Link to="/product/ChildrensData">Kids</Link>
       </Flex>
       <Flex
         className="dropDown"

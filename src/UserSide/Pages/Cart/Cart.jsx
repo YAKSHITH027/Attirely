@@ -10,6 +10,7 @@ import gift from "./gift.png"
 import css from "./cart.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { getCart } from '../../../Redux/Cart/cart.actions';
+import { Link } from 'react-router-dom';
 const Cart = () => {
   const [qty,setqty]=useState(1)
   const dispach=useDispatch()
@@ -42,7 +43,7 @@ let value=1
   let total2=data.map((el)=>{
     return dicount=dicount+Math.floor(Number(valueafterdicount/el.discount.replace("%","")*10).toFixed(2))
   })
-//*****************************"
+
 
 const handleaddres=(e)=>{
   setaddres({...address,name:e.target.value})
@@ -58,7 +59,7 @@ const handleaddres2=(e)=>{
 // *****************************************
 let cartQuantity=[1,2,3,4,5,6,7,8,9]
   return (
-    <Center w={"100vw"} >
+    <Center w={"105vw"} >
           <Grid className="cart_grid" m="10" gap={5}  >
               <GridItem  width={"100%"} >
                 <Flex style={{padding:"10px",
@@ -82,7 +83,7 @@ let cartQuantity=[1,2,3,4,5,6,7,8,9]
              </Box>
               </ModalBody>
               <ModalFooter>
-              <Button width={'full'} colorScheme='#ef506a' mr={3} onClick={onClose}>
+              <Button width={'full'} backgroundColor={"#ef506a"} mr={3} onClick={onClose}>
                  ADD ADDRESS
               </Button>
               </ModalFooter>
@@ -194,9 +195,9 @@ let cartQuantity=[1,2,3,4,5,6,7,8,9]
                   <p style={{fontSize:"12px",padding:"10px",marginLeft:"120px",fontWeight:"bold"}}>Rs. {valueafterdicount}</p>
                   <hr /> 
                 </Flex>
-            
+            <Link to={"/payment"}>
                 <Button width={["100%","80%"]} borderRadius={"0%"} color={"white"}
-                          backgroundColor={"#ef506a"}>Place Order</Button>
+                          backgroundColor={"#ef506a"}>Place Order</Button></Link>
                   </Box>    
               </GridItem>   
           </Grid>
