@@ -5,7 +5,7 @@ import SingleAdminProd from "./SingleAdminProd";
 
 
 
-const Products = () => {
+const ProductsAdmin = () => {
   const [option, setOption]= useState("MensData");
   const [ProdData, setProdData] = useState([]);
 
@@ -23,7 +23,7 @@ const Products = () => {
         }
     }
 
-
+      
     useEffect(()=>{
       getAdminProductsData();
     },[option]);
@@ -62,4 +62,4 @@ const Products = () => {
   )
 }
 
-export default Products
+export default ProductsAdmin
