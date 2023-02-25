@@ -19,7 +19,9 @@ import {
 } from "@chakra-ui/breadcrumb";
 import { sortedLastIndexOf } from "lodash";
 
+
 const Products = () => {
+
   const dispatch = useDispatch();
   let { products } = useParams();
 
