@@ -27,6 +27,7 @@ import { HiUsers } from "react-icons/hi";
 import { TbReportMoney } from "react-icons/tb";
 import { BsBagCheck, BsBag, BsShop } from "react-icons/bs";
 import { AiOutlineBars } from "react-icons/ai";
+import {FaUserFriends} from "react-icons/fa";
 
 import { NavLink, useNavigate } from "react-router-dom";
 
@@ -39,6 +40,7 @@ const LinkItems = [
   { name: "Users", icon: HiUsers, path: "/users" },
   { name: "Sellers", icon: BsShop , path: "/sellers"},
   { name: "Transactions", icon: TbReportMoney, path: "/transactions" },
+  {name:"Launch UserSide", icon:FaUserFriends, path:"/"}
 ];
 
 export default function Sidebar({ children }) {
