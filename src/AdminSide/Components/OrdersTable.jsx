@@ -1,146 +1,102 @@
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  IconButton,
-  Box,
-  Button,
-} from "@chakra-ui/react";
-import { FaEye } from "react-icons/fa";
-import React, { useState } from "react";
-
-// DUmmy DATA for mapping
-const data = [
-  {
-    id: 1,
-    name: "Product A",
-    brand: "Brand X",
-    totalprice: "$100",
-    email: "user@example.com",
-    paymentstatus: "Paid",
-    deliverystatus: "Delivered",
-  },
-  {
-    id: 2,
-    name: "Product B",
-    brand: "Brand Y",
-    totalprice: "$200",
-    email: "user@example.com",
-    paymentstatus: "Pending",
-    deliverystatus: "In Transit",
-  },
-  {
-    id: 3,
-    name: "Product C",
-    brand: "Brand Z",
-    totalprice: "$150",
-    email: "user@example.com",
-    paymentstatus: "Paid",
-    deliverystatus: "Delivered",
-  },
-];
+import { Table, Thead, Tbody, Tr, Th, Td, Box, Button } from "@chakra-ui/react";
+import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { db } from "../../lib/firebase";
 
 const OrdersTable = () => {
-  const [deliveryStatus, setDeliveryStatus] = useState(
-    data.map((el) => el.deliverystatus)
-  );
-  const [paymentStatus, setPaymentStatus] = useState(
-    data.map((el) => el.paymentstatus)
-  );
+  const [totalOrders, setTotalOrders] = useState([]);
 
-  const toggleDeliveryStatus = (index) => {
-    const newDeliveryStatus = [...deliveryStatus];
-    newDeliveryStatus[index] =
-      newDeliveryStatus[index] === "Delivered" ? "In Transit" : "Delivered";
-    setDeliveryStatus(newDeliveryStatus);
-  };
+  useEffect(() => {
+      const getOrders = async () => {
+      const querySnapshot = await getDocs(collection(db, "orders"));
+      const orders = [];
+      querySnapshot.forEach((doc) => {
+        orders.push(doc.data());
+      });
+      console.log(orders);
+      setTotalOrders(orders);
+    };
+    getOrders();
+  }, []);
 
-  const togglePaymentStatus = (index) => {
-    const newPaymentStatus = [...paymentStatus];
-    newPaymentStatus[index] =
-      newPaymentStatus[index] === "Paid" ? "Unpaid" : "Paid";
-    setPaymentStatus(newPaymentStatus);
-  };
+  function getTotalOfferPriceForUser(userId) {
+    return totalOrders
+      .filter((order) => order.userId === userId)
+      .reduce((total, order) => {
+        return (
+          total +
+          order.cart.reduce((cartTotal, item) => {
+            return item.offerPrice;
+          }, 0)
+        );
+      }, 0);
+  }
 
-  const saveDeliveryStatus = async (index) => {
-    try {
-      const updatedOrder = {
-        deliverystatus: deliveryStatus[index],
-        paymentstatus: paymentStatus[index],
-      };
-      const response = await fetch(
-        `https://rc201-jsondata-serverapi.onrender.com/orders/${data.id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(updatedOrder),
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to update order status");
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  
+    const toggleStatus = async (orderId) => {
+      console.log(orderId);
+      const orderref = doc(db, "orders", orderId);
+      let res = await updateDoc(orderref, { status: "delivered" });
+      console.log(res);
+      const querySnapshot = await getDocs(collection(db, "orders"));
+      const orders = [];
+      querySnapshot.forEach((doc) => {
+        orders.push(doc.data());
+      });
+      console.log(orders);
+      setTotalOrders(orders);
+    };
+   
+ 
 
   return (
     <Box maxWidth="100%" overflowX="auto">
-      <Table variant="simple" textAlign={"center"}>
+      <Table variant="simple">
         <Thead>
           <Tr>
-            <Th>Name</Th>
-            <Th>Brand</Th>
+            <Th>User ID</Th>
+            <Th>Address</Th>
+            <Th>Status</Th>
+            <Th>Cart</Th>
             <Th>Total Price</Th>
-            <Th>Email</Th>
-            <Th>Payment Status</Th>
-            <Th>Delivery Status</Th>
-            <Th>Action</Th>
           </Tr>
         </Thead>
         <Tbody>
-          {data.map((el, index) => (
-            <Tr key={index}>
-              <Td>{el.name}</Td>
-              <Td>{el.brand}</Td>
-              <Td>{el.totalprice}</Td>
-              <Td>{el.email}</Td>
+          {totalOrders.map((order) => (
+            <Tr key={order.id}>
+              <Td>{order.userId}</Td>
               <Td>
+                {order.address.name}, {order.address.pin}
+              </Td>
+              <Td>
+                {" "}
                 <Button
-                  colorScheme={
-                    paymentStatus[index] === "Paid" ? "green" : "red"
-                  }
-                  size="sm"
-                  onClick={() => togglePaymentStatus(index)}
+                  onClick={() => toggleStatus(order.orderId)}
                 >
-                  {paymentStatus[index]}
+                  {order.status}
                 </Button>
               </Td>
               <Td>
-                <Button
-                  colorScheme={
-                    deliveryStatus[index] === "Delivered" ? "green" : "orange"
-                  }
-                  size="sm"
-                  onClick={() => toggleDeliveryStatus(index)}
-                >
-                  {deliveryStatus[index]}
-                </Button>
+                <Table size="sm">
+                  <Thead>
+                    <Tr>
+                      <Th>Number of items</Th>
+                      <Th>Brand</Th>
+                      <Th>Offer price</Th>
+                    </Tr>
+                  </Thead>
+                  <Tbody>
+                    {order.cart.map((item, i) => (
+                      <Tr key={item.id}>
+                        <Td>{i + 1}</Td>
+                        <Td>{item.brand}</Td>
+                        <Td>{item.offerPrice}</Td>
+                      </Tr>
+                    ))}
+                  </Tbody>
+                </Table>
               </Td>
-              <Td>
-                <Button
-                  colorScheme="blue"
-                  size="sm"
-                  onClick={() => saveDeliveryStatus(el.orderID)}
-                >
-                  Save
-                </Button>
-              </Td>
+              <Td>{getTotalOfferPriceForUser(order.userId)}</Td>
             </Tr>
           ))}
         </Tbody>
