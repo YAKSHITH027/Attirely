@@ -9,33 +9,44 @@ import { MdMoreTime} from "react-icons/md";
 import gift from "./gift.png"
 import css from "./cart.css"
 import { useDispatch, useSelector } from 'react-redux';
-import { addcart, getCart } from '../../../Redux/Cart/cart.actions';
+import { addToCart, addcart, getCart } from '../../../Redux/Cart/cart.actions';
 import { Link } from 'react-router-dom';
 import Navbar from '../../Components/Home/Navbar';
 import Footer from '../../Components/Home/Footer';
 import Payment from '../Payment/Paymet';
 const Cart = () => {
   const [qty,setqty]=useState(1)
-  const dispach=useDispatch()
+  const dispatch=useDispatch()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [address,setaddres]=useState({name:"Sudhir Manoharrao Nandane",city:"Ashti",other:"at post bharaswada",number:9657167157})
- 
-  const id =useSelector((store)=>store.userAuthReducer.user)
-  console.log(id)
+
+  const userData = useSelector((store) => {
+    return store.userAuthReducer.user;
+  });
+
+  const id = userData?.uid;
+
+  const data = useSelector((store) => {
+    return store.cartReducer.cart;
+  });
+
+  useEffect(() => {
+    if (id) {
+      dispatch(getCart(id));
+    }
+  }, []);
+  console.log("my",data);
  
 
-  const data=useSelector((store)=>store.cartReducer.cart)
-  useEffect(()=>{
-    dispach(getCart(id))
-  },[])
-console.log(data)
+
 
 // delet logic ***************************
 
   const handledelet=(el)=>{
-   const filterdata=data.filter((t)=>t.id===el.id)
-   console.log(filterdata)
-    dispach(addcart(filterdata))
+   const filterdata=data.filter((t)=>t.id!=el.id)
+   console.log("gdfgdg",filterdata)
+   dispatch(addToCart(id, filterdata));
+    
   }
   // login of cart ********************************
 let value=1

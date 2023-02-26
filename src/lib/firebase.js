@@ -9,6 +9,7 @@ const firebaseConfig = {
   projectId: "new-one-e6639",
   storageBucket: "new-one-e6639.appspot.com",
   messagingSenderId: "576007040563",
+
   appId: "1:576007040563:web:a9d8ede4e1c4d7109ebd46",
 };
 
