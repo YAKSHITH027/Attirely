@@ -182,7 +182,7 @@ export const AllRoutes = () => {
           </PrivateRouteUser>
         }
       ></Route>
-      <Route path="/signup" element={<Signup />}></Route>
+
       <Route
         path="/profile"
         element={

@@ -26,8 +26,10 @@ export const cartAPI = async (id) => {
   }
 };
 
+
 // add to cart
 export const addToCartAPI = async (id, cartData) => {
+
   try {
     let res = await setDoc(doc(db, "cart", id), {
       cart: cartData, // this should be array of objects cart
@@ -37,3 +39,4 @@ export const addToCartAPI = async (id, cartData) => {
     console.log(error);
   }
 };
+

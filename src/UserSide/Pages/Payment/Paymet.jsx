@@ -4,6 +4,8 @@ import { Box, Button, Center, Flex, Grid, GridItem, Image, Input, Text,Select,Mo
          useDisclosure, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalHeader, ModalFooter, Radio, RadioGroup, Stack } from '@chakra-ui/react'
 import { getCart } from "../../../Redux/Cart/cart.actions";
 import { useDispatch, useSelector } from "react-redux";
+import Navbar from "../../Components/Home/Navbar";
+import Footer from "../../Components/Home/Footer";
 export default function Payment() {
   const [qty,setqty]=useState(1)
   const dispach=useDispatch()
@@ -15,7 +17,7 @@ export default function Payment() {
   // ---------------------------------------
   const data=useSelector((store)=>store.cartReducer.cart)
   useEffect(()=>{
-    dispach(getCart())
+    dispatch(getCart())
   },[])
 
 
@@ -77,7 +79,9 @@ const handlePayment = useCallback(() => {
 
 
   return (
-    <div className="App">  
+    <div>
+      <Navbar/>
+       <div className="App">  
           <Grid className="cart_grid" m="10" gap={5}  >
               <GridItem  width={"100%"}  padding={5} >
                 <h1 style={{fontWeight:"bold" ,padding:"5px"}}>Select Delivery Address</h1>
@@ -133,5 +137,8 @@ const handlePayment = useCallback(() => {
           </Grid>
       
     </div>
+    <Footer/>
+    </div>
+   
   );
 }
