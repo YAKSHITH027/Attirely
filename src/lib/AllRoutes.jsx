@@ -168,26 +168,8 @@ export const AllRoutes = () => {
       <Route path="/adminlogin" element={<AdminLogin />}></Route>
       <Route path="/cart" element={<Cart />}></Route>
       <Route path="/signup" element={<Signup />}></Route>
-<<<<<<< HEAD
-
-      <Route path="/payment" element={<Payment/>}></Route>
-       </Routes>  
-    )
-}
-
-
-
-
-     
-
-    // </Routes>
-  // );
-// };
-
-=======
       <Route path="/profile" element={<Profile />}></Route>
       <Route path="/payment" element={<Payment />}></Route>
     </Routes>
   );
 };
->>>>>>> 396cfc339802cda8823d60fcd8ec64e74f7f3342
