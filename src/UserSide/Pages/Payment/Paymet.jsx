@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import useRazorpay from "react-razorpay";
 import { Box, Button, Center, Flex, Grid, GridItem, Image, Input, Text,Select,ModalBody,
-         useDisclosure, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalHeader, ModalFooter, Radio, RadioGroup, Stack } from '@chakra-ui/react'
+         useDisclosure, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalHeader, ModalFooter, Radio, RadioGroup, Stack, useToast } from '@chakra-ui/react'
 import { addToCart, getCart } from "../../../Redux/Cart/cart.actions";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../Components/Home/Navbar";
@@ -15,6 +15,7 @@ export default function Payment() {
   const [address,setaddres]=useState({name:"Sudhir Manoharrao Nandane",city:"Ashti",other:"347, at post bharaswada , Ta Ashti , Dist Wardha"})
   const Razorpay = useRazorpay();
   const dispatch=useDispatch()
+  const toast = useToast()
   const userData = useSelector((store) => {
     return store.userAuthReducer.user;
   });
@@ -54,7 +55,18 @@ const handlePayment = useCallback(() => {
    
     handler: (res) => {
       console.log(res);
-      alert("payment successfull")
+      toast({
+        title: "Payment Successfull",
+        // description: "Shop More ...",
+        status: "success",
+        duration: 4000,
+        position: "top",
+        isClosable: true,
+      });
+    
+    
+    
+    
       if(res){
         let mydata=[]
     dispatch(addToCart(id,mydata));
@@ -90,7 +102,7 @@ const order=(id,data,address)=>{
         orderId: sameId,
         status: "pending",
       });
-      console.log(res);
+      console.log("fgf",res);
     } catch (error) {
       console.log(error);
     }
