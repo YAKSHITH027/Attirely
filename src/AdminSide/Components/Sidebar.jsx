@@ -212,6 +212,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
               <MenuItem  onClick={()=>{
                         toast({
                           title: 'Signed Out.',
+                          position: 'top',
                           description: "Redirected to User Side.",
                           status: 'success',
                           duration: 9000,
