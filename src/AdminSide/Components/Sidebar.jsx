@@ -28,7 +28,7 @@ import { TbReportMoney } from "react-icons/tb";
 import { BsBagCheck, BsBag, BsShop } from "react-icons/bs";
 import { AiOutlineBars } from "react-icons/ai";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const LinkItems = [
   { name: "DashBoard", icon: FiHome , path: "/dashboard" },
@@ -71,7 +71,7 @@ export default function Sidebar({ children }) {
         </Drawer>
         {/* mobilenav */}
         <MobileNav onOpen={onOpen} />
-        <Box ml={{ base: 0, md: 60 }} p="4" backgroundColor={"#FED7E2"}>
+        <Box ml={{ base: 0, md: 60 }} p="4" backgroundColor={"white"}>
           {children}
         </Box>
       </Box>
@@ -110,6 +110,8 @@ const SidebarContent = ({ onClose, ...rest }) => {
 };
 
 const NavItem = ({ icon, children, ...rest }) => {
+
+      
   return (
     <Link style={{ textDecoration: "none" }} _focus={{ boxShadow: "none" }}>
       <Flex
@@ -120,8 +122,8 @@ const NavItem = ({ icon, children, ...rest }) => {
         role="group"
         cursor="pointer"
         _hover={{
-          bg: "#FED7E2",
-          color: "#D53F8C",
+          bg: "#3182ce",
+          color: "#ffff",
         }}
         {...rest}
       >
@@ -130,7 +132,7 @@ const NavItem = ({ icon, children, ...rest }) => {
             mr="4"
             fontSize="16"
             _groupHover={{
-              color: "#D53F8C",
+              color: "white",
             }}
             as={icon}
           />
@@ -142,6 +144,7 @@ const NavItem = ({ icon, children, ...rest }) => {
 };
 
 const MobileNav = ({ onOpen, ...rest }) => {
+  const navigate = useNavigate();
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -202,7 +205,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
               <MenuItem>Profile</MenuItem>
               <MenuItem>Settings</MenuItem>
               <MenuDivider />
-              <MenuItem>Sign out</MenuItem>
+              <MenuItem onClick={()=>navigate("/")}>Sign out</MenuItem>
             </MenuList>
           </Menu>
         </Flex>

@@ -1,4 +1,4 @@
-import { cartAPI } from "./cart.api";
+import { addToCartAPI, cartAPI } from "./cart.api";
 import * as types from "./cart.types";
 const cartRequest = () => {
   return { type: types.CART_REQUEST };
@@ -23,3 +23,12 @@ export const getCart =
       dispatch(cartError());
     }
   };
+
+export const addToCart = (id, item) => async (dispatch) => {
+  dispatch(cartRequest());
+  try {
+    await addToCartAPI(id, item);
+  } catch (error) {
+    dispatch(cartError());
+  }
+};

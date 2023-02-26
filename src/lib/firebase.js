@@ -4,7 +4,7 @@ import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC3GAHhE21VAbZ4vtcG7Rkn1j7Ar5mCMuY",
+  apiKey: process.env.REACT_APP_FIREBASE_KEY,
   authDomain: "attierly.firebaseapp.com",
   projectId: "attierly",
   storageBucket: "attierly.appspot.com",

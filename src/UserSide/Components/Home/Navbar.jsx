@@ -75,9 +75,27 @@ const Navbar = () => {
               <PopoverCloseButton />
               <PopoverHeader>Profile</PopoverHeader>
               <PopoverBody>
-                <Link to="/login">
-                  <Text>Signin / Signup</Text>
-                </Link>
+                <Flex flexDir={"column"} gap="2">
+                  <Link to="/login">
+                    <Text>Signin / Signup</Text>
+                  </Link>
+                  <Link to="/profile">
+                    <Text>Profile</Text>
+                  </Link>
+
+                  <Link to="/login">
+                    <Text>orders</Text>
+                  </Link>
+                  <Link to="/login">
+                    <Text>Wishlists</Text>
+                  </Link>
+                  <Link to="#">
+                    <Text>gift cards</Text>
+                  </Link>
+                  <Link to="#">
+                    <Text>contact us</Text>
+                  </Link>
+                </Flex>
               </PopoverBody>
             </PopoverContent>
           </Popover>

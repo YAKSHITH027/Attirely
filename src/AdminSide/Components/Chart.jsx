@@ -17,29 +17,14 @@ const data = {
 
 
 const Chart = () => {
-  // const [pdata, setPdata] = useState({});
-  //   useEffect(() => {
-  //     async function fetchData() {
-  //       try {
-  //         const [key1Data, key2Data, key3Data] = await Promise.all([
-  //           fetch('https://rc201-jsondata-serverapi.onrender.com/MensData').then(res => res.json()),
-  //           fetch('https://rc201-jsondata-serverapi.onrender.com/WomensData').then(res => res.json()),
-  //           fetch('https://rc201-jsondata-serverapi.onrender.com/ChildrensData').then(res => res.json())
-  //         ]);
-  //         setPdata({ key1Data, key2Data, key3Data });
 
-  //       } catch (err) {
-  //         console.log(err);
 
-  //       }
-  //     }
-  //     fetchData();
-  //   }, []);
-  //   console.log(pdata)
+
+  
 
   return (
     <>
-      <Box border="1px solid white" shadow={'xl'}>
+      <Box border="1px solid gray" shadow={'xl'} p={3}>
         <Box m={"10px 10px"}>
           <Text fontSize="xl">Products statistics</Text>
         </Box>

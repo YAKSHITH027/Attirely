@@ -10,21 +10,32 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { BiStar } from "react-icons/bi";
-import { doc, setDoc } from "@firebase/firestore";
+
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { db } from "../../../lib/firebase";
-import { getCart } from "../../../Redux/Cart/cart.actions";
+
+import { addToCart, getCart } from "../../../Redux/Cart/cart.actions";
 import Footer from "../../Components/Home/Footer";
 import Navbar from "../../Components/Home/Navbar";
+import SimilarProducts from "../../Components/Products/SimilarProducts";
 
 const SingleProduct = () => {
   let { products, id } = useParams();
+  const dispatch = useDispatch();
+  let allCartItems = useSelector((store) => {
+    return store.cartReducer.cart;
+  });
+  //firebase userid
+  const userData = useSelector((store) => {
+    return store.userAuthReducer.user;
+  });
+
+  const userid = userData?.uid;
+
   const [singleProd, setSingleProd] = useState({});
   const [isLoading, setLoading] = useState(true);
-  // console.log(x);
 
   const getSingleProuduct = async () => {
     let res = await axios.get(
@@ -33,7 +44,12 @@ const SingleProduct = () => {
     setSingleProd(res.data);
     setLoading(false);
   };
-  console.log(singleProd);
+  const handleAdd = (item) => {
+    allCartItems = [...allCartItems, item];
+    // get userid from authReducer
+    dispatch(addToCart(userid, allCartItems));
+  };
+
   useEffect(() => {
     getSingleProuduct();
   }, [id]);
@@ -62,11 +78,30 @@ const SingleProduct = () => {
           </Flex>
         </Flex>
       ) : (
-        <Flex justify={"center"} width="87vw" marginX="auto" my="2rem">
-          <Box width="30%" height="80vh">
-            <Image src={singleProd.images[0]} width="100%" height={"100%"} />
-          </Box>
-          <Box width="65%" px={"3rem"}>
+        <Flex
+          flexDir={{ base: "column", md: "row" }}
+          justify={"center"}
+          width="87vw"
+          marginX="auto"
+          my="2rem"
+        >
+          <Flex
+            marginX={"auto"}
+            justify={"center"}
+            width={{ base: "90%", md: "30%" }}
+            height={{ base: "60vh", md: "80vh" }}
+          >
+            <Image
+              src={singleProd.images[0]}
+              width="100%"
+              height={"100%"}
+              borderRadius="xl"
+            />
+          </Flex>
+          <Box
+            width={{ base: "95%", md: "65%" }}
+            px={{ base: "0.2rem", md: "3rem" }}
+          >
             <Heading py="1rem">{singleProd.brand}</Heading>
             <Text fontSize={"1.5rem"}>{singleProd.title}</Text>
             <Flex p={"1.1rem"} borderBottomWidth="2px" gap="1rem">
@@ -77,12 +112,14 @@ const SingleProduct = () => {
                 <Text pl={"9px"}>{singleProd.ratingCount} Ratings</Text>
               </Flex>
             </Flex>
-            <Flex fontSize={"1.5rem"} py="1rem" gap="1.5rem">
+            <Flex fontSize={"1.5rem"} py="1rem" gap="1.5rem" align={"center"}>
               <Text>₹{singleProd.offerPrice}</Text>
-              <Text textDecoration={"line-through"}>
+              <Text textDecoration={"line-through"} fontSize="1.1rem">
                 MRP {singleProd.originalPrice}
               </Text>
-              <Text color={"orange.500"}>({singleProd.discount}% OFF)</Text>
+              <Text color={"orange.500"} fontSize="1.1rem">
+                ({singleProd.discount}% OFF)
+              </Text>
             </Flex>
             <Text color={"green.600"}>inclusive of all taxes</Text>
             <Text fontSize={"1.5rem"}>Select Size</Text>
@@ -128,8 +165,15 @@ const SingleProduct = () => {
                 XXL
               </Center>
             </Flex>
-            <Flex p={"2rem"} gap="1rem">
-              <Button colorScheme={"pink"} py="0.5rem" px="4rem">
+            <Flex p={{ base: "0.2rem", md: "2rem" }} gap="1rem">
+              <Button
+                colorScheme={"pink"}
+                py="0.5rem"
+                px="4rem"
+                onClick={() => {
+                  handleAdd(singleProd);
+                }}
+              >
                 ADD TO BAG
               </Button>
               <Button py="0.5rem" px="4rem">
@@ -137,9 +181,15 @@ const SingleProduct = () => {
                 WISHLIST
               </Button>
             </Flex>
+            <Text>100% Original Products</Text>
+            <Text py="6px">Pay on delivery might be available</Text>
+            <Text>Easy 30 days returns and exchanges</Text>
           </Box>
         </Flex>
       )}
+      <Box>
+        <SimilarProducts />
+      </Box>
       <Footer />
     </div>
   );

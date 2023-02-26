@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
+import { Flex } from "@chakra-ui/layout";
+import { Image } from "@chakra-ui/image";
 
-import admin from "./assets/admin.jpg";
+// import admin from "./assets/admin.jpg";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -30,7 +32,7 @@ const AdminLogin = () => {
     if (validateForm()) {
       try {
         // await login(email, password);
-        navigate("/home");
+        navigate("/dashboard");
       } catch (err) {
         setError(err);
       }
@@ -39,10 +41,22 @@ const AdminLogin = () => {
   return (
     <>
       <div className="login">
-        <div className="loginContainer">
-          <div className="loginImage">
-            <img src={admin} alt="admin" />
-          </div>
+        <Flex align="center" className="loginContainer">
+          <Flex
+            className="logoanime "
+            ml={"2rem"}
+            justify={"center"}
+            align="center"
+            height={"250px"}
+            overflow={"hidden"}
+            p="2rem"
+            display={{ base: "none", md: "Flex" }}
+          >
+            <Image
+              src={"https://i.ibb.co/7jfCzLZ/Attirely-removebg-preview.png"}
+              alt="myntra2"
+            />
+          </Flex>
           <div className="loginDetail">
             <div>
               <h3>Admin Login</h3>
@@ -87,7 +101,7 @@ const AdminLogin = () => {
               </form>
             </div>
           </div>
-        </div>
+        </Flex>
       </div>
     </>
   );
