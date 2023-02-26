@@ -9,6 +9,8 @@ import { useDispatch } from "react-redux";
 import { userLogin } from "../Redux/UserAuth/userAuth.actions";
 import { Flex } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/image";
+import Navbar from "../UserSide/Components/Home/Navbar";
+import Footer from "../UserSide/Components/Home/Footer";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -77,64 +79,68 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup">
-      <Flex align="center" className="signupContainer">
-        <Flex
-          className="logoanime "
-          ml={"2rem"}
-          justify={"center"}
-          align="center"
-          height={"250px"}
-          overflow={"hidden"}
-          p="2rem"
-          display={{ base: "none", md: "Flex" }}
-        >
-          <Image
-            src={"https://i.ibb.co/7jfCzLZ/Attirely-removebg-preview.png"}
-            alt="myntra2"
-          />
+    <div>
+      <Navbar />
+      <div className="signup">
+        <Flex align="center" className="signupContainer">
+          <Flex
+            className="logoanime "
+            ml={"2rem"}
+            justify={"center"}
+            align="center"
+            height={"250px"}
+            overflow={"hidden"}
+            p="2rem"
+            display={{ base: "none", md: "Flex" }}
+          >
+            <Image
+              src={"https://i.ibb.co/7jfCzLZ/Attirely-removebg-preview.png"}
+              alt="myntra2"
+            />
+          </Flex>
+          <div className="signupDetail">
+            <div>
+              <h3>Signup</h3>
+            </div>
+            <div>
+              <form onSubmit={handleSubmit}>
+                <input
+                  name="name"
+                  type="text"
+                  placeholder="Full name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="Enter email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <input
+                  name="password"
+                  type="password"
+                  placeholder="Set a password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                {error && (
+                  <div className="error">
+                    {"* "}
+                    {error}
+                  </div>
+                )}
+                <p>
+                  Already a User ? <Link to="/login">Login </Link>
+                </p>
+                <button type="submit">Submit</button>
+              </form>
+            </div>
+          </div>
         </Flex>
-        <div className="signupDetail">
-          <div>
-            <h3>Signup</h3>
-          </div>
-          <div>
-            <form onSubmit={handleSubmit}>
-              <input
-                name="name"
-                type="text"
-                placeholder="Full name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-              <input
-                name="email"
-                type="email"
-                placeholder="Enter email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <input
-                name="password"
-                type="password"
-                placeholder="Set a password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              {error && (
-                <div className="error">
-                  {"* "}
-                  {error}
-                </div>
-              )}
-              <p>
-                Already a User ? <Link to="/login">Login </Link>
-              </p>
-              <button type="submit">Submit</button>
-            </form>
-          </div>
-        </div>
-      </Flex>
+      </div>
+      <Footer />
     </div>
   );
 };

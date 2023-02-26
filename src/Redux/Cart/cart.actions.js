@@ -1,4 +1,3 @@
-
 import { addToCartAPI, cartAPI } from "./cart.api";
 
 import * as types from "./cart.types";
@@ -16,10 +15,9 @@ const Cartdelet = (payload) => {
   return { type: types.DELET_CART, payload };
 };
 
-const cartAddData = (payload) => {
+export const cartAddData = (payload) => {
   return { type: types.CART_ADD_SUCCESS, payload };
 };
-
 
 export const getCart =
   (id = 4) =>
@@ -29,14 +27,11 @@ export const getCart =
       console.log("inside getCart", id);
       let res = await cartAPI(id);
       dispatch(CartSuccess(res));
-      
     } catch (error) {
       console.log(error);
       dispatch(cartError());
     }
   };
-
-
 
 export const addToCart = (id, item) => async (dispatch) => {
   dispatch(cartRequest());
@@ -48,4 +43,3 @@ export const addToCart = (id, item) => async (dispatch) => {
     dispatch(cartError());
   }
 };
-

@@ -20,9 +20,7 @@ import {
 
 import DrawerComponent from "../../Components/Products/Drawer";
 
-
 const Products = () => {
-
   const dispatch = useDispatch();
   // this is for dynamically fetching the data from db
   let { products } = useParams();
@@ -162,6 +160,7 @@ const Products = () => {
           display={{ base: "none", md: "block" }}
         >
           <Filters
+            setCat={products}
             brand={brand}
             setBrand={setBrand}
             category={category}
@@ -172,7 +171,7 @@ const Products = () => {
           />
         </Box>
         <Box width="full" minH={"80vh"}>
-          {prod.length ===0 && !isLoading ? (
+          {prod.length === 0 && !isLoading ? (
             <Flex justify={"center"} align="center" padding={"2rem"}>
               <Image
                 src="https://media.tenor.com/OyUVgQi-l-QAAAAC/404.gif"

@@ -1,5 +1,5 @@
 import { Checkbox, CheckboxGroup } from "@chakra-ui/checkbox";
-import { Box, Stack, Text } from "@chakra-ui/layout";
+import { Box, Flex, Stack, Text } from "@chakra-ui/layout";
 import { Radio, RadioGroup } from "@chakra-ui/radio";
 import React, { useEffect, useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
@@ -12,6 +12,7 @@ const Filters = ({
   discountRange,
   setDiscountRange,
   setPage,
+  setCat,
 }) => {
   // let location = useLocation();
   // useEffect(() => {}, [location.search]);
@@ -50,8 +51,22 @@ const Filters = ({
           onChange={handleCategories}
         >
           <Stack spacing={"1"} color="gray.500" textTransform={"capitalize"}>
-            <Checkbox value="Shirt">shirt</Checkbox>
-            <Checkbox value="Chino">Chino</Checkbox>
+            {setCat == "MensData" && (
+              <Flex flexDir={"column"}>
+                <Checkbox value="Shirt">Shirt</Checkbox>
+                <Checkbox value="Joggers">Joggers</Checkbox>
+              </Flex>
+            )}
+            {setCat == "WomensData" && (
+              <Flex flexDir={"column"}>
+                <Checkbox value="KurtaSet">KurtaSet</Checkbox>
+              </Flex>
+            )}
+            {setCat == "ChildrensData" && (
+              <Flex flexDir={"column"}>
+                <Checkbox value="SweatShirt">SweatShirt</Checkbox>
+              </Flex>
+            )}
           </Stack>
         </CheckboxGroup>
       </Box>

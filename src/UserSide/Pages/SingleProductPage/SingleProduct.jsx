@@ -8,6 +8,7 @@ import {
   Skeleton,
   Stack,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { BiStar } from "react-icons/bi";
 
@@ -24,6 +25,7 @@ import SimilarProducts from "../../Components/Products/SimilarProducts";
 const SingleProduct = () => {
   let { products, id } = useParams();
   const dispatch = useDispatch();
+  const toast = useToast();
   let allCartItems = useSelector((store) => {
     return store.cartReducer.cart;
   });
@@ -175,6 +177,14 @@ const SingleProduct = () => {
                 )}
                 onClick={() => {
                   handleAdd(singleProd);
+                  toast({
+                    title: "Product is Added to the cart",
+                    description: "Shop More ...",
+                    status: "success",
+                    duration: 4000,
+                    position: "top",
+                    isClosable: true,
+                  });
                 }}
               >
                 ADD TO BAG

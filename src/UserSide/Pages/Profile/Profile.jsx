@@ -19,6 +19,7 @@ const Profile = () => {
   const orderAPI = async (id = "A3W5KMoMC2OwudVf0EfXxD0Fa5n1") => {
     try {
       console.log("here", id);
+      setLoading(true);
       const orderRef = collection(db, "orders");
       const q = query(orderRef, where("userId", "==", id));
       const querySnapshot = await getDocs(q);
@@ -27,6 +28,7 @@ const Profile = () => {
         result.push(doc.data());
       });
       console.log(result);
+      setLoading(false);
       setOrders(result);
     } catch (error) {
       console.log(error);
@@ -79,7 +81,14 @@ const Profile = () => {
             <Skeleton height="4rem"></Skeleton>
           </Flex> */}
           <Flex flexDir={"column"} gap="7">
-            {orders.length == 0 ? (
+            {isLoading ? (
+              <Flex flexDir={"column"} py="1rem" gap="3">
+                <Skeleton height="4rem"></Skeleton>
+                <Skeleton height="4rem"></Skeleton>
+                <Skeleton height="4rem"></Skeleton>
+                <Skeleton height="4rem"></Skeleton>
+              </Flex>
+            ) : orders.length == 0 ? (
               <Flex flexDir={"column"} justify={"center"} align="center">
                 <Text textTransform={"capitalize"} fontSize="1.4rem" py="2rem">
                   You haven't make any orders

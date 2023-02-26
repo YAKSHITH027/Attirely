@@ -3,6 +3,8 @@ import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { Flex } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/image";
+import Navbar from "../UserSide/Components/Home/Navbar";
+import Footer from "../UserSide/Components/Home/Footer";
 
 // import admin from "./assets/admin.jpg";
 
@@ -40,6 +42,7 @@ const AdminLogin = () => {
   };
   return (
     <>
+      <Navbar />
       <div className="login">
         <Flex align="center" className="loginContainer">
           <Flex
@@ -103,6 +106,7 @@ const AdminLogin = () => {
           </div>
         </Flex>
       </div>
+      <Footer />
     </>
   );
 };
