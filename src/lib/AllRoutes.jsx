@@ -173,6 +173,7 @@ export const AllRoutes = () => {
         }
       ></Route>
       <Route path="/login" element={<Login />}></Route>
+      <Route path="/signup" element={<Signup />}></Route>
       <Route path="/adminlogin" element={<AdminLogin />}></Route>
       <Route
         path="/cart"
@@ -182,7 +183,7 @@ export const AllRoutes = () => {
           </PrivateRouteUser>
         }
       ></Route>
-      <Route path="/signup" element={<Signup />}></Route>
+
       <Route
         path="/profile"
         element={

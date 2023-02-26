@@ -9,26 +9,44 @@ import { MdMoreTime} from "react-icons/md";
 import gift from "./gift.png"
 import css from "./cart.css"
 import { useDispatch, useSelector } from 'react-redux';
-import { getCart } from '../../../Redux/Cart/cart.actions';
+import { addToCart, addcart, getCart } from '../../../Redux/Cart/cart.actions';
 import { Link } from 'react-router-dom';
+import Navbar from '../../Components/Home/Navbar';
+import Footer from '../../Components/Home/Footer';
+import Payment from '../Payment/Paymet';
 const Cart = () => {
   const [qty,setqty]=useState(1)
-  const dispach=useDispatch()
+  const dispatch=useDispatch()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [address,setaddres]=useState({name:"Sudhir Manoharrao Nandane",city:"Ashti",other:"at post bharaswada"})
+  const [address,setaddres]=useState({name:"Sudhir Manoharrao Nandane",city:"Ashti",other:"at post bharaswada",number:9657167157})
 
+  const userData = useSelector((store) => {
+    return store.userAuthReducer.user;
+  });
+
+  const id = userData?.uid;
+
+  const data = useSelector((store) => {
+    return store.cartReducer.cart;
+  });
+
+  useEffect(() => {
+    if (id) {
+      dispatch(getCart(id));
+    }
+  }, []);
+  console.log("my",data);
  
 
-  const data=useSelector((store)=>store.cartReducer.cart)
-  useEffect(()=>{
-    dispach(getCart())
-  },[])
 
 
 // delet logic ***************************
 
   const handledelet=(el)=>{
-    (data.filter((t)=>t.id===el.id))
+   const filterdata=data.filter((t)=>t.id!=el.id)
+   console.log("gdfgdg",filterdata)
+   dispatch(addToCart(id, filterdata));
+    
   }
   // login of cart ********************************
 let value=1
@@ -56,16 +74,26 @@ const handleaddres1=(e)=>{
 const handleaddres2=(e)=>{
   setaddres({...address,city:e.target.value})
 }
+const handleaddres3=(e)=>{
+  setaddres({...address,number:e.target.value})
+}
 // *****************************************
 let cartQuantity=[1,2,3,4,5,6,7,8,9]
   return (
-    <Center w={"105vw"} >
-          <Grid className="cart_grid" m="10" gap={5}  >
+    <div>
+      <Navbar/>
+      <Center w={"105vw"} >
+          <Grid className="cart_grid" m="5" gap={4}  >
               <GridItem  width={"100%"} >
-                <Flex style={{padding:"10px",
-                boxShadow:"rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px"}} >
-                   <Text fontSize={['xs', 'xs', 'xs', 'xs']} >Deliver To: {address.name} {address.other}, {address.city} 
-                   </Text>
+                <Flex style={{padding:"15px",
+                boxShadow:"rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px"}} justifyContent={"space-between"} >
+                   <Box>
+                    <p>{address.name}</p>
+                    <p style={{fontSize:"14px"}}>{address.other}</p>
+                    <p style={{fontSize:"14px"}}>{address.city}</p>
+                    <p style={{fontSize:"14px"}}>{address.number}</p>
+                   </Box>
+                   
                    <Button onClick={onOpen} fontSize='10px' ml={"3%"}
                     width={{ base: '50%', sm: '50%', md: '25%' }}
                      borderRadius={"0%"} border={"1px solid #ef506a"} colorScheme='white' 
@@ -80,6 +108,7 @@ let cartQuantity=[1,2,3,4,5,6,7,8,9]
                   <Input  placeholder='Name' value={address.name} onChange={handleaddres}  />
                  <Input mt={5} placeholder='Address' value={address.other} onChange={handleaddres1} />
                 <Input mt={5} placeholder='city' value={address.city} onChange={handleaddres2}/>
+                <Input mt={5} placeholder='Mob No' value={address.number} onChange={handleaddres3}/>
              </Box>
               </ModalBody>
               <ModalFooter>
@@ -95,16 +124,16 @@ let cartQuantity=[1,2,3,4,5,6,7,8,9]
                 <div style={{marginTop:"10px",padding:"15px",
                  boxShadow:"rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px"}}>
                  <Flex gap={3}> <CiPercent/>
-                 <h1 style={{fontSize:"12px"}}>Avilable Offers</h1>
+                 <h1 style={{fontSize:"14px"}}>Avilable Offers</h1>
                  </Flex>
                  <div >
-                  <p style={{fontSize:"12px"}}> 
+                  <p style={{fontSize:"14px"}}> 
                    10% Instant Discount on YES Bank Credit Cards on a min spend of Rs 3,000. TCA</p>
-                  <p style={{fontSize:"12px"}}>
+                  <p style={{fontSize:"14px"}}>
                       Get up to Rs 500 Cashback on CRED Pay UPI (Android Devices only) on a min spend of Rs 500. TCA</p>
-                      <p style={{fontSize:"12px"}}>Get up to Rs 500 Cashback on CRED Pay UPI (Android Devices only) on a min spend of Rs 500. TCA</p>
-                 <p style={{fontSize:"12px"}}>5% Cashback up to Rs 1000 on Paytm Postpaid Transactions on a min spend of Rs 1,500. TCA</p>
-                 <p style={{fontSize:"12px"}}><span>5% Unlimited Cashback on Flipkart Axis Bank Credit Card. TCA</span></p>
+                      <p style={{fontSize:"14px"}}>Get up to Rs 500 Cashback on CRED Pay UPI (Android Devices only) on a min spend of Rs 500. TCA</p>
+                 <p style={{fontSize:"14px"}}>5% Cashback up to Rs 1000 on Paytm Postpaid Transactions on a min spend of Rs 1,500. TCA</p>
+                 <p style={{fontSize:"14px"}}><span>5% Unlimited Cashback on Flipkart Axis Bank Credit Card. TCA</span></p>
                  </div>
                 </div>
                 <div style={{marginTop:"10px",padding:"15px",
@@ -148,7 +177,7 @@ let cartQuantity=[1,2,3,4,5,6,7,8,9]
                   })}
                 </Grid>
               </GridItem>
-               <GridItem   width={"90%"}  >
+               <GridItem   width={"100%"}  >
                <div style={{padding:"15px",display:"flex",gap:"2%",
                boxShadow:" rgba(0, 0, 0, 0.05) 0px 1px 2px 0px"}}>
                <p>Coupons</p>
@@ -202,6 +231,10 @@ let cartQuantity=[1,2,3,4,5,6,7,8,9]
               </GridItem>   
           </Grid>
         </Center>
+        <Footer/>
+        
+    </div>
+    
   )
 }
 

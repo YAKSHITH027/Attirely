@@ -2,8 +2,12 @@ import { useCallback, useEffect, useState } from "react";
 import useRazorpay from "react-razorpay";
 import { Box, Button, Center, Flex, Grid, GridItem, Image, Input, Text,Select,ModalBody,
          useDisclosure, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalHeader, ModalFooter, Radio, RadioGroup, Stack } from '@chakra-ui/react'
-import { getCart } from "../../../Redux/Cart/cart.actions";
+import { addToCart, getCart } from "../../../Redux/Cart/cart.actions";
 import { useDispatch, useSelector } from "react-redux";
+import Navbar from "../../Components/Home/Navbar";
+import Footer from "../../Components/Home/Footer";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../../../lib/firebase";
 export default function Payment() {
   const [qty,setqty]=useState(1)
   const dispach=useDispatch()
@@ -11,11 +15,15 @@ export default function Payment() {
   const [address,setaddres]=useState({name:"Sudhir Manoharrao Nandane",city:"Ashti",other:"347, at post bharaswada , Ta Ashti , Dist Wardha"})
   const Razorpay = useRazorpay();
   const dispatch=useDispatch()
+  const userData = useSelector((store) => {
+    return store.userAuthReducer.user;
+  });
 
+  const id = userData?.uid;
   // ---------------------------------------
   const data=useSelector((store)=>store.cartReducer.cart)
   useEffect(()=>{
-    dispach(getCart())
+    dispatch(getCart())
   },[])
 
 
@@ -34,17 +42,7 @@ let value=1
     return dicount=dicount+Math.floor(Number(valueafterdicount/el.discount.replace("%","")*10).toFixed(2))
   })
 
-// const handleaddres=(e)=>{
-//   setaddres({...address,name:e.target.value})
 
-// }
-// const handleaddres1=(e)=>{
-//   setaddres({...address,other:e.target.value})
-  
-// }
-// const handleaddres2=(e)=>{
-//   setaddres({...address,city:e.target.value})
-// }
 const handlePayment = useCallback(() => {
   const options = {
     key: "rzp_test_JFihbnSsCtVIUH",
@@ -57,6 +55,10 @@ const handlePayment = useCallback(() => {
     handler: (res) => {
       console.log(res);
       alert("payment successfull")
+      if(res){
+        let mydata=[]
+    dispatch(addToCart(id,mydata));
+      }
     },
     prefill: {
       name: "Sudhir Nandane",
@@ -70,18 +72,39 @@ const handlePayment = useCallback(() => {
       color: "#3399cc",
     },
   };
-
   const rzpay = new Razorpay(options);
   rzpay.open();
 }, [Razorpay]);
 
 
+const order=(id,data,address)=>{
+  handlePayment()
+  const addOrders = async (id, cartData, address) => {
+    try {
+      const sameId = Date.now() + id;
+      let res = await setDoc(doc(db, "orders", sameId), {
+        cart: cartData, // this should be array of objects cart
+        userId: id, //"userId which you get from authreducer",
+        address: address,
+        timestamp: Date.now(), // this can be used for sorting
+        orderId: sameId,
+        status: "pending",
+      });
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  addOrders(id,data,address)
+}
+
   return (
-    <div className="App">  
+    <div>
+      <Navbar/>
+       <div className="App">  
           <Grid className="cart_grid" m="10" gap={5}  >
               <GridItem  width={"100%"}  padding={5} >
-                <h1 style={{fontWeight:"bold" ,padding:"5px"}}>Select Delivery Address</h1>
-                
+                <h1 style={{fontWeight:"bold" ,padding:"5px"}}>Select Delivery Address</h1>       
             <Box boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"} padding={5}>
               <Flex>
               <Radio defaultChecked  mr={"10px"} value='1'></Radio>
@@ -93,7 +116,7 @@ const handlePayment = useCallback(() => {
             </Box>
             <Box boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"} padding={5}>
               <Button borderRadius={"0%"} color={"#ef506a"}
-                          backgroundColor={"white"}>ADD NEW ADDRESS</Button>
+             backgroundColor={"white"}>ADD NEW ADDRESS</Button>
             </Box>
               </GridItem>
                <GridItem   width={"100%"}  >
@@ -112,26 +135,26 @@ const handlePayment = useCallback(() => {
                   <hr /> 
                 </Flex>
                 <hr style={{marginRight:"100px"}} /> 
-                <Flex justifyContent={"space-between"} mt={2}>
-                  
-                  <p style={{fontSize:"12px"}}>Discount on MRP</p>
-                  <p style={{fontSize:"12px",padding:"10px",marginLeft:"120px"}}>Rs. {dicount}</p>
+                <Flex justifyContent={"space-between"} mt={2}>        
+                  <p style={{fontSize:"12px"}}>Discount on MRP</p>          
+          <p style={{fontSize:"12px",padding:"10px",marginLeft:"120px"}}>Rs. {dicount}</p>
                   <hr /> 
                 </Flex>
                 <hr style={{marginRight:"100px"}} /> 
                 <Flex justifyContent={"space-between"} mt={2}>
-                  
-                  <p style={{fontSize:"12px",fontWeight:"bold"}}>Total Ammount</p>
-                  <p style={{fontSize:"12px",padding:"10px",marginLeft:"120px",fontWeight:"bold"}}>Rs. {valueafterdicount}</p>
+                <p style={{fontSize:"12px",fontWeight:"bold"}}>Total Ammount</p>
+                  <p style={{fontSize:"12px",padding:"10px",marginLeft:"120px",
+                  fontWeight:"bold"}}>Rs. {valueafterdicount}</p>
                   <hr /> 
-                </Flex>
-            
-                <Button onClick={handlePayment} width={["100%","80%"]} borderRadius={"0%"} color={"white"}
+                </Flex> 
+                <Button onClick={()=>order(id,data,address)} isDisabled={data.length===0}
+                 width={["100%","80%"]} borderRadius={"0%"} color={"white"}
                           backgroundColor={"#ef506a"}>Pay Now</Button>
                   </Box>    
               </GridItem>   
           </Grid>
-      
+    </div>
+    <Footer/>
     </div>
   );
 }

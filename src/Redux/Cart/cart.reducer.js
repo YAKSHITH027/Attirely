@@ -10,9 +10,12 @@ const reducer = (state = initialState, action) => {
   switch (type) {
     case types.CART_SUCCESS:
       return { ...state, cart: payload.cart };
+
+
     case types.CART_ADD_SUCCESS: {
       return { ...state, cart: payload };
     }
+
     default:
       return state;
   }

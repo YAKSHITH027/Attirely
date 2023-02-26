@@ -27,6 +27,8 @@ import { HiUsers } from "react-icons/hi";
 import { TbReportMoney } from "react-icons/tb";
 import { BsBagCheck, BsBag, BsShop } from "react-icons/bs";
 import { AiOutlineBars } from "react-icons/ai";
+import {FaUserFriends} from "react-icons/fa";
+import { useToast } from '@chakra-ui/react'
 
 import { NavLink, useNavigate } from "react-router-dom";
 
@@ -39,11 +41,12 @@ const LinkItems = [
   { name: "Users", icon: HiUsers, path: "/users" },
   { name: "Sellers", icon: BsShop , path: "/sellers"},
   { name: "Transactions", icon: TbReportMoney, path: "/transactions" },
+  {name:"Launch UserSide", icon:FaUserFriends, path:"/"}
 ];
 
 export default function Sidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  
   return (
     <>
       <Box
@@ -80,6 +83,7 @@ export default function Sidebar({ children }) {
 }
 
 const SidebarContent = ({ onClose, ...rest }) => {
+  const navigate = useNavigate();
   return (
     <Box
       transition="3s ease"
@@ -91,8 +95,8 @@ const SidebarContent = ({ onClose, ...rest }) => {
       h="full"
       {...rest}
     >
-      <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <img src="/Attirely_admin_logo.png" alt="admin_logo" width={"120px"} />
+      <Flex h="20" alignItems="center" mx="8" justifyContent="space-between" >
+        <img src="/Attirely_admin_logo.png" alt="admin_logo" width={"120px"} onClick={()=>navigate("/")} />
         <Text fontSize="2xl" fontWeight="extrabold" fontFamily="monospace">
           Admin
         </Text>
@@ -145,6 +149,7 @@ const NavItem = ({ icon, children, ...rest }) => {
 
 const MobileNav = ({ onOpen, ...rest }) => {
   const navigate = useNavigate();
+  const toast= useToast();
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -205,7 +210,17 @@ const MobileNav = ({ onOpen, ...rest }) => {
               <MenuItem>Profile</MenuItem>
               <MenuItem>Settings</MenuItem>
               <MenuDivider />
-              <MenuItem onClick={()=>navigate("/")}>Sign out</MenuItem>
+              <MenuItem  onClick={()=>{
+                        toast({
+                          title: 'Signed Out.',
+                          position: 'top',
+                          description: "Redirected to User Side.",
+                          status: 'success',
+                          duration: 9000,
+                          isClosable: true,
+                        })
+                
+                navigate("/")}}>Sign out</MenuItem>
             </MenuList>
           </Menu>
         </Flex>
