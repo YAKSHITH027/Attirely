@@ -8,8 +8,5 @@ export const getProductAPI = async (field, params) => {
   let data = res.data;
   let totalCount = res.headers.get("x-total-count");
 
-  console.log(data, totalCount);
-
   return { data, totalCount };
 };
-

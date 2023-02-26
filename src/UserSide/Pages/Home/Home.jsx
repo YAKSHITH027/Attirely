@@ -19,6 +19,7 @@ import {
 import "./Home.css";
 import ListHeading from "../../Components/Home/ListHeading";
 import Footer from "../../Components/Home/Footer";
+import { useSelector } from "react-redux";
 
 const Home = () => {
   return (

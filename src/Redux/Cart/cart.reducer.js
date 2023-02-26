@@ -6,15 +6,15 @@ const initialState = {
 };
 const reducer = (state = initialState, action) => {
   const { type, payload } = action;
+  console.log("reducer", payload);
   switch (type) {
     case types.CART_SUCCESS:
       return { ...state, cart: payload.cart };
 
-    case types.DELET_CART :{
-      return {
-        ...state,cart:payload.cartData
-      }
-    }  
+
+    case types.CART_ADD_SUCCESS: {
+      return { ...state, cart: payload };
+    }
 
     default:
       return state;

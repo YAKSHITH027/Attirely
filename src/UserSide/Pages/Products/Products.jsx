@@ -17,10 +17,14 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
 } from "@chakra-ui/breadcrumb";
-import { sortedLastIndexOf } from "lodash";
+
+import DrawerComponent from "../../Components/Products/Drawer";
+
 
 const Products = () => {
+
   const dispatch = useDispatch();
+  // this is for dynamically fetching the data from db
   let { products } = useParams();
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -49,9 +53,10 @@ const Products = () => {
   const totalCount = useSelector((store) => {
     return store.productReducer.totalCount;
   });
-  // console.log("insdie", prod);
 
+  // this params is only for showing the search querys in URL
   let params = {};
+  // just checking the whether values are present
   if (category.length) params.category = category;
   if (brand.length) params.brand = brand;
   if (discountRange) params.discountRange = discountRange;
@@ -60,15 +65,16 @@ const Products = () => {
   params.limit = 15;
   useEffect(() => {
     setSearchParams(params);
-
+    // don't confuse with below params it's completely diffrent
     const getProductParams = {
       params: { brand, subCategory: category, _limit: 15, _page: page },
     };
+    // hear checking whether sorting needs to be done or not
     if (sort) {
       getProductParams.params._sort = "offerPrice";
       getProductParams.params._order = sort;
     }
-
+    // fetching data and storing it in the redux
     dispatch(getProducts(products, getProductParams));
   }, [brand, category, discountRange, page, sort, products]);
 
@@ -106,7 +112,7 @@ const Products = () => {
         </Box>
         <Box pl="1.3rem">
           <Text as="span" fontWeight={"bold"}>
-            Mens
+            Total Products
           </Text>{" "}
           -{totalCount}
         </Box>
@@ -117,7 +123,12 @@ const Products = () => {
           justify={"space-between"}
           align="center"
         >
-          <Flex width="15rem" justify={"space-between"} align="center">
+          <Flex
+            width="15rem"
+            justify={"space-between"}
+            align="center"
+            display={{ base: "none", md: "flex" }}
+          >
             <Box fontWeight={"bold"}>Filters</Box>
             <Button
               colorScheme={"pink"}
@@ -161,7 +172,7 @@ const Products = () => {
           />
         </Box>
         <Box width="full" minH={"80vh"}>
-          {prod.length == 0 && !isLoading ? (
+          {prod.length ===0 && !isLoading ? (
             <Flex justify={"center"} align="center" padding={"2rem"}>
               <Image
                 src="https://media.tenor.com/OyUVgQi-l-QAAAAC/404.gif"
@@ -186,10 +197,14 @@ const Products = () => {
                 ? [...Array(15).keys()].map((item) => {
                     return (
                       <Stack key={item}>
-                        <Skeleton height="280px" width="210px" />
-                        <Skeleton height="16px" />
-                        <Skeleton height="16px" />
-                        <Skeleton height="16px" />
+                        <Skeleton
+                          height="280px"
+                          width="210px"
+                          borderRadius={"sm"}
+                        />
+                        <Skeleton height="16px" borderRadius={"sm"} />
+                        <Skeleton height="16px" borderRadius={"sm"} />
+                        <Skeleton height="16px" borderRadius={"sm"} />
                       </Stack>
                     );
                   })
@@ -205,7 +220,15 @@ const Products = () => {
             </Grid>
           )}
           {prod.length && (
-            <Box height={"20vh"}>
+            <Box
+              height={"20vh"}
+              overflowX="scroll"
+              sx={{
+                "::-webkit-scrollbar": {
+                  display: "none",
+                },
+              }}
+            >
               <Flex justify={"center"} align="center" height="100%" gap="2">
                 <Button
                   isDisabled={page == 1}
@@ -239,6 +262,17 @@ const Products = () => {
             </Box>
           )}
         </Box>
+      </Flex>
+      <Flex pos={"fixed"} bottom="0" width={"100%"} display={{ md: "none" }}>
+        <DrawerComponent
+          brand={brand}
+          setBrand={setBrand}
+          category={category}
+          setCategory={setCategory}
+          discountRange={discountRange}
+          setDiscountRange={setDiscountRange}
+          setPage={setPage}
+        />
       </Flex>
       <Footer />
     </div>

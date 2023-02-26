@@ -9,11 +9,9 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { db } from "../../lib/firebase";
-// import { collection, query, where } from "firebase/firestore";
-// import { db } from "../../lib/firebase";
+
 export const cartAPI = async (id) => {
   try {
-    // console.log(id);
     const citiesRef = collection(db, "cart");
     const q = query(citiesRef, where("userId", "==", id));
     const querySnapshot = await getDocs(q);
@@ -21,7 +19,7 @@ export const cartAPI = async (id) => {
     querySnapshot.forEach((doc) => {
       result = doc.data();
     });
-    // console.log(result);
+
     return result;
   } catch (error) {
     console.log(error);
@@ -29,7 +27,9 @@ export const cartAPI = async (id) => {
 };
 
 
-export  const  addToCartApi = async (id, cartData) => {
+// add to cart
+export const addToCartAPI = async (id, cartData) => {
+
   try {
     let res = await setDoc(doc(db, "cart", id), {
       cart: cartData, // this should be array of objects cart
