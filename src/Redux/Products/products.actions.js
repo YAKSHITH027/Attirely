@@ -16,7 +16,6 @@ const productSuccess = (payload) => {
 const getProducts = (field, params) => async (dispatch) => {
   dispatch(productRequest());
   try {
-    console.log("dddd", params);
     let res = await getProductAPI(field, params);
     dispatch(productSuccess(res));
   } catch (error) {
