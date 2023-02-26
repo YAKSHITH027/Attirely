@@ -1,17 +1,24 @@
-import { Box, Flex, Heading, Text } from "@chakra-ui/layout";
+import { Image } from "@chakra-ui/image";
+import { Badge, Box, Flex, Heading, Text } from "@chakra-ui/layout";
 import { Skeleton } from "@chakra-ui/skeleton";
 import { collection, getDocs, query, where } from "@firebase/firestore";
 
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { db } from "../../../lib/firebase";
 import Navbar from "../../Components/Home/Navbar";
 
 const Profile = () => {
   const [orders, setOrders] = useState([]);
   const [isLoading, setLoading] = useState(false);
-  const orderAPI = async (id = "userIddfsfdsjfdsjf") => {
+  const userData = useSelector((store) => {
+    return store.userAuthReducer.user;
+  });
+  console.log(userData);
+  const id = userData?.uid;
+  const orderAPI = async (id = "A3W5KMoMC2OwudVf0EfXxD0Fa5n1") => {
     try {
-      console.log(id);
+      console.log("here", id);
       const orderRef = collection(db, "orders");
       const q = query(orderRef, where("userId", "==", id));
       const querySnapshot = await getDocs(q);
@@ -26,7 +33,7 @@ const Profile = () => {
     }
   };
   useEffect(() => {
-    orderAPI();
+    orderAPI(id);
   }, []);
 
   return (
@@ -47,7 +54,16 @@ const Profile = () => {
           height={"full"}
           textAlign="center"
         >
-          user details
+          <Badge
+            variant="solid"
+            fontSize={"1.5rem"}
+            colorScheme="green"
+            my="1rem"
+          >
+            USER INFO
+          </Badge>
+          <Badge> UserId: {userData.uid}</Badge>
+          <Text>Email : {userData.email}</Text>
         </Box>
         <Box
           borderWidth={"1px"}
@@ -63,29 +79,65 @@ const Profile = () => {
             <Skeleton height="4rem"></Skeleton>
           </Flex> */}
           <Flex flexDir={"column"} gap="7">
-            {orders.map((item) => {
-              return (
-                <Box key={item.timestamp} borderWidth="2px">
-                  <Flex gap="9">
-                    <Text>{item.userId}</Text>
-                    <Text>{item.address.name}</Text>
-                    <Text>{item.address.pin}</Text>
-                    <Text>{item.status}</Text>
-                  </Flex>
-                  <Flex flexDir={"column"} gap="5">
-                    {item.cart.map((item, i) => {
-                      return (
-                        <Flex key={item.id} gap="9">
-                          <Box> item: {i + 1}</Box>
-                          <Box>{item.brand}</Box>
-                          <Box>{item.offerPrice}</Box>
-                        </Flex>
-                      );
-                    })}
-                  </Flex>
-                </Box>
-              );
-            })}
+            {orders.length == 0 ? (
+              <Flex flexDir={"column"} justify={"center"} align="center">
+                <Text textTransform={"capitalize"} fontSize="1.4rem" py="2rem">
+                  You haven't make any orders
+                </Text>
+                <Image
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8vxcXbyvy5JHHV_7wMO_HQv-j6aZxX0I5MA&usqp=CAU"
+                  width={{ base: "300px", md: "500px" }}
+                />
+              </Flex>
+            ) : (
+              orders.map((item) => {
+                return (
+                  <Box key={item.timestamp} borderWidth="2px" p="1rem">
+                    <Badge fontSize={"1rem"}> orderId: {item.orderId}</Badge>
+                    <Flex gap="9" justify={"space-between"} py="1rem">
+                      <Text width="50%">Name : {item.address.name}</Text>
+                      <Text>City: {item.address.city}</Text>
+                      {item.status == "pending" ? (
+                        <Badge fontSize={"0.9rem"} colorScheme={"yellow"}>
+                          Order Status: {item.status}
+                        </Badge>
+                      ) : (
+                        <Badge colorScheme={"green"}>
+                          Order Status: {item.status}
+                        </Badge>
+                      )}
+                    </Flex>
+                    <Flex flexDir={"column"} gap="5">
+                      {item.cart.map((item22, i) => {
+                        var date = item.timestamp;
+                        var d = new Date(date);
+                        var ds = d.toLocaleString();
+                        return (
+                          <Flex
+                            key={item22.id}
+                            gap="9"
+                            align={"center"}
+                            borderWidth="1px"
+                            px="1rem"
+                            py="0.2rem"
+                          >
+                            <Box> item: {i + 1}</Box>
+                            <Box>
+                              <Image src={item22.images[0]} width="40px" />
+                            </Box>
+                            <Box width="10rem">
+                              {item22.brand.substring(0, 15)}
+                            </Box>
+                            <Box>Price: ₹{item22.offerPrice}</Box>
+                            <Box>ordered on : {ds}</Box>
+                          </Flex>
+                        );
+                      })}
+                    </Flex>
+                  </Box>
+                );
+              })
+            )}
           </Flex>
         </Box>
       </Flex>
