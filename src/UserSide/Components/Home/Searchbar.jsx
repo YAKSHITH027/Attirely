@@ -6,7 +6,7 @@ import {
   InputLeftElement,
   Text,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { searchOutput } from "../../../Utils/SearchOutpu";
@@ -30,6 +30,12 @@ const Searchbar = () => {
     console.log(filterData);
     setData(filterData);
   };
+  //  useEffect(()=>{
+  //     let id = setInterval
+  //  },[
+
+  //  ])
+
   return (
     <Box bg={color} borderRadius={"md"} pos="relative">
       <InputGroup>

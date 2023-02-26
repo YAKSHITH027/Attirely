@@ -9,6 +9,8 @@ import { doc, getDoc } from "@firebase/firestore";
 import { useDispatch } from "react-redux";
 import { userLogin } from "../Redux/UserAuth/userAuth.actions";
 import { useToast } from "@chakra-ui/toast";
+import Navbar from "../UserSide/Components/Home/Navbar";
+import Footer from "../UserSide/Components/Home/Footer";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -70,79 +72,83 @@ const Login = () => {
   };
 
   return (
-    <div className="login">
-      <Flex align={"center"} className="loginContainer">
-        <Flex
-          className="logoanime "
-          ml={"2rem"}
-          justify={"center"}
-          align="center"
-          height={"250px"}
-          overflow={"hidden"}
-          p="2rem"
-          display={{ base: "none", md: "Flex" }}
-        >
-          <Image
-            src={"https://i.ibb.co/7jfCzLZ/Attirely-removebg-preview.png"}
-            alt="myntra2"
-          />
-        </Flex>
-        <div className="loginDetail">
-          <div>
-            <h3>Login</h3>
-          </div>
-          <div>
-            <form onSubmit={handleSubmit}>
-              <input
-                name="email"
-                onChange={(e) => setEmail(e.target.value)}
-                type="email"
-                placeholder="Enter email"
-                className={
-                  error && (!email || !/\S+@\S+\.\S+/.test(email))
-                    ? "invalid"
-                    : ""
-                }
-              />
-              {error && (!email || !/\S+@\S+\.\S+/.test(email)) && (
-                <span className="error">
-                  {"* "}
-                  {error}
-                </span>
-              )}
-              <input
-                name="password"
-                onChange={(e) => setPassword(e.target.value)}
-                type="password"
-                placeholder="Enter a password"
-                className={error && password.length < 8 ? "invalid" : ""}
-              />
-              {error && password.length < 8 && (
-                <span className="error">
-                  {"* "}
-                  {error}
-                </span>
-              )}
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  padding: "5px",
-                }}
-              >
-                <p>
-                  New User ? <Link to="/signup">Signup </Link>
-                </p>
-                <p>
-                  Admin ? <Link to="/adminlogin">Login </Link>
-                </p>
-              </div>
+    <div>
+      <Navbar />
+      <div className="login">
+        <Flex align={"center"} className="loginContainer">
+          <Flex
+            className="logoanime "
+            ml={"2rem"}
+            justify={"center"}
+            align="center"
+            height={"250px"}
+            overflow={"hidden"}
+            p="2rem"
+            display={{ base: "none", md: "Flex" }}
+          >
+            <Image
+              src={"https://i.ibb.co/7jfCzLZ/Attirely-removebg-preview.png"}
+              alt="myntra2"
+            />
+          </Flex>
+          <div className="loginDetail">
+            <div>
+              <h3>Login</h3>
+            </div>
+            <div>
+              <form onSubmit={handleSubmit}>
+                <input
+                  name="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                  type="email"
+                  placeholder="Enter email"
+                  className={
+                    error && (!email || !/\S+@\S+\.\S+/.test(email))
+                      ? "invalid"
+                      : ""
+                  }
+                />
+                {error && (!email || !/\S+@\S+\.\S+/.test(email)) && (
+                  <span className="error">
+                    {"* "}
+                    {error}
+                  </span>
+                )}
+                <input
+                  name="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  type="password"
+                  placeholder="Enter a password"
+                  className={error && password.length < 8 ? "invalid" : ""}
+                />
+                {error && password.length < 8 && (
+                  <span className="error">
+                    {"* "}
+                    {error}
+                  </span>
+                )}
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    padding: "5px",
+                  }}
+                >
+                  <p>
+                    New User ? <Link to="/signup">Signup </Link>
+                  </p>
+                  <p>
+                    Admin ? <Link to="/adminlogin">Login </Link>
+                  </p>
+                </div>
 
-              <button type="submit">Login</button>
-            </form>
+                <button type="submit">Login</button>
+              </form>
+            </div>
           </div>
-        </div>
-      </Flex>
+        </Flex>
+      </div>
+      <Footer />
     </div>
   );
 };

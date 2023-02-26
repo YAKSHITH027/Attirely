@@ -12,6 +12,7 @@ import {
   Text,
   Button,
 } from "@chakra-ui/react";
+
 import React, { useEffect } from "react";
 import Searchbar from "./Searchbar";
 import { BsBag, BsFillBagFill, BsPerson } from "react-icons/bs";
@@ -19,7 +20,8 @@ import { AiOutlineHeart } from "react-icons/ai";
 import MegaMenu from "./MegaMenu";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCart } from "../../../Redux/Cart/cart.actions";
+import { cartAddData, getCart } from "../../../Redux/Cart/cart.actions";
+import { userLogout } from "../../../Redux/UserAuth/userAuth.actions";
 const Navbar = () => {
   const dispatch = useDispatch();
   const userData = useSelector((store) => {
@@ -32,7 +34,12 @@ const Navbar = () => {
     return store.cartReducer.cart;
   });
   console.log(cartData);
-
+  //logout
+  const handleLogout = () => {
+    localStorage.setItem("userInfoF", null);
+    dispatch(userLogout());
+    dispatch(cartAddData([]));
+  };
   useEffect(() => {
     if (id) {
       dispatch(getCart(id));
@@ -96,25 +103,34 @@ const Navbar = () => {
               <PopoverHeader>Profile</PopoverHeader>
               <PopoverBody>
                 <Flex flexDir={"column"} gap="2">
-                  <Link to="/login">
-                    <Text>Signin / Signup</Text>
-                  </Link>
+                  {!id && (
+                    <Link to="/login">
+                      <Text pl="2rem">Signin / Signup</Text>
+                    </Link>
+                  )}
                   <Link to="/profile">
-                    <Text>Profile</Text>
+                    <Text pl="2rem">Profile</Text>
                   </Link>
 
                   <Link to="/login">
-                    <Text>orders</Text>
+                    <Text pl="2rem">orders</Text>
                   </Link>
                   <Link to="/login">
-                    <Text>Wishlists</Text>
+                    <Text pl="2rem">Wishlists</Text>
                   </Link>
                   <Link to="#">
-                    <Text>gift cards</Text>
+                    <Text pl="2rem">gift cards</Text>
                   </Link>
                   <Link to="#">
-                    <Text>contact us</Text>
+                    <Text pl="2rem">contact us</Text>
                   </Link>
+                  {id && (
+                    <Link>
+                      <Button onClick={handleLogout} width="full">
+                        Logout
+                      </Button>
+                    </Link>
+                  )}
                 </Flex>
               </PopoverBody>
             </PopoverContent>
@@ -145,20 +161,22 @@ const Navbar = () => {
                 color={"blackAlpha.600"}
               >
                 Bag
-                <Flex
-                  justify={"center"}
-                  align="center"
-                  pos={"absolute"}
-                  top="-5px"
-                  right="-12px"
-                  width="20px"
-                  height="20px"
-                  color="white"
-                  borderRadius={"50%"}
-                  bg="pink.400"
-                >
-                  {cartData.length}
-                </Flex>
+                {id && (
+                  <Flex
+                    justify={"center"}
+                    align="center"
+                    pos={"absolute"}
+                    top="-5px"
+                    right="-12px"
+                    width="20px"
+                    height="20px"
+                    color="white"
+                    borderRadius={"50%"}
+                    bg="pink.400"
+                  >
+                    {cartData.length}
+                  </Flex>
+                )}
               </Text>
             </Flex>
           </Link>
