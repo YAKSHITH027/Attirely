@@ -12,13 +12,33 @@ import {
   Text,
   Button,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import Searchbar from "./Searchbar";
 import { BsBag, BsFillBagFill, BsPerson } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import MegaMenu from "./MegaMenu";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getCart } from "../../../Redux/Cart/cart.actions";
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const userData = useSelector((store) => {
+    return store.userAuthReducer.user;
+  });
+
+  const id = userData?.uid;
+
+  const cartData = useSelector((store) => {
+    return store.cartReducer.cart;
+  });
+  console.log(cartData);
+
+  useEffect(() => {
+    if (id) {
+      dispatch(getCart(id));
+    }
+  }, []);
+
   return (
     <Box
       position={"sticky"}
@@ -114,7 +134,7 @@ const Navbar = () => {
             </Text>
           </Flex>
           <Link to="/cart">
-            <Flex flexDir={"column"} align={"center"}>
+            <Flex flexDir={"column"} align={"center"} pos="relative">
               <Text>
                 <BsBag fontSize={"1.26rem"} />
               </Text>
@@ -125,6 +145,20 @@ const Navbar = () => {
                 color={"blackAlpha.600"}
               >
                 Bag
+                <Flex
+                  justify={"center"}
+                  align="center"
+                  pos={"absolute"}
+                  top="-5px"
+                  right="-12px"
+                  width="20px"
+                  height="20px"
+                  color="white"
+                  borderRadius={"50%"}
+                  bg="pink.400"
+                >
+                  {cartData.length}
+                </Flex>
               </Text>
             </Flex>
           </Link>

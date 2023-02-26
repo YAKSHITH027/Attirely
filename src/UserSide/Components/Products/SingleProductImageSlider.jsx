@@ -60,6 +60,8 @@ export default class SingleProductImageSlider extends Component {
                   <Image
                     src="https://icones.pro/wp-content/uploads/2021/02/icone-etoile-verte.png"
                     width="0.9rem"
+                    pb="0.1rem"
+                    pl="0.1rem"
                   />{" "}
                 </Flex>
                 <Text pl={"4px"}>{this.props.ratingCount || 45} </Text>

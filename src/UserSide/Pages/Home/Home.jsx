@@ -22,12 +22,6 @@ import Footer from "../../Components/Home/Footer";
 import { useSelector } from "react-redux";
 
 const Home = () => {
-  const userData = useSelector((store) => {
-    return store.userAuthReducer.user;
-  });
-  console.log("user", userData);
-  const id = userData?.uid;
-  console.log("id", id);
   return (
     <Box>
       <Navbar />
