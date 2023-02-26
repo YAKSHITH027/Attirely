@@ -1,13 +1,21 @@
 import React, { useState } from "react";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
-
+import { Center, Flex } from "@chakra-ui/layout";
+import { Image } from "@chakra-ui/image";
+import { signInWithEmailAndPassword } from "@firebase/auth";
+import { auth, db } from "../lib/firebase";
+import { doc, getDoc } from "@firebase/firestore";
+import { useDispatch } from "react-redux";
+import { userLogin } from "../Redux/UserAuth/userAuth.actions";
+import { useToast } from "@chakra-ui/toast";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
+  const toast = useToast();
   const navigate = useNavigate();
   const validateForm = () => {
     let isValid = true;
@@ -29,9 +37,33 @@ const Login = () => {
     setError("");
     if (validateForm()) {
       try {
+        let res = await signInWithEmailAndPassword(auth, email, password);
+        console.log("login", res);
+        const docRef = doc(db, "users", res.user.uid);
+        const docSnap = await getDoc(docRef);
+        dispatch(userLogin(docSnap.data()));
+        localStorage.setItem("userInfoF", JSON.stringify(docSnap.data()));
+        console.log(docSnap.data());
+        toast({
+          title: "login successful",
+          description: "have a great day.",
+          status: "success",
+          duration: 4000,
+          position: "top",
+          isClosable: true,
+        });
         // await login(email, password);
         navigate("/");
       } catch (err) {
+        console.log(err.message);
+        toast({
+          title: "login failed",
+          description: err.message,
+          status: "error",
+          position: "top",
+          duration: 4000,
+          isClosable: true,
+        });
         setError(err);
       }
     }
@@ -39,10 +71,22 @@ const Login = () => {
 
   return (
     <div className="login">
-      <div className="loginContainer">
-        <div className="loginImage">
-          <img src="/myntra3.png" alt="myntra2" />
-        </div>
+      <Flex align={"center"} className="loginContainer">
+        <Flex
+          className="logoanime "
+          ml={"2rem"}
+          justify={"center"}
+          align="center"
+          height={"250px"}
+          overflow={"hidden"}
+          p="2rem"
+          display={{ base: "none", md: "Flex" }}
+        >
+          <Image
+            src={"https://i.ibb.co/7jfCzLZ/Attirely-removebg-preview.png"}
+            alt="myntra2"
+          />
+        </Flex>
         <div className="loginDetail">
           <div>
             <h3>Login</h3>
@@ -98,7 +142,7 @@ const Login = () => {
             </form>
           </div>
         </div>
-      </div>
+      </Flex>
     </div>
   );
 };

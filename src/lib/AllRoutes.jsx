@@ -88,6 +88,7 @@ import Signup from "../login/Signup";
 import SingleProduct from "../UserSide/Pages/SingleProductPage/SingleProduct";
 import Payment from "../UserSide/Pages/Payment/Paymet";
 import Profile from "../UserSide/Pages/Profile/Profile";
+import AdminLogin from "../login/Adminlogin";
 
 //  import  UserProduct from "../UserSide/Pages/Products/Products";
 console.log("hello world");
@@ -164,6 +165,7 @@ export const AllRoutes = () => {
       <Route path="/product/:products" element={<Products />}></Route>
       <Route path="/product/:products/:id" element={<SingleProduct />}></Route>
       <Route path="/login" element={<Login />}></Route>
+      <Route path="/adminlogin" element={<AdminLogin />}></Route>
       <Route path="/cart" element={<Cart />}></Route>
       <Route path="/signup" element={<Signup />}></Route>
       <Route path="/profile" element={<Profile />}></Route>
