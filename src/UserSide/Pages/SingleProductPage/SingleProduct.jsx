@@ -170,6 +170,9 @@ const SingleProduct = () => {
                 colorScheme={"pink"}
                 py="0.5rem"
                 px="4rem"
+                isDisabled={allCartItems.find(
+                  (item) => item.id == singleProd.id
+                )}
                 onClick={() => {
                   handleAdd(singleProd);
                 }}
