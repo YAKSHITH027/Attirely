@@ -21,7 +21,7 @@ export const getCart =
     try {
       let res = await cartAPI(id);
       dispatch(CartSuccess(res));
-      // console.log("cart", res);
+      
     } catch (error) {
       console.log(error);
       dispatch(cartError());

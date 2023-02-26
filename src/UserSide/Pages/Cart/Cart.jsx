@@ -19,12 +19,14 @@ const Cart = () => {
   const dispach=useDispatch()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [address,setaddres]=useState({name:"Sudhir Manoharrao Nandane",city:"Ashti",other:"at post bharaswada",number:9657167157})
-
+ 
+  const id =useSelector((store)=>store.userAuthReducer.user)
+  console.log(id)
  
 
   const data=useSelector((store)=>store.cartReducer.cart)
   useEffect(()=>{
-    dispach(getCart())
+    dispach(getCart(id))
   },[])
 console.log(data)
 
