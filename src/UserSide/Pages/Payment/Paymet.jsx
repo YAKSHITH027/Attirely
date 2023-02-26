@@ -63,10 +63,7 @@ const handlePayment = useCallback(() => {
         position: "top",
         isClosable: true,
       });
-    
-    
-    
-    
+      
       if(res){
         let mydata=[]
     dispatch(addToCart(id,mydata));
