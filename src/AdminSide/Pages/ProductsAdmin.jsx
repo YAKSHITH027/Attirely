@@ -1,9 +1,9 @@
 import React, { useState,useEffect } from 'react';
 // import axios from "axios";
-import { Grid, GridItem, Select, Box } from '@chakra-ui/react';
+import { Grid, GridItem, Select, Box, Flex, Button, Center } from '@chakra-ui/react';
 import SingleAdminProd from "./SingleAdminProd";
 import axios from "axios";
-
+import EditProductModal from '../Components/EditProductModal';
 
 
 const ProductsAdmin = () => {
@@ -11,6 +11,7 @@ const ProductsAdmin = () => {
   const [ProdData, setProdData] = useState([]);
   // const [postsPerPage, setPostPerPage] = useState(15);
   // const [currPage, setCurrPage]= useState(1);
+  const [lamb, setLamb]= useState("MensData"); 
 
 
 
@@ -22,7 +23,7 @@ const ProductsAdmin = () => {
         try {
           let res = await axios.get(`https://rc201-jsondata-serverapi.onrender.com/${option}`);
           console.log(res);
-          console.log(res.data, "data fetched");
+          // console.log(res.data, "data fetched");
           setProdData(res.data);
           
         } catch (error) {
@@ -35,9 +36,30 @@ const ProductsAdmin = () => {
       getAdminProductsData();
     },[option]);
 
+    const deleteProd=async(id,category)=>{
+      if(category==="Mens"){
+        setLamb("MensData");
+      }
     
+      if(category==="Womens"){
+        setLamb("WomensData");
+      }
     
-    console.log(ProdData,"proddata");
+      if(category==="Child"){
+        setLamb("ChildrensData");
+      }
+      console.log(id, lamb);
+      try {
+        let url = `https://rc201-jsondata-serverapi.onrender.com/${lamb}/${id}`
+         await axios.delete(`https://rc201-jsondata-serverapi.onrender.com/${lamb}/${id}`);
+        console.log(url);
+        window.location.reload();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    
+    // console.log(ProdData,"proddata");
     return (
     <>
     
@@ -62,6 +84,10 @@ const ProductsAdmin = () => {
                 return(
                     <GridItem key={item.id}>
                 <SingleAdminProd props={item}/>
+                <Flex marginLeft={"37px"} gap={"10px"} marginTop={"-35px"}>
+                  <EditProductModal item={item}/>
+                  <Button  onClick={()=>deleteProd(item.id, item.category)} backgroundColor={"red"} color={"white"}>Delete</Button>
+                </Flex>
             </GridItem>
                 )  
         })}
