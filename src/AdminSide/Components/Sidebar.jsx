@@ -80,6 +80,7 @@ export default function Sidebar({ children }) {
 }
 
 const SidebarContent = ({ onClose, ...rest }) => {
+  const navigate = useNavigate();
   return (
     <Box
       transition="3s ease"
@@ -91,8 +92,8 @@ const SidebarContent = ({ onClose, ...rest }) => {
       h="full"
       {...rest}
     >
-      <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <img src="/Attirely_admin_logo.png" alt="admin_logo" width={"120px"} />
+      <Flex h="20" alignItems="center" mx="8" justifyContent="space-between" >
+        <img src="/Attirely_admin_logo.png" alt="admin_logo" width={"120px"} onClick={()=>navigate("/")} />
         <Text fontSize="2xl" fontWeight="extrabold" fontFamily="monospace">
           Admin
         </Text>
