@@ -27,6 +27,13 @@ const SingleProduct = () => {
   let allCartItems = useSelector((store) => {
     return store.cartReducer.cart;
   });
+  //firebase userid
+  const userData = useSelector((store) => {
+    return store.userAuthReducer.user;
+  });
+
+  const userid = userData?.uid;
+
   const [singleProd, setSingleProd] = useState({});
   const [isLoading, setLoading] = useState(true);
 
@@ -40,7 +47,7 @@ const SingleProduct = () => {
   const handleAdd = (item) => {
     allCartItems = [...allCartItems, item];
     // get userid from authReducer
-    dispatch(addToCart("userid", allCartItems));
+    dispatch(addToCart(userid, allCartItems));
   };
 
   useEffect(() => {
