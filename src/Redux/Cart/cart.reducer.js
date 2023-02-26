@@ -10,6 +10,12 @@ const reducer = (state = initialState, action) => {
     case types.CART_SUCCESS:
       return { ...state, cart: payload.cart };
 
+    case types.DELET_CART :{
+      return {
+        ...state,cart:payload.cartData
+      }
+    }  
+
     default:
       return state;
   }

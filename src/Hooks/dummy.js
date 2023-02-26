@@ -68,6 +68,7 @@ const Dummy = () => {
       rating: 4.1,
       ratingCount: "25.9k",
     },
+    
   ];
   const userid = "userIddfsfdsjfdsjf";
   const address = { name: "something", id: "thsi", pin: 453333 };
@@ -91,7 +92,7 @@ const Dummy = () => {
   };
 
   //   add to cart API
-  const addToCart = async (id, cartData) => {
+   const  addToCart = async (id, cartData) => {
     try {
       let res = await setDoc(doc(db, "cart", id), {
         cart: cartData, // this should be array of objects cart
@@ -101,6 +102,7 @@ const Dummy = () => {
       console.log(error);
     }
   };
+
 
   // delete from cart//////////////////------------------
 

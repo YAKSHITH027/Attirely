@@ -6,6 +6,7 @@ import {
   collection,
   query,
   getDocs,
+  setDoc,
 } from "firebase/firestore";
 import { db } from "../../lib/firebase";
 // import { collection, query, where } from "firebase/firestore";
@@ -26,3 +27,16 @@ export const cartAPI = async (id) => {
     console.log(error);
   }
 };
+
+
+export  const  addToCartApi = async (id, cartData) => {
+  try {
+    let res = await setDoc(doc(db, "cart", id), {
+      cart: cartData, // this should be array of objects cart
+      userId: id, //"userId which you get from authreducer",
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+

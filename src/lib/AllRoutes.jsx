@@ -173,10 +173,3 @@ export const AllRoutes = () => {
 
 
 
-
-     
-
-    </Routes>
-  );
-};
-
