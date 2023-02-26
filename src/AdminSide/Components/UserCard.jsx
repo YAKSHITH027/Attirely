@@ -8,8 +8,15 @@ import {
   Stack,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
+import { useState } from "react";
+import { db } from "../../lib/firebase";
 
-export default function UserCard() {
+
+export default function UserCard({email}) {
+  
+
+
   return (
     <Center py={6}>
       <Box
@@ -45,13 +52,13 @@ export default function UserCard() {
               John Doe
             </Heading>
             {/* USER TYPE */}
-            <Text color={"gray.500"}>Admin</Text>
+            <Text color={"gray.500"}>User</Text>
           </Stack>
 
           <Stack direction={"row"} justify={"center"} spacing={6}>
             <Stack spacing={0} align={"center"}>
               <Text fontSize={"lg"} color={"#63B3ED"} decoration={"underline"}>
-                admin@gmail.com
+                {email}
               </Text>
             </Stack>
           </Stack>
