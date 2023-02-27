@@ -16,7 +16,7 @@ const Profile = () => {
   });
   console.log(userData);
   const id = userData?.uid;
-  const orderAPI = async (id = "A3W5KMoMC2OwudVf0EfXxD0Fa5n1") => {
+  const orderAPI = async (id) => {
     try {
       console.log("here", id);
       setLoading(true);
@@ -65,7 +65,7 @@ const Profile = () => {
             USER INFO
           </Badge>
           <Badge> UserId: {userData.uid}</Badge>
-          <Text>Email : {userData.email}</Text>
+          <Text py="1rem">Email : {userData.email}</Text>
         </Box>
         <Box
           borderWidth={"1px"}
@@ -99,53 +99,55 @@ const Profile = () => {
                 />
               </Flex>
             ) : (
-              orders.map((item) => {
-                return (
-                  <Box key={item.timestamp} borderWidth="2px" p="1rem">
-                    <Badge fontSize={"1rem"}> orderId: {item.orderId}</Badge>
-                    <Flex gap="9" justify={"space-between"} py="1rem">
-                      <Text width="50%">Name : {item.address.name}</Text>
-                      <Text>City: {item.address.city}</Text>
-                      {item.status == "pending" ? (
-                        <Badge fontSize={"0.9rem"} colorScheme={"yellow"}>
-                          Order Status: {item.status}
-                        </Badge>
-                      ) : (
-                        <Badge colorScheme={"green"}>
-                          Order Status: {item.status}
-                        </Badge>
-                      )}
-                    </Flex>
-                    <Flex flexDir={"column"} gap="5">
-                      {item.cart.map((item22, i) => {
-                        var date = item.timestamp;
-                        var d = new Date(date);
-                        var ds = d.toLocaleString();
-                        return (
-                          <Flex
-                            key={item22.id}
-                            gap="9"
-                            align={"center"}
-                            borderWidth="1px"
-                            px="1rem"
-                            py="0.2rem"
-                          >
-                            <Box> item: {i + 1}</Box>
-                            <Box>
-                              <Image src={item22.images[0]} width="40px" />
-                            </Box>
-                            <Box width="10rem">
-                              {item22.brand.substring(0, 15)}
-                            </Box>
-                            <Box>Price: ₹{item22.offerPrice}</Box>
-                            <Box>ordered on : {ds}</Box>
-                          </Flex>
-                        );
-                      })}
-                    </Flex>
-                  </Box>
-                );
-              })
+              orders
+                .sort((a, b) => b.timestamp - a.timestamp)
+                .map((item) => {
+                  return (
+                    <Box key={item.timestamp} borderWidth="2px" p="1rem">
+                      <Badge fontSize={"1rem"}> orderId: {item.orderId}</Badge>
+                      <Flex gap="9" justify={"space-between"} py="1rem">
+                        <Text width="50%">Name : {item.address.name}</Text>
+                        <Text>City: {item.address.city}</Text>
+                        {item.status == "pending" ? (
+                          <Badge fontSize={"0.9rem"} colorScheme={"yellow"}>
+                            Order Status: {item.status}
+                          </Badge>
+                        ) : (
+                          <Badge colorScheme={"green"}>
+                            Order Status: {item.status}
+                          </Badge>
+                        )}
+                      </Flex>
+                      <Flex flexDir={"column"} gap="5">
+                        {item.cart.map((item22, i) => {
+                          var date = item.timestamp;
+                          var d = new Date(date);
+                          var ds = d.toLocaleString();
+                          return (
+                            <Flex
+                              key={item22.id}
+                              gap="9"
+                              align={"center"}
+                              borderWidth="1px"
+                              px="1rem"
+                              py="0.2rem"
+                            >
+                              <Box> item: {i + 1}</Box>
+                              <Box>
+                                <Image src={item22.images[0]} width="40px" />
+                              </Box>
+                              <Box width="10rem">
+                                {item22.brand.substring(0, 15)}
+                              </Box>
+                              <Box>Price: ₹{item22.offerPrice}</Box>
+                              <Box>ordered on : {ds}</Box>
+                            </Flex>
+                          );
+                        })}
+                      </Flex>
+                    </Box>
+                  );
+                })
             )}
           </Flex>
         </Box>
