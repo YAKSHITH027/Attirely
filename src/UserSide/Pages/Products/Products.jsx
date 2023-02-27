@@ -187,7 +187,7 @@ const Products = () => {
                 lg: "repeat(3,1fr)",
                 xl: "repeat(5,1fr)",
               }}
-              p="1.5rem"
+              p={{ base: "5px", md: "1.5rem" }}
               minHeight={"80vh"}
               rowGap={"2rem"}
               placeItems={"center"}
@@ -271,6 +271,7 @@ const Products = () => {
           discountRange={discountRange}
           setDiscountRange={setDiscountRange}
           setPage={setPage}
+          setCat={products}
         />
       </Flex>
       <Footer />
