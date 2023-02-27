@@ -22,6 +22,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { cartAddData, getCart } from "../../../Redux/Cart/cart.actions";
 import { userLogout } from "../../../Redux/UserAuth/userAuth.actions";
+import Sidebar from "./Sidebar";
 const Navbar = () => {
   const dispatch = useDispatch();
   const userData = useSelector((store) => {
@@ -80,7 +81,7 @@ const Navbar = () => {
         >
           <Searchbar />
         </Box>
-        <Flex gap={{ base: "1rem", md: "2rem" }}>
+        <Flex gap={{ base: "1rem", md: "2rem" }} align="center">
           <Popover>
             <PopoverTrigger>
               <Flex flexDir={"column"} align={"center"} cursor="pointer">
@@ -100,9 +101,9 @@ const Navbar = () => {
             <PopoverContent>
               <PopoverArrow />
               <PopoverCloseButton />
-              <PopoverHeader>Profile</PopoverHeader>
+              <PopoverHeader py="1rem"></PopoverHeader>
               <PopoverBody>
-                <Flex flexDir={"column"} gap="2">
+                <Flex flexDir={"column"} gap="3" textTransform={"capitalize"}>
                   {!id && (
                     <Link to="/login">
                       <Text pl="2rem">Signin / Signup</Text>
@@ -112,10 +113,10 @@ const Navbar = () => {
                     <Text pl="2rem">Profile</Text>
                   </Link>
 
-                  <Link to="/login">
+                  <Link to="#">
                     <Text pl="2rem">orders</Text>
                   </Link>
-                  <Link to="/login">
+                  <Link to="#">
                     <Text pl="2rem">Wishlists</Text>
                   </Link>
                   <Link to="#">
@@ -180,6 +181,9 @@ const Navbar = () => {
               </Text>
             </Flex>
           </Link>
+          <Box display={{ lg: "none" }}>
+            <Sidebar id={id} handleLogout={handleLogout} />
+          </Box>
         </Flex>
       </Flex>
       <Box padding={"8px"} display={{ lg: "none" }}>

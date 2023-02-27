@@ -27,8 +27,9 @@ const DrawerComponent = ({
     <>
       <Button
         ref={btnRef}
-        colorScheme="teal"
+        colorScheme="pink"
         onClick={onOpen}
+        py="15px"
         width="100%"
         borderBottomRadius={"0"}
       >
