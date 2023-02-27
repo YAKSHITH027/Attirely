@@ -197,8 +197,8 @@ const Products = () => {
                     return (
                       <Stack key={item}>
                         <Skeleton
-                          height="280px"
-                          width="210px"
+                          height={{ base: "240px", md: "280px" }}
+                          width={{ base: "150px", md: "210px" }}
                           borderRadius={"sm"}
                         />
                         <Skeleton height="16px" borderRadius={"sm"} />

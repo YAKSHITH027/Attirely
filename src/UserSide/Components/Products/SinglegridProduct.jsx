@@ -26,7 +26,7 @@ const SinglegridProduct = ({
         className="shadow"
         transition={"all 0.3s"}
         height={{ base: "320px", md: "350px" }}
-        width={{ base: "160px", md: "210px" }}
+        width={{ base: "150px", md: "210px" }}
         onMouseEnter={() => {
           setShow(true);
         }}
