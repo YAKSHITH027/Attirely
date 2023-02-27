@@ -7,7 +7,7 @@ const OrdersTable = () => {
   const [totalOrders, setTotalOrders] = useState([]);
 
   useEffect(() => {
-      const getOrders = async () => {
+    const getOrders = async () => {
       const querySnapshot = await getDocs(collection(db, "orders"));
       const orders = [];
       querySnapshot.forEach((doc) => {
@@ -32,22 +32,19 @@ const OrdersTable = () => {
       }, 0);
   }
 
-  
-    const toggleStatus = async (orderId) => {
-      console.log(orderId);
-      const orderref = doc(db, "orders", orderId);
-      let res = await updateDoc(orderref, { status: "delivered" });
-      console.log(res);
-      const querySnapshot = await getDocs(collection(db, "orders"));
-      const orders = [];
-      querySnapshot.forEach((doc) => {
-        orders.push(doc.data());
-      });
-      console.log(orders);
-      setTotalOrders(orders);
-    };
-   
- 
+  const toggleStatus = async (orderId) => {
+    console.log(orderId);
+    const orderref = doc(db, "orders", orderId);
+    let res = await updateDoc(orderref, { status: "delivered" });
+    console.log(res);
+    const querySnapshot = await getDocs(collection(db, "orders"));
+    const orders = [];
+    querySnapshot.forEach((doc) => {
+      orders.push(doc.data());
+    });
+    console.log(orders);
+    setTotalOrders(orders);
+  };
 
   return (
     <Box maxWidth="100%" overflowX="auto">
@@ -62,43 +59,43 @@ const OrdersTable = () => {
           </Tr>
         </Thead>
         <Tbody>
-          {totalOrders.map((order) => (
-            <Tr key={order.id}>
-              <Td>{order.userId}</Td>
-              <Td>
-                {order.address.name}, {order.address.pin}
-              </Td>
-              <Td>
-                {" "}
-                <Button
-                  onClick={() => toggleStatus(order.orderId)}
-                >
-                  {order.status}
-                </Button>
-              </Td>
-              <Td>
-                <Table size="sm">
-                  <Thead>
-                    <Tr>
-                      <Th>Number of items</Th>
-                      <Th>Brand</Th>
-                      <Th>Offer price</Th>
-                    </Tr>
-                  </Thead>
-                  <Tbody>
-                    {order.cart.map((item, i) => (
-                      <Tr key={item.id}>
-                        <Td>{i + 1}</Td>
-                        <Td>{item.brand}</Td>
-                        <Td>{item.offerPrice}</Td>
+          {totalOrders
+            .sort((a, b) => b.timestamp - a.timestamp)
+            .map((order) => (
+              <Tr key={order.id}>
+                <Td>{order.userId}</Td>
+                <Td>
+                  {order.address.name}, {order.address.pin}
+                </Td>
+                <Td>
+                  {" "}
+                  <Button onClick={() => toggleStatus(order.orderId)}>
+                    {order.status}
+                  </Button>
+                </Td>
+                <Td>
+                  <Table size="sm">
+                    <Thead>
+                      <Tr>
+                        <Th>Number of items</Th>
+                        <Th>Brand</Th>
+                        <Th>Offer price</Th>
                       </Tr>
-                    ))}
-                  </Tbody>
-                </Table>
-              </Td>
-              <Td>{getTotalOfferPriceForUser(order.userId)}</Td>
-            </Tr>
-          ))}
+                    </Thead>
+                    <Tbody>
+                      {order.cart.map((item, i) => (
+                        <Tr key={item.id}>
+                          <Td>{i + 1}</Td>
+                          <Td>{item.brand}</Td>
+                          <Td>{item.offerPrice}</Td>
+                        </Tr>
+                      ))}
+                    </Tbody>
+                  </Table>
+                </Td>
+                <Td>{getTotalOfferPriceForUser(order.userId)}</Td>
+              </Tr>
+            ))}
         </Tbody>
       </Table>
     </Box>

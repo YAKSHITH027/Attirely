@@ -33,7 +33,7 @@ const Navbar = () => {
   const cartData = useSelector((store) => {
     return store.cartReducer.cart;
   });
-  console.log(cartData);
+
   //logout
   const handleLogout = () => {
     localStorage.setItem("userInfoF", null);
