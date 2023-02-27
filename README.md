@@ -41,7 +41,7 @@
 
 <h3><i>User Side </i></h3>
 
-Search for items by name or brand , Filter, Sorting and Pagination 
+Search for items by name or brand ,Login,Sign up,Cart, Payment, Filter, Sorting and Pagination 
 <br/><br/>
 <div width="100%">
 <img  src="https://github.com/gyan2501/Asset/blob/main/Attirely/Attproducts1.png"/>
