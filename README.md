@@ -3,7 +3,7 @@
 
 
 <h1> Attirely ( Clone of Myntra.com )</h1>
-<img src="https://api.apify.com/v2/key-value-stores/hE3ijgecOi6XSfKO9/records/vocal-semifreddo-a9b39c.netlify.app-scroll_lossy-comp" />
+<img src="https://github.com/gyan2501/Asset/blob/main/Attirely/AttHome.png" />
 
 <h2><i><a href="https://vocal-semifreddo-a9b39c.netlify.app/">LIVE SITE</a></i></h2>
 <h3>Myntra is a major Indian fashion e-commerce company headquartered in Bengaluru, Karnataka, India. The company was founded in 2007-2008 to sell personalized gift items. In May 2014, Myntra.com was acquired by Flipkart. </h3>
