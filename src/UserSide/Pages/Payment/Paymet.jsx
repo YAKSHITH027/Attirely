@@ -36,16 +36,17 @@ export default function Payment() {
   const [qty, setqty] = useState(1);
   const dispach = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [address, setaddres] = useState({
-    name: "Yakshith kulal",
-    city: "udupi",
-    other: "4# 98 perdoor udupi pincode 576124",
-  });
+  const [address, setaddres] = useState(
+    JSON.parse(localStorage.getItem("userAddress")) || {
+      name: "Yakshith kulal",
+      city: "udupi",
+      other: "4# 98 perdoor udupi pincode 576124",
+    }
+  );
   const toast = useToast();
   const Razorpay = useRazorpay();
 
-  const dispatch=useDispatch()
-
+  const dispatch = useDispatch();
 
   const userData = useSelector((store) => {
     return store.userAuthReducer.user;
@@ -59,47 +60,45 @@ export default function Payment() {
   }, []);
 
   // login of cart ********************************
-  let value = 1;
-  let total = data.map((el) => {
-    return (value = value + Number(el.originalPrice) * qty);
+
+  // handling all the payment amounts
+  let value = 0;
+  let offerValue = 0;
+  data.map((el) => {
+    offerValue += Number(el.offerPrice) * el.qtt;
+    return (value = value + Number(el.originalPrice) * el.qtt);
   });
-  let valueafterdicount = 0;
-  let total1 = data.map((el) => {
-    return (valueafterdicount =
-      valueafterdicount +
-      (Number(el.originalPrice) - Number(el.offerPrice)) * qty);
-  });
-  let dicount = 0;
-  let total2 = data.map((el) => {
-    return (dicount =
-      dicount +
-      Math.floor(
-        Number((valueafterdicount / el.discount.replace("%", "")) * 10).toFixed(
-          2
-        )
-      ));
-  });
+  const finalAmount = offerValue;
+  offerValue = value - offerValue;
 
   const handlePayment = useCallback(() => {
     const options = {
       key: "rzp_test_JFihbnSsCtVIUH",
-      amount: valueafterdicount * 100,
+      amount: finalAmount * 100,
       currency: "INR",
       name: "Attirely",
       description: "Test Transaction",
       image: "https://i.ibb.co/7jfCzLZ/Attirely-removebg-preview.png",
 
-
       handler: (res) => {
-        console.log(res);
-        toast({
-          title: "Payment Successful",
-          description: "Thanks for shopping.",
-          status: "success",
-          duration: 4000,
-          position: "top",
-          isClosable: true,
-        });
+        // console.log(res);
+        const addOrders = async (id, cartData, address) => {
+          try {
+            const sameId = Date.now() + id;
+            let res = await setDoc(doc(db, "orders", sameId), {
+              cart: cartData, // this should be array of objects cart
+              userId: id, //"userId which you get from authreducer",
+              address: address,
+              timestamp: Date.now(), // this can be used for sorting
+              orderId: sameId,
+              status: "pending",
+            });
+            console.log(res);
+          } catch (error) {
+            console.log(error);
+          }
+        };
+        addOrders(id, data, address);
         if (res) {
           let mydata = [];
           dispatch(addToCart(id, mydata));
@@ -122,25 +121,9 @@ export default function Payment() {
   }, [Razorpay]);
 
   const order = (id, data, address) => {
+    // removed one function no need of parameters
     handlePayment();
-    const addOrders = async (id, cartData, address) => {
-      try {
-        const sameId = Date.now() + id;
-        let res = await setDoc(doc(db, "orders", sameId), {
-          cart: cartData, // this should be array of objects cart
-          userId: id, //"userId which you get from authreducer",
-          address: address,
-          timestamp: Date.now(), // this can be used for sorting
-          orderId: sameId,
-          status: "pending",
-        });
-        console.log(res);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    addOrders(id, data, address);
-}
+  };
 
   return (
     <div>
@@ -158,7 +141,7 @@ export default function Payment() {
                   <Text>{address.name} </Text>
                   <Text fontSize={"12px"}>{address.other}</Text>
                   <Text fontSize={"12px"}>{address.city}</Text>
-                  <Text fontSize={"12px"}>Mob: 9657267157</Text>
+                  <Text fontSize={"12px"}>{address.number}</Text>
                 </Box>
               </Flex>
             </Box>
@@ -213,7 +196,7 @@ export default function Payment() {
                     marginLeft: "120px",
                   }}
                 >
-                  Rs. {dicount}
+                  Rs. {offerValue}
                 </p>
                 <hr />
               </Flex>
@@ -230,7 +213,7 @@ export default function Payment() {
                     fontWeight: "bold",
                   }}
                 >
-                  Rs. {valueafterdicount}
+                  Rs. {finalAmount}
                 </p>
                 <hr />
               </Flex>

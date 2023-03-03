@@ -17,6 +17,9 @@ import {
   ModalCloseButton,
   ModalHeader,
   ModalFooter,
+  useToast,
+  FormControl,
+  FormLabel,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { BsTag } from "react-icons/bs";
@@ -27,8 +30,13 @@ import { MdMoreTime } from "react-icons/md";
 import gift from "./gift.png";
 import css from "./cart.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, addcart, getCart } from "../../../Redux/Cart/cart.actions";
-import { Link } from "react-router-dom";
+import {
+  addToCart,
+  addcart,
+  getCart,
+  cartQttChange,
+} from "../../../Redux/Cart/cart.actions";
+import { json, Link, useNavigate } from "react-router-dom";
 import Navbar from "../../Components/Home/Navbar";
 import Footer from "../../Components/Home/Footer";
 import Payment from "../Payment/Paymet";
@@ -36,13 +44,16 @@ const Cart = () => {
   const [qty, setqty] = useState(1);
   const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [address, setaddres] = useState({
-    name: "",
-    city: "",
-    other: "",
-    number: "",
-  });
-
+  const [address, setaddres] = useState(
+    JSON.parse(localStorage.getItem("userAddress")) || {
+      name: "",
+      city: "",
+      other: "",
+      number: "",
+    }
+  );
+  const toast = useToast();
+  const navigate = useNavigate();
   const userData = useSelector((store) => {
     return store.userAuthReducer.user;
   });
@@ -55,7 +66,7 @@ const Cart = () => {
 
   useEffect(() => {
     if (id) {
-      dispatch(getCart(id));
+      // dispatch(getCart(id));
     }
   }, []);
   console.log("my", data);
@@ -68,39 +79,42 @@ const Cart = () => {
     dispatch(addToCart(id, filterdata));
   };
   // login of cart ********************************
-  let value = 1;
-  let total = data.map((el) => {
-    return (value = value + Number(el.originalPrice) * qty);
+  let value = 0;
+  let offerValue = 0;
+  data.map((el) => {
+    offerValue += Number(el.offerPrice) * el.qtt;
+    return (value = value + Number(el.originalPrice) * el.qtt);
   });
-  let valueafterdicount = 0;
-  let total1 = data.map((el) => {
-    return (valueafterdicount =
-      valueafterdicount +
-      (Number(el.originalPrice) - Number(el.offerPrice)) * qty);
-  });
-  let dicount = 0;
-  let total2 = data.map((el) => {
-    return (dicount =
-      dicount +
-      Math.floor(
-        Number((valueafterdicount / el.discount.replace("%", "")) * 10).toFixed(
-          2
-        )
-      ));
-  });
+  const finalAmount = offerValue;
+  offerValue = value - offerValue;
 
-  const handleaddres = (e) => {
-    setaddres({ ...address, name: e.target.value });
+  const handleAddress = (e) => {
+    let x = e.target.name;
+    setaddres({ ...address, [x]: e.target.value });
   };
-  const handleaddres1 = (e) => {
-    setaddres({ ...address, other: e.target.value });
+  // handling address
+  const handlePlace = () => {
+    const { name, number, other, city } = address;
+    if (
+      name.length > 2 &&
+      number.length > 9 &&
+      other.length > 3 &&
+      city.length > 2
+    ) {
+      navigate("/payment");
+    } else {
+      onOpen();
+      toast({
+        title: "Please Enter Valid Address",
+        description: "check your details",
+        status: "error",
+        duration: 4000,
+        position: "top",
+        isClosable: true,
+      });
+    }
   };
-  const handleaddres2 = (e) => {
-    setaddres({ ...address, city: e.target.value });
-  };
-  const handleaddres3 = (e) => {
-    setaddres({ ...address, number: e.target.value });
-  };
+
   // *****************************************
   let cartQuantity = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   return (
@@ -149,29 +163,36 @@ const Cart = () => {
                   <ModalCloseButton />
                   <ModalBody>
                     <Box>
-                      <Input
-                        placeholder="Name"
-                        value={address.name}
-                        onChange={handleaddres}
-                      />
-                      <Input
-                        mt={5}
-                        placeholder="Address"
-                        value={address.other}
-                        onChange={handleaddres1}
-                      />
-                      <Input
-                        mt={5}
-                        placeholder="city"
-                        value={address.city}
-                        onChange={handleaddres2}
-                      />
-                      <Input
-                        mt={5}
-                        placeholder="Mob No"
-                        value={address.number}
-                        onChange={handleaddres3}
-                      />
+                      <FormControl isRequired>
+                        <Input
+                          placeholder="Name"
+                          name="name"
+                          value={address.name}
+                          onChange={handleAddress}
+                        />
+                        <Input
+                          mt={5}
+                          placeholder="Address"
+                          name="other"
+                          value={address.other}
+                          onChange={handleAddress}
+                        />
+                        <Input
+                          mt={5}
+                          placeholder="city"
+                          name="city"
+                          value={address.city}
+                          onChange={handleAddress}
+                        />
+                        <Input
+                          mt={5}
+                          placeholder="Mob No"
+                          type={"number"}
+                          name="number"
+                          value={address.number}
+                          onChange={handleAddress}
+                        />
+                      </FormControl>
                     </Box>
                   </ModalBody>
                   <ModalFooter>
@@ -179,7 +200,13 @@ const Cart = () => {
                       width={"full"}
                       backgroundColor={"#ef506a"}
                       mr={3}
-                      onClick={onClose}
+                      onClick={() => {
+                        onClose();
+                        localStorage.setItem(
+                          "userAddress",
+                          JSON.stringify(address)
+                        );
+                      }}
                     >
                       ADD ADDRESS
                     </Button>
@@ -272,7 +299,14 @@ const Cart = () => {
                             w={"80px"}
                             h={"20px"}
                             style={{ fontSize: "12px" }}
-                            onChange={(e) => setqty(e.target.value)}
+                            onChange={(e) =>
+                              dispatch(
+                                cartQttChange({
+                                  id: el.id,
+                                  qtt: +e.target.value,
+                                })
+                              )
+                            }
                             borderRadius={"0%"}
                             placeholder="Quantity"
                           >
@@ -281,10 +315,19 @@ const Cart = () => {
                             })}
                           </Select>
                         </Flex>
-                        <h1 style={{ fontSize: "12px" }}>{el.originalPrice}</h1>
-                        <p style={{ fontSize: "10px", color: "green" }}>
-                          coupon discount : Rs {el.offerPrice}
-                        </p>
+                        <Flex py="0.4rem">
+                          <Text fontSize={"0.9rem"} pr={"0.5rem"}>
+                            ₹{el.offerPrice}
+                          </Text>
+                          <Text
+                            textDecoration={"line-through"}
+                            fontSize={"0.9rem"}
+                            color="gray.400"
+                          >
+                            ₹{el.originalPrice}
+                          </Text>
+                        </Flex>
+
                         <Flex>
                           <MdMoreTime />{" "}
                           <p style={{ fontSize: "10px" }}>
@@ -408,7 +451,7 @@ const Cart = () => {
                     marginLeft: "120px",
                   }}
                 >
-                  Rs. {dicount}
+                  Rs. {offerValue}
                 </p>
                 <hr />
               </Flex>
@@ -425,20 +468,21 @@ const Cart = () => {
                     fontWeight: "bold",
                   }}
                 >
-                  Rs. {valueafterdicount}
+                  Rs. {finalAmount}
                 </p>
                 <hr />
               </Flex>
-              <Link to={"/payment"}>
-                <Button
-                  width={["100%", "80%"]}
-                  borderRadius={"0%"}
-                  color={"white"}
-                  backgroundColor={"#ef506a"}
-                >
-                  Place Order
-                </Button>
-              </Link>
+
+              <Button
+                width={["100%", "80%"]}
+                borderRadius={"0%"}
+                color={"white"}
+                isDisabled={data.length == 0 ? true : false}
+                backgroundColor={"#ef506a"}
+                onClick={handlePlace}
+              >
+                Place Order
+              </Button>
             </Box>
           </GridItem>
         </Grid>

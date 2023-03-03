@@ -47,6 +47,7 @@ const SingleProduct = () => {
     setLoading(false);
   };
   const handleAdd = (item) => {
+    item.qtt = 1
     allCartItems = [...allCartItems, item];
     // get userid from authReducer
     dispatch(addToCart(userid, allCartItems));

@@ -34,6 +34,7 @@ const AdminLogin = () => {
     if (validateForm()) {
       try {
         // await login(email, password);
+        localStorage.setItem("adminEmail", JSON.stringify(email));
         navigate("/dashboard");
       } catch (err) {
         setError(err);

@@ -14,6 +14,17 @@ const reducer = (state = initialState, action) => {
     case types.CART_ADD_SUCCESS: {
       return { ...state, cart: payload };
     }
+    case types.CART_QTT_CHANGE: {
+      return {
+        ...state,
+        cart: state.cart.map((item) => {
+          if (item.id == payload.id) {
+            return { ...item, qtt: payload.qtt };
+          }
+          return item;
+        }),
+      };
+    }
 
     default:
       return state;

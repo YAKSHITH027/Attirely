@@ -63,7 +63,7 @@ const Searchbar = () => {
             setColor("gray.100");
             setTimeout(() => {
               setShow(false);
-            }, 100);
+            }, 200);
           }}
           onFocus={() => {
             setColor("white");
@@ -98,7 +98,7 @@ const Searchbar = () => {
                 <Text
                   padding="8px"
                   pb="1.7px"
-                  pl="15px"
+                  pl="15ssssssssssssssspx"
                   borderBottomWidth={"1px"}
                 >
                   {item.title}

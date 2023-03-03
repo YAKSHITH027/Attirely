@@ -15,7 +15,8 @@ import axios from "axios";
 
 const AddProducts = () => {
   const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
+  const [images, setImages] = useState([]);
+  const [category, setCategory] = useState("Mens");
   const [subCategory, setSubCategory] = useState("");
   const [brand, setBrand] = useState("");
   const [discount, setDiscount] = useState("");
@@ -30,6 +31,7 @@ const AddProducts = () => {
     event.preventDefault();
 
     const product = {
+      images,
       title,
       category,
       subCategory,
@@ -42,7 +44,8 @@ const AddProducts = () => {
       originalPrice,
       quantity,
     };
-
+    // console.log("pp", product);
+    // return;
     try {
       let response;
       if (category === "Mens") {
@@ -74,7 +77,7 @@ const AddProducts = () => {
       setOriginalPrice(0);
       setQuantity(0);
 
-      console.log("api post res", response.data);
+      console.log("api post res", response);
     } catch (error) {
       console.log(error);
     }
@@ -99,6 +102,14 @@ const AddProducts = () => {
                 type="text"
                 value={title}
                 onChange={(event) => setTitle(event.target.value)}
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Image</FormLabel>
+              <Input
+                type="url"
+                value={images[0]}
+                onChange={(event) => setImages([event.target.value])}
               />
             </FormControl>
 

@@ -42,7 +42,7 @@ const Profile = () => {
     <div>
       <Navbar />
       <Flex
-        width="90vw"
+        width="95vw"
         mx="auto"
         mt="2rem"
         gap="3"
@@ -51,7 +51,7 @@ const Profile = () => {
       >
         <Box
           borderWidth={"1px"}
-          width={{ base: "90%", md: "20%" }}
+          width={{ base: "95%", md: "20%" }}
           mx="auto"
           height={"full"}
           textAlign="center"
@@ -69,9 +69,11 @@ const Profile = () => {
         </Box>
         <Box
           borderWidth={"1px"}
-          p="2rem"
+          p={{ base: "4px", md: "2rem" }}
           width={{ base: "100%", md: "76%" }}
           height={"100%"}
+          overflow="auto"
+          mb={"5rem"}
         >
           <Heading textAlign={"center"}>Your orders</Heading>
           {/* <Flex flexDir={"column"} py="1rem" gap="3">
@@ -103,9 +105,19 @@ const Profile = () => {
                 .sort((a, b) => b.timestamp - a.timestamp)
                 .map((item) => {
                   return (
-                    <Box key={item.timestamp} borderWidth="2px" p="1rem">
+                    <Box
+                      key={item.timestamp}
+                      borderWidth="2px"
+                      p={{ base: "0", md: "1rem" }}
+                      overflow={"auto"}
+                    >
                       <Badge fontSize={"1rem"}> orderId: {item.orderId}</Badge>
-                      <Flex gap="9" justify={"space-between"} py="1rem">
+                      <Flex
+                        gap="9"
+                        justify={"space-between"}
+                        py="1rem"
+                        minW={"1000px"}
+                      >
                         <Text width="50%">Name : {item.address.name}</Text>
                         <Text>City: {item.address.city}</Text>
                         {item.status == "pending" ? (
@@ -131,6 +143,7 @@ const Profile = () => {
                               borderWidth="1px"
                               px="1rem"
                               py="0.2rem"
+                              minW={"1000px"}
                             >
                               <Box> item: {i + 1}</Box>
                               <Box>
@@ -140,7 +153,7 @@ const Profile = () => {
                                 {item22.brand.substring(0, 15)}
                               </Box>
                               <Box>Price: ₹{item22.offerPrice}</Box>
-                              <Box>ordered on : {ds}</Box>
+                              <Box ml="5rem">ordered on : {ds}</Box>
                             </Flex>
                           );
                         })}

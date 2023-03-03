@@ -15,6 +15,10 @@ const Cartdelet = (payload) => {
   return { type: types.DELET_CART, payload };
 };
 
+export const cartQttChange = (payload) => {
+  return { type: types.CART_QTT_CHANGE, payload };
+};
+
 export const cartAddData = (payload) => {
   return { type: types.CART_ADD_SUCCESS, payload };
 };
