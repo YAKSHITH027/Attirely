@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import useRazorpay from "react-razorpay";
+
 import {
   Box,
   Button,
@@ -24,6 +25,7 @@ import {
   Stack,
   useToast,
 } from "@chakra-ui/react";
+
 import { addToCart, getCart } from "../../../Redux/Cart/cart.actions";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../Components/Home/Navbar";
@@ -41,7 +43,10 @@ export default function Payment() {
   });
   const toast = useToast();
   const Razorpay = useRazorpay();
-  const dispatch = useDispatch();
+
+  const dispatch=useDispatch()
+
+
   const userData = useSelector((store) => {
     return store.userAuthReducer.user;
   });
@@ -83,6 +88,7 @@ export default function Payment() {
       name: "Attirely",
       description: "Test Transaction",
       image: "https://i.ibb.co/7jfCzLZ/Attirely-removebg-preview.png",
+
 
       handler: (res) => {
         console.log(res);
@@ -134,7 +140,7 @@ export default function Payment() {
       }
     };
     addOrders(id, data, address);
-  };
+}
 
   return (
     <div>
