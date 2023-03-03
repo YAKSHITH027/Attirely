@@ -12,19 +12,13 @@ const data = {
     },
   ],
   // These labels appear in the legend and in the tooltips when hovering different arcs
-  labels: ["Red", "Yellow", "Blue"],
+  labels: ["Mens", "Womens", "Kids"],
 };
 
-
 const Chart = () => {
-
-
-
-  
-
   return (
     <>
-      <Box border="1px solid gray" shadow={'xl'} p={3}>
+      <Box border="1px solid gray" shadow={"xl"} p={3}>
         <Box m={"10px 10px"}>
           <Text fontSize="xl">Products statistics</Text>
         </Box>
