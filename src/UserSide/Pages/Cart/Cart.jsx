@@ -37,10 +37,10 @@ const Cart = () => {
   const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [address, setaddres] = useState({
-    name: "Your Name",
-    city: "Your city",
-    other: "Your address",
-    number: "Your Contact Number",
+    name: "",
+    city: "",
+    other: "",
+    number: "",
   });
 
   const userData = useSelector((store) => {
