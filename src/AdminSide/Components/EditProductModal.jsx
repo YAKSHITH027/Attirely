@@ -18,7 +18,7 @@ import axios from "axios";
 
 import { useState } from "react";
 
-export default function EditProductModal({ item, lamb }) {
+export default function EditProductModal({ item, lamb, reload }) {
   const [prodData, setProdData] = useState({
     images: [item.images[0]],
     quantity: item.quantity,
@@ -69,10 +69,11 @@ export default function EditProductModal({ item, lamb }) {
     try {
       let url = `https://rc201-jsondata-serverapi.onrender.com/${lamb}/${item.id}`;
       let res = await axios.patch(url, prodData);
-      console.log(res);
-      console.log(url);
+      // console.log(res);
+      // console.log(url);
+      reload();
       // console.log(res.data);
-      console.log(prodData);
+      // console.log(prodData);
     } catch (error) {
       console.log(error);
     }
@@ -86,7 +87,7 @@ export default function EditProductModal({ item, lamb }) {
       setProdData({ ...prodData, [name]: value });
     }
   };
-  console.log(prodData);
+  // console.log(prodData);
 
   //   console.log(prodData);
 
@@ -222,7 +223,10 @@ export default function EditProductModal({ item, lamb }) {
                 colorScheme="blue"
                 mr={3}
                 // value={item.id}
-                onClick={handleAdd}
+                onClick={(e) => {
+                  handleAdd(e);
+                  onClose();
+                }}
                 marginTop="2rem"
                 width="full"
               >

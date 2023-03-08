@@ -38,12 +38,13 @@ const LinkItems = [
   { name: "Categories", icon: AiOutlineBars, path: "/categories" },
   { name: "Orders", icon: BsBagCheck, path: "/orders" },
   { name: "Users", icon: HiUsers, path: "/users" },
-  { name: "Sellers", icon: BsShop, path: "/sellers" },
+  { name: "Admins", icon: BsShop, path: "/sellers" },
   { name: "Transactions", icon: TbReportMoney, path: "/transactions" },
   { name: "Launch UserSide", icon: FaUserFriends, path: "/" },
 ];
-const adminName = JSON.parse(localStorage.getItem("adminEmail")) || "yakshith";
 export default function Sidebar({ children }) {
+  const adminName =
+    JSON.parse(localStorage.getItem("adminEmail")) || "yakshith";
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -150,6 +151,8 @@ const NavItem = ({ icon, children, ...rest }) => {
 };
 
 const MobileNav = ({ onOpen, ...rest }) => {
+  const adminName =
+    JSON.parse(localStorage.getItem("adminEmail")) || "yakshith";
   const navigate = useNavigate();
   const toast = useToast();
   return (

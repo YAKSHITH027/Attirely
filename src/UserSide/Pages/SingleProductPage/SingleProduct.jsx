@@ -47,7 +47,7 @@ const SingleProduct = () => {
     setLoading(false);
   };
   const handleAdd = (item) => {
-    item.qtt = 1
+    item.qtt = 1;
     allCartItems = [...allCartItems, item];
     // get userid from authReducer
     dispatch(addToCart(userid, allCartItems));
@@ -69,8 +69,8 @@ const SingleProduct = () => {
           my="2rem"
         >
           <Box
-            width={{ base: "95%", md: "30%" }}
-            height={{ base: "60vh", md: "80vh" }}
+            width={{ base: "95%", lg: "30%" }}
+            height={{ base: "60vh", lg: "80vh" }}
           >
             <Skeleton height={"100%"} width="100%" borderRadius={"xl"} />
           </Box>
@@ -104,8 +104,8 @@ const SingleProduct = () => {
           <Flex
             marginX={"auto"}
             justify={"center"}
-            width={{ base: "90%", md: "30%" }}
-            height={{ base: "60vh", md: "80vh" }}
+            width={{ base: "90%", lg: "30%" }}
+            height={{ base: "60vh", lg: "80vh" }}
           >
             <Image
               src={singleProd.images[0]}
@@ -214,9 +214,8 @@ const SingleProduct = () => {
           </Box>
         </Flex>
       )}
-      <Box>
-        <SimilarProducts />
-      </Box>
+      {!isLoading && <SimilarProducts />}
+
       <Footer />
     </div>
   );

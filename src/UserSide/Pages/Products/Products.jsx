@@ -189,7 +189,7 @@ const Products = () => {
               }}
               p={{ base: "5px", md: "1.5rem" }}
               minHeight={"80vh"}
-              rowGap={"2rem"}
+              rowGap={{ base: "0.8rem", md: "2rem" }}
               placeItems={"center"}
             >
               {isLoading
@@ -197,7 +197,7 @@ const Products = () => {
                     return (
                       <Stack key={item}>
                         <Skeleton
-                          height={{ base: "240px", md: "280px" }}
+                          height={{ base: "210px", md: "280px" }}
                           width={{ base: "150px", md: "210px" }}
                           borderRadius={"sm"}
                         />
@@ -241,6 +241,7 @@ const Products = () => {
                   return (
                     <Button
                       key={item + 1}
+                      colorScheme={page == item + 1 ? "pink" : null}
                       onClick={() => {
                         setPage(item + 1);
                       }}

@@ -4,14 +4,14 @@ import React from "react";
 const ListHeading = ({ text }) => {
   return (
     <Heading
-      pl={"2rem"}
-      pb={"2rem"}
+      pl={{ base: "0.8rem", md: "2rem" }}
+      pb={{ base: "0.8rem", md: "2rem" }}
       letterSpacing="3px"
       fontFamily="Roboto"
-      fontSize={"1.8rem"}
+      fontSize={{ base: "1.4rem", md: "1.8rem" }}
       textTransform={"uppercase"}
       color="gray.700"
-      mb={"1rem"}
+      mb={{ base: "0.3rem", md: "1rem" }}
     >
       {text}
     </Heading>

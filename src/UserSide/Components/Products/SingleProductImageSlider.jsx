@@ -20,7 +20,7 @@ export default class SingleProductImageSlider extends Component {
   render() {
     return (
       <Box
-        height={{ base: "230px", md: "280px" }}
+        height={{ base: "200px", md: "280px" }}
         onMouseEnter={this.onMove}
         onMouseLeave={this.onLeave}
       >
@@ -36,13 +36,13 @@ export default class SingleProductImageSlider extends Component {
         >
           <Box
             width={{ base: "150px", md: "210px" }}
-            height={{ base: "230px", md: "280px" }}
+            height={{ base: "200px", md: "280px" }}
             pos="relative"
           >
             <Image src={this.props.images[0]} />
             <Box
               pos={"absolute"}
-              bottom={{ base: "1.9rem", md: "0.81rem" }}
+              bottom={{ base: "1rem", md: "0.81rem" }}
               left="1rem"
               bg="whiteAlpha.900"
               borderRadius={"md"}

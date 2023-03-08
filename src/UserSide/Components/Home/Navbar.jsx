@@ -30,6 +30,7 @@ const Navbar = () => {
   });
 
   const id = userData?.uid;
+  const email = userData?.email;
 
   const cartData = useSelector((store) => {
     return store.cartReducer.cart;
@@ -104,14 +105,33 @@ const Navbar = () => {
               <PopoverHeader py="1rem"></PopoverHeader>
               <PopoverBody>
                 <Flex flexDir={"column"} gap="3" textTransform={"capitalize"}>
-                  {!id && (
+                  {!id ? (
                     <Link to="/login">
-                      <Text pl="2rem">Signin / Signup</Text>
+                      <Text
+                        pl="2rem"
+                        bg="gray.100"
+                        borderRadius={"md"}
+                        py="0.5rem"
+                      >
+                        Signin / Signup
+                      </Text>
+                    </Link>
+                  ) : (
+                    <Box
+                      pl="2rem"
+                      bg="gray.100"
+                      borderRadius={"md"}
+                      py="0.3rem"
+                    >
+                      <Text fontWeight={"800"}>Hello,</Text>
+                      <Text>{email}</Text>
+                    </Box>
+                  )}
+                  {id && (
+                    <Link to="/profile">
+                      <Text pl="2rem">Profile</Text>
                     </Link>
                   )}
-                  <Link to="/profile">
-                    <Text pl="2rem">Profile</Text>
-                  </Link>
 
                   <Link to="#">
                     <Text pl="2rem">orders</Text>

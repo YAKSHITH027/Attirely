@@ -33,7 +33,6 @@ import Footer from "../../Components/Home/Footer";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../../lib/firebase";
 export default function Payment() {
-  const [qty, setqty] = useState(1);
   const dispach = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [address, setaddres] = useState(
@@ -54,13 +53,15 @@ export default function Payment() {
 
   const id = userData?.uid;
   // ---------------------------------------
-  const data = useSelector((store) => store.cartReducer.cart);
-  useEffect(() => {
-    dispatch(getCart());
-  }, []);
+  const data = useSelector((store) => {
+    return store.cartReducer.cart;
+  });
+  // useEffect(() => {
+  //   // dispatch(getCart());
+  // }, []);
 
   // login of cart ********************************
-
+  console.log("data", data);
   // handling all the payment amounts
   let value = 0;
   let offerValue = 0;

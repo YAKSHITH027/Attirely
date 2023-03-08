@@ -41,7 +41,6 @@ import Navbar from "../../Components/Home/Navbar";
 import Footer from "../../Components/Home/Footer";
 import Payment from "../Payment/Paymet";
 const Cart = () => {
-  const [qty, setqty] = useState(1);
   const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [address, setaddres] = useState(
@@ -66,6 +65,7 @@ const Cart = () => {
 
   useEffect(() => {
     if (id) {
+      console.log("when");
       // dispatch(getCart(id));
     }
   }, []);
@@ -115,12 +115,22 @@ const Cart = () => {
     }
   };
 
+  const handleChangeQtt = (prodId, qtt) => {
+    let newData = data.map((item) => {
+      if (item.id == prodId) {
+        return { ...item, qtt: qtt };
+      }
+      return item;
+    });
+    dispatch(addToCart(id, newData));
+  };
+
   // *****************************************
   let cartQuantity = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   return (
     <div>
       <Navbar />
-      <Center w={"105vw"}>
+      <Center w={"100%"}>
         <Grid className="cart_grid" m="5" gap={4}>
           <GridItem width={"100%"}>
             <Flex
@@ -300,12 +310,7 @@ const Cart = () => {
                             h={"20px"}
                             style={{ fontSize: "12px" }}
                             onChange={(e) =>
-                              dispatch(
-                                cartQttChange({
-                                  id: el.id,
-                                  qtt: +e.target.value,
-                                })
-                              )
+                              handleChangeQtt(el.id, +e.target.value)
                             }
                             borderRadius={"0%"}
                             placeholder="Quantity"

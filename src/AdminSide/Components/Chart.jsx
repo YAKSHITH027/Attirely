@@ -7,8 +7,8 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const data = {
   datasets: [
     {
-      data: [10, 20, 30],
-      backgroundColor: ["red", "blue", "yellow"],
+      data: [65, 47, 30],
+      backgroundColor: ["green", "pink", "yellow"],
     },
   ],
   // These labels appear in the legend and in the tooltips when hovering different arcs

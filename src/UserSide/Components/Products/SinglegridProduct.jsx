@@ -25,7 +25,7 @@ const SinglegridProduct = ({
       <Box
         className="shadow"
         transition={"all 0.3s"}
-        height={{ base: "320px", md: "350px" }}
+        height={{ base: "300px", md: "350px" }}
         width={{ base: "150px", md: "210px" }}
         onMouseEnter={() => {
           setShow(true);
@@ -42,12 +42,28 @@ const SinglegridProduct = ({
           />
         </Box>
         <Box px="0px" py="9px" bg="white">
-          <Text fontWeight={"600"} fontSize="0.94rem" pl="10px">
+          <Text
+            fontWeight={"600"}
+            fontSize="0.94rem"
+            pl="10px"
+            width="100%"
+            overflow={"hidden"}
+            whiteSpace="nowrap"
+            textOverflow={"ellipsis"}
+          >
             {brand}
           </Text>
           <Box position={"relative"} bg="white">
-            <Text fontSize={"0.9rem"} color="gray.700" pl="10px">
-              {title.substring(0, 20)}
+            <Text
+              fontSize={"0.9rem"}
+              color="gray.700"
+              pl="10px"
+              width="100%"
+              overflow={"hidden"}
+              whiteSpace="nowrap"
+              textOverflow={"ellipsis"}
+            >
+              {title.substring(0, 30)}
             </Text>
             <Flex
               height={!show && "0"}

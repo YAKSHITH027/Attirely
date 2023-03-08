@@ -41,7 +41,8 @@ const ProductsAdmin = () => {
     getAdminProductsData();
   }, [option]);
 
-  const deleteProd = async (id, category) => {
+  const deleteProd = async (e, id, category) => {
+    e.preventDefault();
     if (category === "Mens") {
       setLamb("MensData");
     }
@@ -53,14 +54,13 @@ const ProductsAdmin = () => {
     if (category === "Child") {
       setLamb("ChildrensData");
     }
-    console.log(id, lamb);
+
     try {
       let url = `https://rc201-jsondata-serverapi.onrender.com/${lamb}/${id}`;
       await axios.delete(
         `https://rc201-jsondata-serverapi.onrender.com/${lamb}/${id}`
       );
-      console.log(url);
-      window.location.reload();
+      getAdminProductsData();
     } catch (error) {
       console.log(error);
     }
@@ -78,21 +78,35 @@ const ProductsAdmin = () => {
           <option value="MensData">Mens Products</option>
           <option value="WomensData ">Womens Products</option>
           <option value="ChildrensData ">Childrens Products</option>
-          <option value="orders ">Orders</option>
         </Select>
       </Box>
 
       <br />
 
-      <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+      <Grid
+        templateColumns={{
+          base: "repeat(2, 1fr)",
+          lg: "repeat(4, 1fr)",
+          xl: "repeat(5, 1fr)",
+        }}
+        gap={6}
+      >
         {ProdData.map((item) => {
           return (
             <GridItem key={item.id}>
               <SingleAdminProd props={item} />
-              <Flex marginLeft={"37px"} gap={"10px"} marginTop={"-35px"}>
-                <EditProductModal item={item} lamb={lamb} />
+              <Flex
+                gap={"10px"}
+                marginTop={"-35px"}
+                justifyContent="space-around"
+              >
+                <EditProductModal
+                  item={item}
+                  lamb={lamb}
+                  reload={getAdminProductsData}
+                />
                 <Button
-                  onClick={() => deleteProd(item.id, item.category)}
+                  onClick={(e) => deleteProd(e, item.id, item.category)}
                   backgroundColor={"red"}
                   color={"white"}
                 >

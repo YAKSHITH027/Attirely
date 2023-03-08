@@ -152,7 +152,10 @@ const Profile = () => {
                               <Box width="10rem">
                                 {item22.brand.substring(0, 15)}
                               </Box>
-                              <Box>Price: ₹{item22.offerPrice}</Box>
+                              <Flex gap="3">
+                                <Text>Price: ₹{item22.offerPrice}</Text>
+                                <Text>Quantity: {item22.qtt}</Text>
+                              </Flex>
                               <Box ml="5rem">ordered on : {ds}</Box>
                             </Flex>
                           );
