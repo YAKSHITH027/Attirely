@@ -96,7 +96,6 @@ with Firebase Authentication
 
 
 
-
 <table>
   <tr>
     <td><img maxW="50%" src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/signin.png"  alt="home" /></td>
