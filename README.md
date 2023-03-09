@@ -116,10 +116,10 @@ with Firebase Authentication
 
   </tr>
   <tr>
-      <td align='center'><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/homeSmall.png"  alt="men" height='400px' />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/productsSmall.png"  alt="men" height='400px' /></td>
-    <td align='center'><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/singleProductSmall.png" alt="allProducts" height='400px' /> &nbsp;&nbsp;&nbsp;&nbsp;
-    <img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/cartSmall.png" alt="allProducts" height='400px' /></td>
+      <td align='center'><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/homeSmall.png"  alt="men" width='40%' />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/productsSmall.png"  alt="men" width='40%'' /></td>
+    <td align='center'><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/singleProductSmall.png" alt="allProducts" width='40%' /> &nbsp;&nbsp;&nbsp;&nbsp;
+    <img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/cartSmall.png" alt="allProducts" width='40%' /></td>
 
   </tr>
  
