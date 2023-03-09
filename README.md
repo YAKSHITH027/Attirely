@@ -50,7 +50,7 @@
 
 It’s Group project dfdfdfd
 
-<img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/home.png"  />
+<img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/ezgif.com-gif-maker.gif"  />
 
 
 <br />
