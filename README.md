@@ -95,7 +95,7 @@ with Firebase Authentication
 ## Glimpses of Attirely.com  :
 
 
-
+## UserSide
 <table >
 
   <tr>
@@ -128,6 +128,22 @@ with Firebase Authentication
 
 </table>
 
+## Admin Side
+<table >
+
+  <tr>
+   <td><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/adminDashboard.png"  alt="allProducts" /></td>
+    <td><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/adminProducts.png"  alt="men" /></td>
+  </tr>
+  <tr>
+      <td><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/adminOrders.png"  alt="men" /></td>
+    <td><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/users.png" alt="allProducts" /></td>
+
+  </tr>
+   
+ 
+
+</table>
 <br />
 
 
