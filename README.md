@@ -97,10 +97,7 @@ with Firebase Authentication
 
 
 <table >
-  <tr>
-    <td><img maxW="50%" src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/signin.png"  alt="home" /></td>
-    <td><img maxW="50%" src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/signup.png"  alt="coupons" /></td>
-  </tr>
+
   <tr>
    <td><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/home.png"  alt="allProducts" /></td>
     <td><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/products.png"  alt="men" /></td>
@@ -117,13 +114,16 @@ with Firebase Authentication
   </tr>
   <tr>
       <td align='center'><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/homeSmall.png"  alt="men" width='40%' />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/productsSmall.png"  alt="men" width='40%'' /></td>
-    <td align='center'><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/singleProductSmall.png" alt="allProducts" width='40%' /> &nbsp;&nbsp;&nbsp;&nbsp;
+     <img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/productsSmall.png"  alt="men" width='40%'' /></td>
+     <td align='center'><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/singleProductSmall.png" alt="allProducts" width='40%' />          &nbsp;&nbsp;&nbsp;&nbsp;
     <img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/cartSmall.png" alt="allProducts" width='40%' /></td>
 
   </tr>
  
-  
+   <tr>
+    <td><img maxW="50%" src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/signin.png"  alt="home" /></td>
+    <td><img maxW="50%" src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/signup.png"  alt="coupons" /></td>
+  </tr>
  
 
 </table>
