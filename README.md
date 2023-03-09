@@ -62,8 +62,7 @@ It’s Group project dfdfdfd
 - Cart Management Page
 - Checkout with Address Management Page
 - Payment Page
-- Login / Logout Page
-- Order Summary Page
+- Admin Side
 
 
 
@@ -110,6 +109,16 @@ with Firebase Authentication
   <tr>
       <td><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/SingleProducts.png"  alt="men" /></td>
     <td><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/cart.png" alt="allProducts" /></td>
+
+  </tr>
+   <tr>
+      <td><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/payment.png"  alt="men" /></td>
+    <td><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/userInfo.png" alt="allProducts" /></td>
+
+  </tr>
+  <tr>
+      <td><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/homeSmall.png"  alt="men" /></td>
+    <td><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/productsSmall.png" alt="allProducts" /></td>
 
   </tr>
  
