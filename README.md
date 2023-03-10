@@ -42,9 +42,8 @@
 
 <p align="center">
   <br />&#10023;
-  <a href="#Live link">View Demo</a> &#10023;
+  <a href="#Live-link">View Demo</a> &#10023;
   <a href="#Getting-Started">Getting Started</a> &#10023; 
-  <a href="#Install">Installing</a> &#10023;
   <a href="#Developers">Developers</a> &#10023;
 </p>
 
@@ -186,7 +185,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-##Developers
+## Developers
 
 👤 **P Yakshith**
 
