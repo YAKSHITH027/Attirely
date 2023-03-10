@@ -1,6 +1,9 @@
 import {
   Box,
+
+
   chakra,
+
   Flex,
   SimpleGrid,
   Stat,
@@ -9,10 +12,16 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import axios from "axios";
+
+import { collection, getDocs } from "firebase/firestore";
+
 import { useEffect, useState } from "react";
 import { BsPerson } from "react-icons/bs";
 import { HiShoppingBag } from "react-icons/hi";
 import { TfiShoppingCartFull } from "react-icons/tfi";
+
+import { db } from "../../lib/firebase";
+
 
 function StatsCard(props) {
   const { title, stat, icon } = props;
@@ -49,6 +58,10 @@ function StatsCard(props) {
 export default function BasicStatistics() {
   const [totalProducts, setTotalProducts] = useState(0);
 
+  const [tUser, SetTUser] = useState([]);
+  const [tOrders, setTOrders] = useState([]);
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -75,6 +88,31 @@ export default function BasicStatistics() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const getOrders = async () => {
+      const querySnapshot = await getDocs(collection(db, "orders"));
+      const orders = [];
+      querySnapshot.forEach((doc) => {
+        orders.push(doc.data());
+      });
+      console.log(orders);
+      setTOrders(orders);
+    };
+
+    const getUsers = async () => {
+      const querySnapshot = await getDocs(collection(db, "users"));
+      const users = [];
+      querySnapshot.forEach((doc) => {
+        users.push(doc.data());
+      });
+      SetTUser(users);
+    };
+    getUsers();
+
+    getOrders();
+
+  }, []);
+
   return (
     <>
       <Box
@@ -92,12 +130,15 @@ export default function BasicStatistics() {
         >
           <StatsCard
             title={"Users"}
-            stat={"23"} //MAPED USER NUMBER
+
+            stat={tUser.length} //MAPED USER NUMBER
+
             icon={<BsPerson size={"3em"} />}
           />
           <StatsCard
-            title={"Total Orders"}
-            stat={"37"}
+
+            stat={tOrders.length}
+
             icon={<HiShoppingBag size={"3em"} />}
           />
           <StatsCard
