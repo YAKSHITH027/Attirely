@@ -42,13 +42,15 @@
 
 <p align="center">
   <br />&#10023;
-  <a href="#Demo">View Demo</a> &#10023;
+  <a href="#Live link">View Demo</a> &#10023;
   <a href="#Getting-Started">Getting Started</a> &#10023; 
   <a href="#Install">Installing</a> &#10023;
-  <a href="#Contact">Author</a> &#10023;
+  <a href="#Developers">Developers</a> &#10023;
 </p>
 
-It’s Group project dfdfdfd
+It’s a Group project mainly focused on frontend functionalitys by using React, Redux and for the backend Firebase has been used. it has all the major functinality of an ecommerce website from the userside to admin side , the userside is fully responsive for all the screensizes and for the payment, Razorpay payment gateway has been used.
+
+## Live link : <a href="https://attirely.netlify.app/">Attirely</a>
 
 <img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/ezgif.com-gif-maker.gif"  />
 
@@ -60,7 +62,6 @@ It’s Group project dfdfdfd
 - Product Listing Page with all categories
 - Product Description Page
 - Cart Management Page
-- Checkout with Address Management Page
 - Payment Page
 - Admin Side
 
@@ -185,5 +186,15 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+##Developers
+
+👤 **P Yakshith**
+
+- GitHub: [@YAKSHITH027](https://github.com/YAKSHITH027)
+
+
+👤 **Gyan**
+
+- GitHub: [@---](https://github.com/---)
 
 
