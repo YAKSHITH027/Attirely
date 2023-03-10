@@ -11,12 +11,14 @@ import { userLogin } from "../Redux/UserAuth/userAuth.actions";
 import { useToast } from "@chakra-ui/toast";
 import Navbar from "../UserSide/Components/Home/Navbar";
 import Footer from "../UserSide/Components/Home/Footer";
+import { Button } from "@chakra-ui/react";
 
 const Login = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setLoading] = useState(false);
   const toast = useToast();
   const navigate = useNavigate();
   const validateForm = () => {
@@ -38,6 +40,7 @@ const Login = () => {
     e.preventDefault();
     setError("");
     if (validateForm()) {
+      setLoading(true);
       try {
         let res = await signInWithEmailAndPassword(auth, email, password);
         console.log("login", res);
@@ -45,7 +48,8 @@ const Login = () => {
         const docSnap = await getDoc(docRef);
         dispatch(userLogin(docSnap.data()));
         localStorage.setItem("userInfoF", JSON.stringify(docSnap.data()));
-        console.log(docSnap.data());
+        // console.log(docSnap.data());
+        setLoading(false);
         toast({
           title: "login successful",
           description: "have a great day.",
@@ -57,6 +61,7 @@ const Login = () => {
         // await login(email, password);
         navigate("/");
       } catch (err) {
+        setLoading(false);
         console.log(err.message);
         toast({
           title: "login failed",
@@ -142,7 +147,13 @@ const Login = () => {
                   </p>
                 </div>
 
-                <button type="submit">Login</button>
+                <Button
+                  isLoading={isLoading}
+                  loadingText={"Logging in"}
+                  type="submit"
+                >
+                  Login
+                </Button>
               </form>
             </div>
           </div>

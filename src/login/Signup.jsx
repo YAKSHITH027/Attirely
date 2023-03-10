@@ -11,6 +11,7 @@ import { Flex } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/image";
 import Navbar from "../UserSide/Components/Home/Navbar";
 import Footer from "../UserSide/Components/Home/Footer";
+import { Button } from "@chakra-ui/react";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setLoading] = useState(false);
   const toast = useToast();
   const navigate = useNavigate();
 
@@ -43,11 +45,12 @@ const Signup = () => {
       setError("Password must be at least 8 characters long.");
       return;
     }
-
+    setLoading(true);
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
       await setDoc(doc(db, "users", res.user.uid), {
         uid: res.user.uid,
+        name: name,
         email,
         password,
         avatar: "",
@@ -64,8 +67,10 @@ const Signup = () => {
         position: "top",
         isClosable: true,
       });
+      setLoading(false);
       navigate("/");
     } catch (err) {
+      setLoading(false);
       toast({
         title: "Sign up failed",
         description: err.message,
@@ -134,7 +139,13 @@ const Signup = () => {
                 <p>
                   Already a User ? <Link to="/login">Login </Link>
                 </p>
-                <button type="submit">Submit</button>
+                <Button
+                  isLoading={isLoading}
+                  loadingText={"Signing Up"}
+                  type="submit"
+                >
+                  Submit
+                </Button>
               </form>
             </div>
           </div>

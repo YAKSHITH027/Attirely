@@ -19,6 +19,7 @@ const DrawerComponent = ({
   discountRange,
   setDiscountRange,
   setPage,
+  setCat,
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
@@ -27,8 +28,9 @@ const DrawerComponent = ({
     <>
       <Button
         ref={btnRef}
-        colorScheme="teal"
+        colorScheme="pink"
         onClick={onOpen}
+        py="15px"
         width="100%"
         borderBottomRadius={"0"}
       >
@@ -51,6 +53,7 @@ const DrawerComponent = ({
             discountRange={discountRange}
             setDiscountRange={setDiscountRange}
             setPage={setPage}
+            setCat={setCat}
           />
         </DrawerContent>
       </Drawer>

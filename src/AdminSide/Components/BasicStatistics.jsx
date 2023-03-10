@@ -1,5 +1,9 @@
 import {
   Box,
+
+
+  chakra,
+
   Flex,
   SimpleGrid,
   Stat,
@@ -8,12 +12,16 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import axios from "axios";
+
 import { collection, getDocs } from "firebase/firestore";
+
 import { useEffect, useState } from "react";
 import { BsPerson } from "react-icons/bs";
 import { HiShoppingBag } from "react-icons/hi";
 import { TfiShoppingCartFull } from "react-icons/tfi";
+
 import { db } from "../../lib/firebase";
+
 
 function StatsCard(props) {
   const { title, stat, icon } = props;
@@ -49,8 +57,10 @@ function StatsCard(props) {
 
 export default function BasicStatistics() {
   const [totalProducts, setTotalProducts] = useState(0);
+
   const [tUser, SetTUser] = useState([]);
   const [tOrders, setTOrders] = useState([]);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -120,12 +130,15 @@ export default function BasicStatistics() {
         >
           <StatsCard
             title={"Users"}
+
             stat={tUser.length} //MAPED USER NUMBER
+
             icon={<BsPerson size={"3em"} />}
           />
           <StatsCard
-            title={"Total Orders"}
+
             stat={tOrders.length}
+
             icon={<HiShoppingBag size={"3em"} />}
           />
           <StatsCard

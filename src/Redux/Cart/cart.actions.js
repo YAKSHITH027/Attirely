@@ -15,29 +15,33 @@ const Cartdelet = (payload) => {
   return { type: types.DELET_CART, payload };
 };
 
+export const cartQttChange = (payload) => {
+  return { type: types.CART_QTT_CHANGE, payload };
+};
+
 export const cartAddData = (payload) => {
   return { type: types.CART_ADD_SUCCESS, payload };
 };
 
-export const getCart =
-  (id = 4) =>
-  async (dispatch) => {
-    dispatch(cartRequest());
-    try {
-      console.log("inside getCart", id);
-      let res = await cartAPI(id);
-      dispatch(CartSuccess(res));
-    } catch (error) {
-      console.log(error);
-      dispatch(cartError());
-    }
-  };
+export const getCart = (id) => async (dispatch) => {
+  if (!id) {
+    return;
+  }
+  dispatch(cartRequest());
+  try {
+    let res = await cartAPI(id);
+    dispatch(CartSuccess(res));
+  } catch (error) {
+    console.log(error);
+    dispatch(cartError());
+  }
+};
 
 export const addToCart = (id, item) => async (dispatch) => {
   dispatch(cartRequest());
   try {
     await addToCartAPI(id, item);
-    console.log(item);
+
     dispatch(cartAddData(item));
   } catch (error) {
     dispatch(cartError());

@@ -47,6 +47,7 @@ const SingleProduct = () => {
     setLoading(false);
   };
   const handleAdd = (item) => {
+    item.qtt = 1;
     allCartItems = [...allCartItems, item];
     // get userid from authReducer
     dispatch(addToCart(userid, allCartItems));
@@ -60,8 +61,17 @@ const SingleProduct = () => {
     <div>
       <Navbar />
       {isLoading ? (
-        <Flex justify={"center"} width="87vw" marginX="auto" my="2rem">
-          <Box width="30%" height="80vh">
+        <Flex
+          justify={"center"}
+          flexDir={{ base: "column", md: "row" }}
+          width="87vw"
+          marginX="auto"
+          my="2rem"
+        >
+          <Box
+            width={{ base: "95%", lg: "30%" }}
+            height={{ base: "60vh", lg: "80vh" }}
+          >
             <Skeleton height={"100%"} width="100%" borderRadius={"xl"} />
           </Box>
           <Flex width="65%" px={"3rem"} flexDir="column" gap="2rem" py="2rem">
@@ -71,7 +81,11 @@ const SingleProduct = () => {
             <Skeleton height="20px" width="200px" />
             <Skeleton height="20px" />
             <Skeleton height="20px" />
-            <Flex gap="2rem" px="2rem">
+            <Flex
+              gap={{ base: "3px", md: "2rem" }}
+              px={{ md: "2rem" }}
+              width="full"
+            >
               <Skeleton height="40px" width="160px" borderRadius={"xl"} />
               <Skeleton height="40px" width="160px" borderRadius={"xl"} />
             </Flex>
@@ -90,8 +104,8 @@ const SingleProduct = () => {
           <Flex
             marginX={"auto"}
             justify={"center"}
-            width={{ base: "90%", md: "30%" }}
-            height={{ base: "60vh", md: "80vh" }}
+            width={{ base: "90%", lg: "30%" }}
+            height={{ base: "60vh", lg: "80vh" }}
           >
             <Image
               src={singleProd.images[0]}
@@ -200,9 +214,8 @@ const SingleProduct = () => {
           </Box>
         </Flex>
       )}
-      <Box>
-        <SimilarProducts />
-      </Box>
+      {!isLoading && <SimilarProducts />}
+
       <Footer />
     </div>
   );

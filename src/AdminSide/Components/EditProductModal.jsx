@@ -13,79 +13,84 @@ import {
   FormLabel,
   Box,
   Flex,
-  
-  
 } from "@chakra-ui/react";
 import axios from "axios";
 
 import { useState } from "react";
 
+export default function EditProductModal({ item, lamb, reload }) {
+  const [prodData, setProdData] = useState({
+    images: [item.images[0]],
+    quantity: item.quantity,
+    title: item.title,
+    offerPrice: item.offerPrice,
+    brand: item.brand,
+    category: item.category,
+    originalPrice: item.originalPrice,
+    rating: item.rating,
+    ratingCount: item.ratingCount,
+    subCategory: item.subCategory,
+    discount: item.discount,
+    size: item.size,
+  });
 
-
-
-export default function EditProductModal({ item }) {
-  
-    const [prodData, setProdData] = useState({
-        images: item.images[0],
-        quantity: item.quantity,
-        title: item.title,
-        offerPrice: item.offerPrice,
-        brand: item.brand,
-        category: item.category,
-        originalPrice: item.originalPrice,
-        rating : item.rating,
-        ratingCount : item.ratingCount, 
-        subCategory : item.subCategory,
-        discount : item.discount,
-        size : item.size 
-      })
-
-      const { title, offerPrice,  brand, category, originalPrice, quantity,rating, ratingCount, subCategory } = prodData;
-//   console.log(prodData)
+  const {
+    images,
+    title,
+    offerPrice,
+    brand,
+    category,
+    originalPrice,
+    quantity,
+    rating,
+    ratingCount,
+    subCategory,
+  } = prodData;
+  //   console.log(prodData)
   const { isOpen, onOpen, onClose } = useDisclosure();
-    
-    // const [categoryState, setCategoryState]= useState(category); 
-    const [lamb, setLamb]= useState("");
- 
-  
 
+  // const [categoryState, setCategoryState]= useState(category);
+  // const [lamb, setLamb] = useState("");
 
+  const handleAdd = async (e) => {
+    e.preventDefault();
 
-  const handleAdd=async(e)=>{
-      e.preventDefault();
-    
-    if(category==="Mens"){
-        setLamb("MensData");
-      }
-    
-      if(category==="Womens"){
-        setLamb("WomensData");
-      }
-    
-      if(category==="Child"){
-        setLamb("ChildrensData");
-      }
+    // if (category === "Mens") {
+    //   setLamb("MensData");
+    // }
+
+    // if (category === "Womens") {
+    //   setLamb("WomensData");
+    // }
+
+    // if (category === "Child") {
+    //   setLamb("ChildrensData");
+    // }
     try {
-        let url = `https://rc201-jsondata-serverapi.onrender.com/${lamb}/${item.id}`
-        let res = await axios.patch(url, prodData);
-        console.log(res);
-        console.log(url);
-        // console.log(res.data);
-        console.log(prodData);
-        
+      let url = `https://rc201-jsondata-serverapi.onrender.com/${lamb}/${item.id}`;
+      let res = await axios.patch(url, prodData);
+      // console.log(res);
+      // console.log(url);
+      reload();
+      // console.log(res.data);
+      // console.log(prodData);
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-    
-    }
+  };
 
   const handleChange = (e) => {
     const { value, name } = e.target;
-    setProdData({ ...prodData, [name]: value });
+    if (name == "image") {
+      setProdData({ ...prodData, [name]: [value] });
+    } else {
+      setProdData({ ...prodData, [name]: value });
+    }
   };
-  
-//   console.log(prodData);
- 
+  // console.log(prodData);
+
+  //   console.log(prodData);
+
   return (
     <div>
       <Button onClick={onOpen} backgroundColor={"green"} color={"white"}>
@@ -108,9 +113,9 @@ export default function EditProductModal({ item }) {
                 <FormLabel>Image URL</FormLabel>
                 <Input
                   type={"url"}
-                  name="image"
+                  name="images"
                   isRequired
-                  value={item.images[0]}
+                  value={images}
                   onChange={handleChange}
                 />
               </FormControl>
@@ -149,7 +154,7 @@ export default function EditProductModal({ item }) {
               </FormControl>
               <FormControl>
                 <Flex justifyContent={"space-around"} gap="4">
-                <Box width={"full"}>
+                  <Box width={"full"}>
                     <FormLabel>Original Price</FormLabel>
                     <Input
                       name="offerPrice"
@@ -179,12 +184,11 @@ export default function EditProductModal({ item }) {
                       onChange={handleChange}
                     />
                   </Box>
-                 
                 </Flex>
               </FormControl>
               <FormControl>
                 <Flex marginTop={"5px"} justifyContent={"space-around"} gap="4">
-                <Box width={"full"}>
+                  <Box width={"full"}>
                     <FormLabel>Rating</FormLabel>
                     <Input
                       name="rating"
@@ -198,7 +202,6 @@ export default function EditProductModal({ item }) {
                     <FormLabel>Rating Count</FormLabel>
                     <Input
                       name="Rating Count"
-                      
                       isRequired
                       value={ratingCount}
                       onChange={handleChange}
@@ -208,7 +211,6 @@ export default function EditProductModal({ item }) {
                     <FormLabel>Sub Cateogry</FormLabel>
                     <Input
                       name="sub category"
-                      
                       isRequired
                       value={subCategory}
                       onChange={handleChange}
@@ -221,11 +223,14 @@ export default function EditProductModal({ item }) {
                 colorScheme="blue"
                 mr={3}
                 // value={item.id}
-                onClick={handleAdd}
+                onClick={(e) => {
+                  handleAdd(e);
+                  onClose();
+                }}
                 marginTop="2rem"
                 width="full"
               >
-                Add
+                Edit
               </Button>
             </form>
           </ModalBody>

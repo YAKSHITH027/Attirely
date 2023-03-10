@@ -13,8 +13,8 @@ const SimilarProducts = () => {
         ml="1rem"
         mb="2rem"
         gap="2"
-        overflowX={"scroll"}
         py="1rem"
+        overflowX={"scroll"}
         sx={{
           "::-webkit-scrollbar": {
             display: "none",

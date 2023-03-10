@@ -33,233 +33,235 @@ const MegaMenu = () => {
           overflow="hidden"
           bg="white"
         >
-          <div className="menu">
-            <div className="menulist">
-              <ul>
-                <p className="men-p">Topwear</p>
-                <li>
-                  <Link>T-Shirts</Link>
-                </li>
-                <li>
-                  <Link>Casual Shirts</Link>
-                </li>
-                <li>
-                  <Link>Formal Shirts</Link>
-                </li>
-                <li>
-                  <Link>Sweatshirts</Link>
-                </li>
-                <li>
-                  <Link>Sweaters</Link>
-                </li>
-                <li>
-                  <Link>Jackets</Link>
-                </li>
+          <Link to="/product/MensData">
+            <div className="menu">
+              <div className="menulist">
+                <ul>
+                  <p className="men-p">Topwear</p>
+                  <li>
+                    <Link to="/product/MensData">T-Shirts</Link>
+                  </li>
+                  <li>
+                    <Link to="/product/MensData">Casual Shirts</Link>
+                  </li>
+                  <li>
+                    <Link to="/product/MensData">Formal Shirts</Link>
+                  </li>
+                  <li>
+                    <Link to="/product/MensData">Sweatshirts</Link>
+                  </li>
+                  <li>
+                    <Link to="/product/MensData">Sweaters</Link>
+                  </li>
+                  <li>
+                    <Link to="/product/MensData">Jackets</Link>
+                  </li>
 
-                <li>
-                  <Link>Blazers & Coats</Link>
-                </li>
-                <li>
-                  <Link>Suits</Link>
-                </li>
-                <li>
-                  <Link>Rain Jackets</Link>
-                </li>
-              </ul>
-              <hr />
-              <ul>
-                <p className="men-p">Indian & Festive Wear</p>
-                <li>
-                  <Link>Kurtas & Suits</Link>
-                </li>
-                <li>
-                  <Link>Sherwanis</Link>
-                </li>
-                <li>
-                  <Link>Nehru Jackets</Link>
-                </li>
-                <li>
-                  <Link>Dhotis</Link>
-                </li>
-              </ul>
-              <hr />
-            </div>
-
-            <div className="menulist">
-              <ul>
-                <p className="men-p">Bottomwear</p>
-
-                <li>
-                  <Link>Jeans</Link>
-                </li>
-                <li>
-                  <Link>Casual Shirts</Link>
-                </li>
-                <li>
-                  <Link>Formal Shirts</Link>
-                </li>
-                <li>
-                  <Link>Shorts</Link>
-                </li>
-                <li>
-                  <Link>Track Pants & Joggers</Link>
-                </li>
-              </ul>
-              <hr />
-              <ul>
-                <p className="men-p">Innerwear & Sleepwear</p>
-                <li>
-                  <Link>Briefs & Trunks</Link>
-                </li>
-                <li>
-                  <Link>Boxers</Link>
-                </li>
-                <li>
-                  <Link>Vests</Link>
-                </li>
-                <li>
-                  <Link>Sleepwear & Loungewear</Link>
-                </li>
-                <li>
-                  <Link>Thermals</Link>
-                </li>
+                  <li>
+                    <Link to="/product/MensData">Blazers & Coats</Link>
+                  </li>
+                  <li>
+                    <Link to="/product/MensData">Suits</Link>
+                  </li>
+                  <li>
+                    <Link to="/product/MensData">Rain Jackets</Link>
+                  </li>
+                </ul>
                 <hr />
-                <p className="men-p">Plus Size</p>
-              </ul>
+                <ul>
+                  <p className="men-p">Indian & Festive Wear</p>
+                  <li>
+                    <Link to="/product/MensData">Kurtas & Suits</Link>
+                  </li>
+                  <li>
+                    <Link to="/product/MensData">Sherwanis</Link>
+                  </li>
+                  <li>
+                    <Link to="/product/MensData">Nehru Jackets</Link>
+                  </li>
+                  <li>
+                    <Link to="/product/MensData">Dhotis</Link>
+                  </li>
+                </ul>
+                <hr />
+              </div>
+
+              <div className="menulist">
+                <ul>
+                  <p className="men-p">Bottomwear</p>
+
+                  <li>
+                    <Link to="/product/MensData">Jeans</Link>
+                  </li>
+                  <li>
+                    <Link to="/product/MensData">Casual Shirts</Link>
+                  </li>
+                  <li>
+                    <Link to="/product/MensData">Formal Shirts</Link>
+                  </li>
+                  <li>
+                    <Link to="/product/MensData">Shorts</Link>
+                  </li>
+                  <li>
+                    <Link to="/product/MensData">Track Pants & Joggers</Link>
+                  </li>
+                </ul>
+                <hr />
+                <ul>
+                  <p className="men-p">Innerwear & Sleepwear</p>
+                  <li>
+                    <Link to="/product/MensData">Briefs & Trunks</Link>
+                  </li>
+                  <li>
+                    <Link to="/product/MensData">Boxers</Link>
+                  </li>
+                  <li>
+                    <Link to="/product/MensData">Vests</Link>
+                  </li>
+                  <li>
+                    <Link to="/product/MensData">Sleepwear & Loungewear</Link>
+                  </li>
+                  <li>
+                    <Link to="/product/MensData">Thermals</Link>
+                  </li>
+                  <hr />
+                  <p className="men-p">Plus Size</p>
+                </ul>
+              </div>
+
+              <div className="menulist">
+                <ul>
+                  <p className="men-p">Footwear</p>
+                  <li>
+                    <Link to="/product/MensData">Casual Shoes</Link>
+                  </li>
+                  <li>
+                    <Link to="/product/MensData">Sports Shoes</Link>
+                  </li>
+                  <li>
+                    <Link to="/product/MensData">Formal Shoes</Link>
+                  </li>
+                  <li>
+                    <Link to="/product/MensData">Sneakers</Link>
+                  </li>
+                  <li>
+                    <Link to="/product/MensData">Sandals & Floaters</Link>
+                  </li>
+                  <li>
+                    <Link to="/product/MensData">Flip Flops</Link>
+                  </li>
+                  <li>
+                    <Link to="/product/MensData">Socks</Link>
+                  </li>
+                </ul>
+                <hr />
+                <ul>
+                  <p className="men-p"> Personal Care & Grooming</p>
+
+                  <p className="men-p"> Sunglasses & Frames</p>
+                  <p className="men-p"> Watches</p>
+                </ul>
+              </div>
+
+              <div className="menulist">
+                <ul>
+                  <p className="men-p">Sports & Active Wear</p>
+
+                  <li>
+                    <Link>Sports Shoes</Link>
+                  </li>
+                  <li>
+                    <Link>Sports Sandals</Link>
+                  </li>
+                  <li>
+                    <Link>Active T-Shirts</Link>
+                  </li>
+                  <li>
+                    <Link>Track Pants & Shorts</Link>
+                  </li>
+                  <li>
+                    <Link>Tracksuits</Link>
+                  </li>
+
+                  <li>
+                    <Link>Jackets & Sweatshirts</Link>
+                  </li>
+                  <li>
+                    <Link> Sports Accessories</Link>
+                  </li>
+                  <li>
+                    <Link>Swimwear</Link>
+                  </li>
+                </ul>
+                <hr />
+                <ul>
+                  <p className="men-p">Gadgets</p>
+
+                  <li>
+                    <Link>Smart Wearables</Link>
+                  </li>
+                  <li>
+                    <Link>Fitness Gadgets</Link>
+                  </li>
+                  <li>
+                    <Link>Headphones</Link>
+                  </li>
+                  <li>
+                    <Link>Speakers</Link>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="menulist">
+                <ul>
+                  <p className="men-p"> Fashion Accessories</p>
+                  <li>
+                    <Link>Wallets</Link>
+                  </li>
+                  <li>
+                    <Link>Belts</Link>
+                  </li>
+                  <li>
+                    <Link>Perfumes & Body Mists</Link>
+                  </li>
+                  <li>
+                    <Link>Trimmers</Link>
+                  </li>
+
+                  <li>
+                    <Link>Deodorants</Link>
+                  </li>
+                  <li>
+                    <Link>Ties, Cufflinks & Pocket Squares</Link>
+                  </li>
+                  <li>
+                    <Link> Accessory Gift Sets</Link>
+                  </li>
+                  <li>
+                    <Link>Caps & Hats</Link>
+                  </li>
+                  <li>
+                    <Link>Mufflers, Scarves & Gloves</Link>
+                  </li>
+                  <li>
+                    <Link>Phone Cases</Link>
+                  </li>
+                  <li>
+                    <Link>Rings & Wristwear</Link>
+                  </li>
+                  <li>
+                    <Link>Helmets</Link>
+                  </li>
+                </ul>
+                <hr />
+                <ul>
+                  <p className="men-p"> Bags & Backpacks</p>
+
+                  <p className="men-p">Luggages & Trolleys</p>
+                </ul>
+              </div>
             </div>
-
-            <div className="menulist">
-              <ul>
-                <p className="men-p">Footwear</p>
-                <li>
-                  <Link>Casual Shoes</Link>
-                </li>
-                <li>
-                  <Link>Sports Shoes</Link>
-                </li>
-                <li>
-                  <Link>Formal Shoes</Link>
-                </li>
-                <li>
-                  <Link>Sneakers</Link>
-                </li>
-                <li>
-                  <Link>Sandals & Floaters</Link>
-                </li>
-                <li>
-                  <Link>Flip Flops</Link>
-                </li>
-                <li>
-                  <Link>Socks</Link>
-                </li>
-              </ul>
-              <hr />
-              <ul>
-                <p className="men-p"> Personal Care & Grooming</p>
-
-                <p className="men-p"> Sunglasses & Frames</p>
-                <p className="men-p"> Watches</p>
-              </ul>
-            </div>
-
-            <div className="menulist">
-              <ul>
-                <p className="men-p">Sports & Active Wear</p>
-
-                <li>
-                  <Link>Sports Shoes</Link>
-                </li>
-                <li>
-                  <Link>Sports Sandals</Link>
-                </li>
-                <li>
-                  <Link>Active T-Shirts</Link>
-                </li>
-                <li>
-                  <Link>Track Pants & Shorts</Link>
-                </li>
-                <li>
-                  <Link>Tracksuits</Link>
-                </li>
-
-                <li>
-                  <Link>Jackets & Sweatshirts</Link>
-                </li>
-                <li>
-                  <Link> Sports Accessories</Link>
-                </li>
-                <li>
-                  <Link>Swimwear</Link>
-                </li>
-              </ul>
-              <hr />
-              <ul>
-                <p className="men-p">Gadgets</p>
-
-                <li>
-                  <Link>Smart Wearables</Link>
-                </li>
-                <li>
-                  <Link>Fitness Gadgets</Link>
-                </li>
-                <li>
-                  <Link>Headphones</Link>
-                </li>
-                <li>
-                  <Link>Speakers</Link>
-                </li>
-              </ul>
-            </div>
-
-            <div className="menulist">
-              <ul>
-                <p className="men-p"> Fashion Accessories</p>
-                <li>
-                  <Link>Wallets</Link>
-                </li>
-                <li>
-                  <Link>Belts</Link>
-                </li>
-                <li>
-                  <Link>Perfumes & Body Mists</Link>
-                </li>
-                <li>
-                  <Link>Trimmers</Link>
-                </li>
-
-                <li>
-                  <Link>Deodorants</Link>
-                </li>
-                <li>
-                  <Link>Ties, Cufflinks & Pocket Squares</Link>
-                </li>
-                <li>
-                  <Link> Accessory Gift Sets</Link>
-                </li>
-                <li>
-                  <Link>Caps & Hats</Link>
-                </li>
-                <li>
-                  <Link>Mufflers, Scarves & Gloves</Link>
-                </li>
-                <li>
-                  <Link>Phone Cases</Link>
-                </li>
-                <li>
-                  <Link>Rings & Wristwear</Link>
-                </li>
-                <li>
-                  <Link>Helmets</Link>
-                </li>
-              </ul>
-              <hr />
-              <ul>
-                <p className="men-p"> Bags & Backpacks</p>
-
-                <p className="men-p">Luggages & Trolleys</p>
-              </ul>
-            </div>
-          </div>
+          </Link>
         </Box>
       </Flex>
       <Flex

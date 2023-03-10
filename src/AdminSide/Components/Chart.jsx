@@ -7,7 +7,9 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 
 
+
 const Chart = () => {
+
   const [menData, setMenData] = useState(0)
   const [kidData , setKidData] = useState(0)
   const [ womenData, setWomenData] = useState(0)
@@ -50,6 +52,8 @@ const Chart = () => {
     // These labels appear in the legend and in the tooltips when hovering different arcs
     labels: ["Mens", "Kids", "Women"],
   };
+
+
 
   return (
     <>

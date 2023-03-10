@@ -16,7 +16,7 @@ const Profile = () => {
   });
   console.log(userData);
   const id = userData?.uid;
-  const orderAPI = async (id = "A3W5KMoMC2OwudVf0EfXxD0Fa5n1") => {
+  const orderAPI = async (id) => {
     try {
       console.log("here", id);
       setLoading(true);
@@ -42,7 +42,7 @@ const Profile = () => {
     <div>
       <Navbar />
       <Flex
-        width="90vw"
+        width="95vw"
         mx="auto"
         mt="2rem"
         gap="3"
@@ -51,7 +51,7 @@ const Profile = () => {
       >
         <Box
           borderWidth={"1px"}
-          width={{ base: "90%", md: "20%" }}
+          width={{ base: "95%", md: "20%" }}
           mx="auto"
           height={"full"}
           textAlign="center"
@@ -65,13 +65,15 @@ const Profile = () => {
             USER INFO
           </Badge>
           <Badge> UserId: {userData.uid}</Badge>
-          <Text>Email : {userData.email}</Text>
+          <Text py="1rem">Email : {userData.email}</Text>
         </Box>
         <Box
           borderWidth={"1px"}
-          p="2rem"
+          p={{ base: "4px", md: "2rem" }}
           width={{ base: "100%", md: "76%" }}
           height={"100%"}
+          overflow="auto"
+          mb={"5rem"}
         >
           <Heading textAlign={"center"}>Your orders</Heading>
           {/* <Flex flexDir={"column"} py="1rem" gap="3">
@@ -99,53 +101,69 @@ const Profile = () => {
                 />
               </Flex>
             ) : (
-              orders.map((item) => {
-                return (
-                  <Box key={item.timestamp} borderWidth="2px" p="1rem">
-                    <Badge fontSize={"1rem"}> orderId: {item.orderId}</Badge>
-                    <Flex gap="9" justify={"space-between"} py="1rem">
-                      <Text width="50%">Name : {item.address.name}</Text>
-                      <Text>City: {item.address.city}</Text>
-                      {item.status == "pending" ? (
-                        <Badge fontSize={"0.9rem"} colorScheme={"yellow"}>
-                          Order Status: {item.status}
-                        </Badge>
-                      ) : (
-                        <Badge colorScheme={"green"}>
-                          Order Status: {item.status}
-                        </Badge>
-                      )}
-                    </Flex>
-                    <Flex flexDir={"column"} gap="5">
-                      {item.cart.map((item22, i) => {
-                        var date = item.timestamp;
-                        var d = new Date(date);
-                        var ds = d.toLocaleString();
-                        return (
-                          <Flex
-                            key={item22.id}
-                            gap="9"
-                            align={"center"}
-                            borderWidth="1px"
-                            px="1rem"
-                            py="0.2rem"
-                          >
-                            <Box> item: {i + 1}</Box>
-                            <Box>
-                              <Image src={item22.images[0]} width="40px" />
-                            </Box>
-                            <Box width="10rem">
-                              {item22.brand.substring(0, 15)}
-                            </Box>
-                            <Box>Price: ₹{item22.offerPrice}</Box>
-                            <Box>ordered on : {ds}</Box>
-                          </Flex>
-                        );
-                      })}
-                    </Flex>
-                  </Box>
-                );
-              })
+              orders
+                .sort((a, b) => b.timestamp - a.timestamp)
+                .map((item) => {
+                  return (
+                    <Box
+                      key={item.timestamp}
+                      borderWidth="2px"
+                      p={{ base: "0", md: "1rem" }}
+                      overflow={"auto"}
+                    >
+                      <Badge fontSize={"1rem"}> orderId: {item.orderId}</Badge>
+                      <Flex
+                        gap="9"
+                        justify={"space-between"}
+                        py="1rem"
+                        minW={"1000px"}
+                      >
+                        <Text width="50%">Name : {item.address.name}</Text>
+                        <Text>City: {item.address.city}</Text>
+                        {item.status == "pending" ? (
+                          <Badge fontSize={"0.9rem"} colorScheme={"yellow"}>
+                            Order Status: {item.status}
+                          </Badge>
+                        ) : (
+                          <Badge colorScheme={"green"}>
+                            Order Status: {item.status}
+                          </Badge>
+                        )}
+                      </Flex>
+                      <Flex flexDir={"column"} gap="5">
+                        {item.cart.map((item22, i) => {
+                          var date = item.timestamp;
+                          var d = new Date(date);
+                          var ds = d.toLocaleString();
+                          return (
+                            <Flex
+                              key={item22.id}
+                              gap="9"
+                              align={"center"}
+                              borderWidth="1px"
+                              px="1rem"
+                              py="0.2rem"
+                              minW={"1000px"}
+                            >
+                              <Box> item: {i + 1}</Box>
+                              <Box>
+                                <Image src={item22.images[0]} width="40px" />
+                              </Box>
+                              <Box width="10rem">
+                                {item22.brand.substring(0, 15)}
+                              </Box>
+                              <Flex gap="3">
+                                <Text>Price: ₹{item22.offerPrice}</Text>
+                                <Text>Quantity: {item22.qtt}</Text>
+                              </Flex>
+                              <Box ml="5rem">ordered on : {ds}</Box>
+                            </Flex>
+                          );
+                        })}
+                      </Flex>
+                    </Box>
+                  );
+                })
             )}
           </Flex>
         </Box>

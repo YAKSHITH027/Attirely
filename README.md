@@ -1,3 +1,159 @@
+<h1 align="center">Attirely</h1>
+
+<h3 align="center">It's a clone of Myntra</h3>
+
+<br />
+
+
+<h2 align="center">🖥️ Tech Stack</h2>
+
+
+<h4 align="center">Frontend:</h4>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="reactjs" />
+  <img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white" alt="redux" />
+  <img src="https://img.shields.io/badge/Chakra%20UI-3bc7bd?style=for-the-badge&logo=chakraui&logoColor=white" alt="chakra-ui" />
+  <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" alt="javascript" />
+  <img src="https://img.shields.io/badge/firebase-20232A?style=for-the-badge&logo=firebase&logoColor=#fa9911" alt="restAPI" />
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="css3" />
+ 
+</p>
+
+
+
+
+
+
+
+
+<h4 align="center">Deployed On:</h4>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white" alt="netlify" />
+  <img src="https://img.shields.io/badge/Render-430098?style=for-the-badge&logo=heroku&logoColor=white" alt="render" />
+</p>
+
+
+
+
+
+<br />
+
+<p align="center">
+  <br />&#10023;
+  <a href="#Demo">View Demo</a> &#10023;
+  <a href="#Getting-Started">Getting Started</a> &#10023; 
+  <a href="#Install">Installing</a> &#10023;
+  <a href="#Contact">Author</a> &#10023;
+</p>
+
+It’s Group project dfdfdfd
+
+<img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/ezgif.com-gif-maker.gif"  />
+
+
+<br />
+
+## Screens 
+- Homepage / Landing Page
+- Product Listing Page with all categories
+- Product Description Page
+- Cart Management Page
+- Checkout with Address Management Page
+- Payment Page
+- Admin Side
+
+
+
+
+<br />
+
+## 🚀 User Features
+- Login and Signup 
+with Firebase Authentication
+- Product Sorting Based on Category, Brand, Discount Range and Price
+- Search Functionality with Debouncing
+- Skeleton while Loading
+- My Profile Section for details of all ordered items
+- Cart Add and Remove Items 
+- Cart Update Quantities 
+- Address Management
+- RazorPay payment gateway integration for Payment
+
+<br />
+
+## 🚀 Admin Features
+- All Statistics 
+- CRUD Operations for Products
+- All Orders Data
+- All Users Data
+
+ 
+
+
+## Glimpses of Attirely.com  :
+
+
+## UserSide
+<table >
+
+  <tr>
+   <td><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/home.png"  alt="allProducts" /></td>
+    <td><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/products.png"  alt="men" /></td>
+  </tr>
+  <tr>
+      <td><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/SingleProducts.png"  alt="men" /></td>
+    <td><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/cart.png" alt="allProducts" /></td>
+
+  </tr>
+   <tr>
+      <td><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/payment.png"  alt="men" /></td>
+    <td><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/userInfo.png" alt="allProducts" /></td>
+
+  </tr>
+  <tr>
+      <td align='center'><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/homeSmall.png"  alt="men" width='40%' />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/productsSmall.png"  alt="men" width='40%'' /></td>
+     <td align='center'><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/singleProductSmall.png" alt="allProducts" width='40%' />          &nbsp;&nbsp;&nbsp;&nbsp;
+    <img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/cartSmall.png" alt="allProducts" width='40%' /></td>
+
+  </tr>
+ 
+   <tr>
+    <td><img maxW="50%" src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/signin.png"  alt="home" /></td>
+    <td><img maxW="50%" src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/signup.png"  alt="coupons" /></td>
+  </tr>
+ 
+
+</table>
+
+## Admin Side
+<table >
+
+  <tr>
+   <td><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/adminDashboard.png"  alt="allProducts" /></td>
+    <td><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/adminProducts.png"  alt="men" /></td>
+  </tr>
+  <tr>
+      <td><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/adminOrders.png"  alt="men" /></td>
+    <td><img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/users.png" alt="allProducts" /></td>
+
+  </tr>
+   
+ 
+
+</table>
+<br />
+
+
+
+## Getting Started
+
+This project was built using React, Chakra UI, HTML, CSS, JavaScript, Rest API . It is an e-commerce web application and for running on your local environment you should follow these guidelines.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -29,42 +185,5 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

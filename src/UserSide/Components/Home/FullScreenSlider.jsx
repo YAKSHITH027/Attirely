@@ -30,8 +30,8 @@ export default class SimpleSlider extends Component {
         <Slider {...settings}>
           {caroseul.map((item) => {
             return (
-              <div key={Math.random()+item+"abc"}>
-                <Image  src={item} minH="200px" />
+              <div key={Math.random() + item + "abc"}>
+                <Image src={item} minH="180px" />
               </div>
             );
           })}

@@ -30,8 +30,8 @@ const Home = () => {
         <ListHeading text=" Deal of the Day" />
         <ProductSlider
           imageData={imageList1}
-          width="190px"
-          height={"285px"}
+          width={{ base: "160", md: "190px" }}
+          height={{ base: "250px", md: "285px" }}
           gap="0"
         />
       </Box>

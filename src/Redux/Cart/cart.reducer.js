@@ -6,14 +6,25 @@ const initialState = {
 };
 const reducer = (state = initialState, action) => {
   const { type, payload } = action;
-  console.log("reducer", payload);
+  console.log("types", type, payload);
+  console.log("inside reducer", state);
   switch (type) {
     case types.CART_SUCCESS:
       return { ...state, cart: payload.cart };
 
-
     case types.CART_ADD_SUCCESS: {
       return { ...state, cart: payload };
+    }
+    case types.CART_QTT_CHANGE: {
+      return {
+        ...state,
+        cart: state.cart.map((item) => {
+          if (item.id == payload.id) {
+            return { ...item, qtt: payload.qtt };
+          }
+          return item;
+        }),
+      };
     }
 
     default:
