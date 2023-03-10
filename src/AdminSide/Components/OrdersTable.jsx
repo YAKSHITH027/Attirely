@@ -26,7 +26,7 @@ const OrdersTable = () => {
       querySnapshot.forEach((doc) => {
         orders.push(doc.data());
       });
-      console.log(orders);
+
       setTotalOrders(orders);
     };
     getOrders();
@@ -49,13 +49,13 @@ const OrdersTable = () => {
     console.log(orderId);
     const orderref = doc(db, "orders", orderId);
     let res = await updateDoc(orderref, { status: "delivered" });
-    console.log(res);
+
     const querySnapshot = await getDocs(collection(db, "orders"));
     const orders = [];
     querySnapshot.forEach((doc) => {
       orders.push(doc.data());
     });
-    console.log(orders);
+
     setTotalOrders(orders);
   };
 

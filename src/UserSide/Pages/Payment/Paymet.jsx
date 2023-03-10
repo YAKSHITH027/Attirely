@@ -56,12 +56,9 @@ export default function Payment() {
   const data = useSelector((store) => {
     return store.cartReducer.cart;
   });
-  // useEffect(() => {
-  //   // dispatch(getCart());
-  // }, []);
 
   // login of cart ********************************
-  console.log("data", data);
+
   // handling all the payment amounts
   let value = 0;
   let offerValue = 0;
@@ -82,7 +79,7 @@ export default function Payment() {
       image: "https://i.ibb.co/7jfCzLZ/Attirely-removebg-preview.png",
 
       handler: (res) => {
-        // console.log(res);
+       
         const addOrders = async (id, cartData, address) => {
           try {
             const sameId = Date.now() + id;
@@ -94,7 +91,7 @@ export default function Payment() {
               orderId: sameId,
               status: "pending",
             });
-            console.log(res);
+           
           } catch (error) {
             console.log(error);
           }

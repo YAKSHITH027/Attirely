@@ -65,17 +65,15 @@ const Cart = () => {
 
   useEffect(() => {
     if (id) {
-      console.log("when");
-      // dispatch(getCart(id));
+      dispatch(getCart(id));
     }
   }, []);
-  console.log("my", data);
 
   // delet logic ***************************
 
   const handledelet = (el) => {
     const filterdata = data.filter((t) => t.id != el.id);
-    console.log("gdfgdg", filterdata);
+
     dispatch(addToCart(id, filterdata));
   };
   // login of cart ********************************

@@ -31,7 +31,7 @@ const Searchbar = () => {
             return item;
           }
         });
-        console.log(filterData);
+
         setData(filterData);
       }
     }, 500);

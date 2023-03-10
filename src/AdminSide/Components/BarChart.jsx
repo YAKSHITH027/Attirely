@@ -65,8 +65,6 @@ const BarChart = () => {
     ],
   });
   useEffect(() => {
-   
-
     const fetchData = async () => {
       const url = "https://rc201-jsondata-serverapi.onrender.com/MensData";
       const labelSet = [];
@@ -74,16 +72,13 @@ const BarChart = () => {
       const dataSet2 = [];
       await fetch(url)
         .then((data) => {
-          console.log("Api data", data);
           const res = data.json();
           return res;
         })
         .then((res) => {
-          console.log("ressss", res);
           for (const val of res) {
             dataSet1.push(val.originalPrice);
             dataSet2.push(val.offerPrice);
-            
           }
           setData({
             labels: [
@@ -103,14 +98,13 @@ const BarChart = () => {
                 backgroundColor: "rgba(99, 132, 0.5)",
               },
               {
-                label:  "offer Price",
+                label: "offer Price",
                 data: dataSet2,
                 borderColor: "rgb(53, 162, 235)",
                 backgroundColor: "rgba(53, 235, 0.5)",
               },
             ],
           });
-          console.log("arrData", dataSet1, dataSet2);
         })
         .catch((e) => {
           console.log("error", e);

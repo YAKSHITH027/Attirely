@@ -10,6 +10,7 @@ import {
   Stack,
   Heading,
   Box,
+  useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
 
@@ -23,9 +24,10 @@ const AddProducts = () => {
   const [rating, setRating] = useState("");
   const [ratingCount, setRatingCount] = useState("");
   const [size, setSize] = useState([]);
-  const [offerPrice, setOfferPrice] = useState(0);
-  const [originalPrice, setOriginalPrice] = useState(0);
-  const [quantity, setQuantity] = useState(0);
+  const [offerPrice, setOfferPrice] = useState(null);
+  const [originalPrice, setOriginalPrice] = useState(null);
+  const [quantity, setQuantity] = useState(null);
+  const toast = useToast();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -46,6 +48,30 @@ const AddProducts = () => {
     };
     // console.log("pp", product);
     // return;
+    if (
+      !images ||
+      !title ||
+      !category ||
+      !subCategory ||
+      !brand ||
+      !discount ||
+      !rating ||
+      !ratingCount ||
+      !size ||
+      !offerPrice ||
+      !originalPrice ||
+      !quantity
+    ) {
+      toast({
+        title: "task failed",
+        description: "please fill all the details",
+        status: "error",
+        position: "top",
+        duration: 4000,
+        isClosable: true,
+      });
+      return;
+    }
     try {
       let response;
       if (category === "Mens") {
@@ -76,8 +102,6 @@ const AddProducts = () => {
       setOfferPrice(0);
       setOriginalPrice(0);
       setQuantity(0);
-
-      console.log("api post res", response);
     } catch (error) {
       console.log(error);
     }
@@ -102,6 +126,7 @@ const AddProducts = () => {
                 type="text"
                 value={title}
                 onChange={(event) => setTitle(event.target.value)}
+                required
               />
             </FormControl>
             <FormControl>
@@ -110,6 +135,7 @@ const AddProducts = () => {
                 type="url"
                 value={images[0]}
                 onChange={(event) => setImages([event.target.value])}
+                isRequired
               />
             </FormControl>
 
@@ -215,9 +241,6 @@ const AddProducts = () => {
             </FormControl>
 
             <Stack mt={4} spacing={4}>
-              <Checkbox defaultIsChecked>
-                Agree to Terms and Conditions
-              </Checkbox>
               <Button type="submit" colorScheme="blue">
                 Add Product
               </Button>

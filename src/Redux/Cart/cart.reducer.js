@@ -6,8 +6,7 @@ const initialState = {
 };
 const reducer = (state = initialState, action) => {
   const { type, payload } = action;
-  console.log("types", type, payload);
-  console.log("inside reducer", state);
+
   switch (type) {
     case types.CART_SUCCESS:
       return { ...state, cart: payload.cart };

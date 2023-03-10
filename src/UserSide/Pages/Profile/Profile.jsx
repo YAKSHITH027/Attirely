@@ -14,11 +14,10 @@ const Profile = () => {
   const userData = useSelector((store) => {
     return store.userAuthReducer.user;
   });
-  console.log(userData);
+
   const id = userData?.uid;
   const orderAPI = async (id) => {
     try {
-      console.log("here", id);
       setLoading(true);
       const orderRef = collection(db, "orders");
       const q = query(orderRef, where("userId", "==", id));
@@ -27,7 +26,7 @@ const Profile = () => {
       querySnapshot.forEach((doc) => {
         result.push(doc.data());
       });
-      console.log(result);
+
       setLoading(false);
       setOrders(result);
     } catch (error) {

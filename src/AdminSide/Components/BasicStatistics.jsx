@@ -1,9 +1,6 @@
 import {
   Box,
-
-
   chakra,
-
   Flex,
   SimpleGrid,
   Stat,
@@ -13,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getCountFromServer, getDocs } from "firebase/firestore";
 
 import { useEffect, useState } from "react";
 import { BsPerson } from "react-icons/bs";
@@ -21,7 +18,6 @@ import { HiShoppingBag } from "react-icons/hi";
 import { TfiShoppingCartFull } from "react-icons/tfi";
 
 import { db } from "../../lib/firebase";
-
 
 function StatsCard(props) {
   const { title, stat, icon } = props;
@@ -58,9 +54,8 @@ function StatsCard(props) {
 export default function BasicStatistics() {
   const [totalProducts, setTotalProducts] = useState(0);
 
-  const [tUser, SetTUser] = useState([]);
-  const [tOrders, setTOrders] = useState([]);
-
+  const [tUser, SetTUser] = useState(0);
+  const [tOrders, setTOrders] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -90,27 +85,23 @@ export default function BasicStatistics() {
 
   useEffect(() => {
     const getOrders = async () => {
-      const querySnapshot = await getDocs(collection(db, "orders"));
-      const orders = [];
-      querySnapshot.forEach((doc) => {
-        orders.push(doc.data());
-      });
-      console.log(orders);
-      setTOrders(orders);
+      const coll = collection(db, "orders");
+      const snapshot = await getCountFromServer(coll);
+      const ordersCount = snapshot.data().count;
+
+      setTOrders(ordersCount);
     };
 
     const getUsers = async () => {
-      const querySnapshot = await getDocs(collection(db, "users"));
-      const users = [];
-      querySnapshot.forEach((doc) => {
-        users.push(doc.data());
-      });
-      SetTUser(users);
+      const coll = collection(db, "users");
+      const snapshot = await getCountFromServer(coll);
+      const usersCount = snapshot.data().count;
+
+      SetTUser(usersCount);
     };
     getUsers();
 
     getOrders();
-
   }, []);
 
   return (
@@ -129,16 +120,13 @@ export default function BasicStatistics() {
           spacing={{ base: 5, lg: 8 }}
         >
           <StatsCard
-            title={"Users"}
-
-            stat={tUser.length} //MAPED USER NUMBER
-
+            title={"All Users"}
+            stat={tUser} //MAPED USER NUMBER
             icon={<BsPerson size={"3em"} />}
           />
           <StatsCard
-
-            stat={tOrders.length}
-
+            title={"Total Orders"}
+            stat={tOrders}
             icon={<HiShoppingBag size={"3em"} />}
           />
           <StatsCard
