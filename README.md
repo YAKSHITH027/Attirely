@@ -198,5 +198,5 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 👤 **Sudhir Nandane**
 
-- GitHub: [@---](https://codersudhir.github.io/)
+- GitHub: [@Sudhir Nandane](https://github.com/codersudhir)
 
