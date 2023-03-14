@@ -194,7 +194,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 👤 **Gyan**
 
-- GitHub: [@---](https://github.com/---)
+- GitHub: [@gyan2501](https://github.com/gyan2501)
 
 👤 **Sudhir Nandane**
 
