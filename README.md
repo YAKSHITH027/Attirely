@@ -192,7 +192,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 - GitHub: [@YAKSHITH027](https://github.com/YAKSHITH027)
 
 
-👤 **Gyan**
+👤 **Gyan Prakash**
 
 - GitHub: [@gyan2501](https://github.com/gyan2501)
 
