@@ -72,14 +72,13 @@ It’s a Group project mainly focused on frontend functionalitys by using React,
 ## 🚀 User Features
 - Login and Signup 
 with Firebase Authentication
-- Product Sorting Based on Category, Brand, Discount Range and Price
+- Product Sorting Based on Category, Brand, Discount Range and Price with pagination
 - Search Functionality with Debouncing
 - Skeleton while Loading
 - My Profile Section for details of all ordered items
-- Cart Add and Remove Items 
-- Cart Update Quantities 
-- Address Management
+- Cart Add, Remove items and Cart Update Quantities 
 - RazorPay payment gateway integration for Payment
+- Responsiveness
 
 <br />
 
@@ -187,7 +186,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Developers
 
-👤 **P Yakshith**
+👤 **P Yakshith** (Team Lead)
 
 - GitHub: [@YAKSHITH027](https://github.com/YAKSHITH027)
 
