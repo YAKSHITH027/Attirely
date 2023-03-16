@@ -145,11 +145,29 @@ with Firebase Authentication
 </table>
 <br />
 
+## Developers
+
+👤 **P Yakshith** (Team Lead)
+
+- GitHub: [@YAKSHITH027](https://github.com/YAKSHITH027)
+
+
+👤 **Gyan Prakash**
+
+- GitHub: [@gyan2501](https://github.com/gyan2501)
+
+👤 **Sudhir Nandane**
+
+- GitHub: [@Sudhir Nandane](https://github.com/codersudhir)
+
+👤 **Trilochanprasad B Hilli**
+
+- GitHub: [@TrilochanprasadBH](https://github.com/TrilochanprasadBH)
+
+<br/>
 
 
 ## Getting Started
-
-This project was built using React, Chakra UI, HTML, CSS, JavaScript, Rest API . It is an e-commerce web application and for running on your local environment you should follow these guidelines.
 
 
 
@@ -184,22 +202,5 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## Developers
 
-👤 **P Yakshith** (Team Lead)
-
-- GitHub: [@YAKSHITH027](https://github.com/YAKSHITH027)
-
-
-👤 **Gyan Prakash**
-
-- GitHub: [@gyan2501](https://github.com/gyan2501)
-
-👤 **Sudhir Nandane**
-
-- GitHub: [@Sudhir Nandane](https://github.com/codersudhir)
-
-👤 **Trilochanprasad B Hilli**
-
-- GitHub: [@TrilochanprasadBH](https://github.com/TrilochanprasadBH)
 
