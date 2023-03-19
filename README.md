@@ -42,13 +42,14 @@
 
 <p align="center">
   <br />&#10023;
-  <a href="#Demo">View Demo</a> &#10023;
+  <a href="#Live-link">View Demo</a> &#10023;
   <a href="#Getting-Started">Getting Started</a> &#10023; 
-  <a href="#Install">Installing</a> &#10023;
-  <a href="#Contact">Author</a> &#10023;
+  <a href="#Developers">Developers</a> &#10023;
 </p>
 
-It’s Group project dfdfdfd
+It’s a Group project mainly focused on frontend functionalitys by using React, Redux and for the backend Firebase has been used. it has all the major functinality of an ecommerce website from the userside to admin side , the userside is fully responsive for all the screensizes and for the payment, Razorpay payment gateway has been used.
+
+## Live link : <a href="https://attirely.netlify.app/">Attirely</a>
 
 <img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/ezgif.com-gif-maker.gif"  />
 
@@ -60,7 +61,6 @@ It’s Group project dfdfdfd
 - Product Listing Page with all categories
 - Product Description Page
 - Cart Management Page
-- Checkout with Address Management Page
 - Payment Page
 - Admin Side
 
@@ -72,14 +72,13 @@ It’s Group project dfdfdfd
 ## 🚀 User Features
 - Login and Signup 
 with Firebase Authentication
-- Product Sorting Based on Category, Brand, Discount Range and Price
+- Product Sorting Based on Category, Brand, Discount Range and Price with pagination
 - Search Functionality with Debouncing
 - Skeleton while Loading
 - My Profile Section for details of all ordered items
-- Cart Add and Remove Items 
-- Cart Update Quantities 
-- Address Management
+- Cart Add, Remove items and Cart Update Quantities 
 - RazorPay payment gateway integration for Payment
+- Responsiveness
 
 <br />
 
@@ -146,11 +145,29 @@ with Firebase Authentication
 </table>
 <br />
 
+## Developers
+
+👤 **P Yakshith** (Team Lead)
+
+- GitHub: [@YAKSHITH027](https://github.com/YAKSHITH027)
+
+
+👤 **Gyan Prakash**
+
+- GitHub: [@gyan2501](https://github.com/gyan2501)
+
+👤 **Sudhir Nandane**
+
+- GitHub: [@Sudhir Nandane](https://github.com/codersudhir)
+
+👤 **Trilochanprasad B Hilli**
+
+- GitHub: [@TrilochanprasadBH](https://github.com/TrilochanprasadBH)
+
+<br/>
 
 
 ## Getting Started
-
-This project was built using React, Chakra UI, HTML, CSS, JavaScript, Rest API . It is an e-commerce web application and for running on your local environment you should follow these guidelines.
 
 
 
