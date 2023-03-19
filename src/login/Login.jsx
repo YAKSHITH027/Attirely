@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
-import { Center, Flex } from "@chakra-ui/layout";
+import { Center, Flex, Box, Text } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/image";
-import { signInWithEmailAndPassword } from "@firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "@firebase/auth";
+import { FcGoogle } from "react-icons/fc";
 import { auth, db } from "../lib/firebase";
-import { doc, getDoc } from "@firebase/firestore";
+import { doc, getDoc, setDoc } from "@firebase/firestore";
 import { useDispatch } from "react-redux";
 import { userLogin } from "../Redux/UserAuth/userAuth.actions";
 import { useToast } from "@chakra-ui/toast";
@@ -21,6 +26,7 @@ const Login = () => {
   const [isLoading, setLoading] = useState(false);
   const toast = useToast();
   const navigate = useNavigate();
+  const provider = new GoogleAuthProvider();
   const validateForm = () => {
     let isValid = true;
     if (!email || !password) {
@@ -43,7 +49,7 @@ const Login = () => {
       setLoading(true);
       try {
         let res = await signInWithEmailAndPassword(auth, email, password);
-        console.log("login", res);
+        // console.log("login", res);
         const docRef = doc(db, "users", res.user.uid);
         const docSnap = await getDoc(docRef);
         dispatch(userLogin(docSnap.data()));
@@ -75,6 +81,34 @@ const Login = () => {
       }
     }
   };
+  const handleGoogle = async () => {
+    try {
+      let res = await signInWithPopup(auth, provider);
+
+      await setDoc(doc(db, "users", res.user.uid), {
+        uid: res.user.uid,
+        name: res.user.displayName,
+        email: res.user.email,
+        password: "111111",
+        avatar: "",
+        date: Date.now(),
+      });
+
+      toast({
+        title: "login successful",
+        description: "have a great day.",
+        status: "success",
+        duration: 4000,
+        position: "top",
+        isClosable: true,
+      });
+      dispatch(userLogin(res.user));
+      localStorage.setItem("userInfoF", JSON.stringify(res.user));
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
@@ -100,6 +134,7 @@ const Login = () => {
             <div>
               <h3>Login</h3>
             </div>
+
             <div>
               <form onSubmit={handleSubmit}>
                 <input
@@ -156,6 +191,15 @@ const Login = () => {
                 </Button>
               </form>
             </div>
+            <Text textAlign={"center"}>Or</Text>
+            <Box>
+              <Button my="3" width="100%" onClick={handleGoogle}>
+                <Text as="span" mr={"1rem"}>
+                  Log in with Google
+                </Text>
+                <FcGoogle fontSize={"1.4rem"} mx="1rem" />
+              </Button>
+            </Box>
           </div>
         </Flex>
       </div>

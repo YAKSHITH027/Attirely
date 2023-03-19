@@ -214,7 +214,7 @@ const SingleProduct = () => {
           </Box>
         </Flex>
       )}
-      {!isLoading && <SimilarProducts />}
+      {/* {!isLoading && <SimilarProducts />} */}
 
       <Footer />
     </div>
