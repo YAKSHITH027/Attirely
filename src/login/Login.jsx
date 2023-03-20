@@ -195,7 +195,7 @@ const Login = () => {
             <Box>
               <Button my="3" width="100%" onClick={handleGoogle}>
                 <Text as="span" mr={"1rem"}>
-                  Log in with Google
+                  Login with Google
                 </Text>
                 <FcGoogle fontSize={"1.4rem"} mx="1rem" />
               </Button>

@@ -185,7 +185,7 @@ const Signup = () => {
             <Box>
               <Button my="3" width="100%" onClick={handleGoogle}>
                 <Text as="span" mr={"1rem"}>
-                  Log in with Google
+                  Signup with Google
                 </Text>
                 <FcGoogle fontSize={"1.4rem"} mx="1rem" />
               </Button>
