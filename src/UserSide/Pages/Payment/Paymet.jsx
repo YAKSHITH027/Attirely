@@ -71,7 +71,7 @@ export default function Payment() {
 
   const handlePayment = useCallback(() => {
     const options = {
-      key: "rzp_test_JFihbnSsCtVIUH",
+      key: "rzp_test_Q6qLBPFz8pzc23",
       amount: finalAmount * 100,
       currency: "INR",
       name: "Attirely",
@@ -79,7 +79,7 @@ export default function Payment() {
       image: "https://i.ibb.co/7jfCzLZ/Attirely-removebg-preview.png",
 
       handler: (res) => {
-       
+        console.log(res);
         const addOrders = async (id, cartData, address) => {
           try {
             const sameId = Date.now() + id;
@@ -91,7 +91,6 @@ export default function Payment() {
               orderId: sameId,
               status: "pending",
             });
-           
           } catch (error) {
             console.log(error);
           }
@@ -103,9 +102,9 @@ export default function Payment() {
         }
       },
       prefill: {
-        name: "Sudhir Nandane",
-        email: "nandanesudhir1@gmail.com",
-        contact: "9657267157",
+        name: "userName",
+        email: userData?.email,
+        contact: "8496080933",
       },
       notes: {
         address: "Razorpay Corporate Office",

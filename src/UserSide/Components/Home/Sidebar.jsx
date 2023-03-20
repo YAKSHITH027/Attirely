@@ -56,6 +56,24 @@ function Sidebar({ id, handleLogout }) {
                 Home
               </Text>
             </Link>
+            <Link to="/profile">
+              <Text
+                textAlign={"center"}
+                fontSize={"1.5rem"}
+                borderBottomWidth="2px"
+              >
+                Profile
+              </Text>
+            </Link>
+            <Link to="/cart">
+              <Text
+                textAlign={"center"}
+                fontSize={"1.5rem"}
+                borderBottomWidth="2px"
+              >
+                Cart
+              </Text>
+            </Link>
             <Link to="/product/MensData">
               <Text
                 textAlign={"center"}
