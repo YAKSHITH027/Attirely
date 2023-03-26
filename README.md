@@ -51,7 +51,7 @@ It’s a Group project mainly focused on frontend functionalitys by using React,
 
 ## Live link : <a href="https://attirely.netlify.app/">Attirely</a>
 
-<img src="https://github.com/YAKSHITH027/store-img/blob/master/Attirely/ezgif.com-gif-maker.gif"  />
+<img src="https://i.ibb.co/JrZhQKJ/ezgif-com-gif-maker.gif"  />
 
 
 <br />
