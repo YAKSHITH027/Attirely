@@ -1,34 +1,35 @@
-import { Routes, Route } from "react-router-dom";
-import AddProducts from "../AdminSide/Pages/AddProducts";
+import { Routes, Route } from 'react-router-dom'
+import AddProducts from '../AdminSide/Pages/AddProducts'
 // import {AdminProducts} from "../Pages/AdminProducts";
-import Dashboard from "../AdminSide/Pages/Dashboard";
-import Orders from "../AdminSide/Pages/Orders";
-import ProductsAdmin from "../AdminSide/Pages/ProductsAdmin";
-import Sellers from "../AdminSide/Pages/Sellers";
-import Transactions from "../AdminSide/Pages/Transactions";
-import Users from "../AdminSide/Pages/Users";
-import Categories from "../AdminSide/Pages/Categories";
+import Dashboard from '../AdminSide/Pages/Dashboard'
+import Orders from '../AdminSide/Pages/Orders'
+import ProductsAdmin from '../AdminSide/Pages/ProductsAdmin'
+import Sellers from '../AdminSide/Pages/Sellers'
+import Transactions from '../AdminSide/Pages/Transactions'
+import Users from '../AdminSide/Pages/Users'
+import Categories from '../AdminSide/Pages/Categories'
 
-import Home from "../UserSide/Pages/Home/Home";
-import Sidebar from "../AdminSide/Components/Sidebar";
-import Products from "../UserSide/Pages/Products/Products";
+import Home from '../UserSide/Pages/Home/Home'
+import Sidebar from '../AdminSide/Components/Sidebar'
+import Products from '../UserSide/Pages/Products/Products'
 
-import Cart from "../UserSide/Pages/Cart/Cart";
+import Cart from '../UserSide/Pages/Cart/Cart'
 
-import Login from "../login/Login";
-import Signup from "../login/Signup";
-import SingleProduct from "../UserSide/Pages/SingleProductPage/SingleProduct";
-import Payment from "../UserSide/Pages/Payment/Paymet";
-import Profile from "../UserSide/Pages/Profile/Profile";
-import AdminLogin from "../login/Adminlogin";
-import PrivateRouteUser from "./PrivateRouteUser";
+import Login from '../login/Login'
+import Signup from '../login/Signup'
+import SingleProduct from '../UserSide/Pages/SingleProductPage/SingleProduct'
+import Payment from '../UserSide/Pages/Payment/Paymet'
+import Profile from '../UserSide/Pages/Profile/Profile'
+import AdminLogin from '../login/Adminlogin'
+import PrivateRouteUser from './PrivateRouteUser'
+import Wishlist from '../UserSide/Pages/Wishlist/Wishlist'
 
 export const AllRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />}></Route>
+      <Route path='/' element={<Home />}></Route>
       <Route
-        path="/dashboard"
+        path='/dashboard'
         element={
           <Sidebar>
             <Dashboard />
@@ -36,7 +37,7 @@ export const AllRoutes = () => {
         }
       ></Route>
       <Route
-        path="/addproducts"
+        path='/addproducts'
         element={
           <Sidebar>
             <AddProducts />
@@ -44,7 +45,7 @@ export const AllRoutes = () => {
         }
       ></Route>
       <Route
-        path="/orders"
+        path='/orders'
         element={
           <Sidebar>
             <Orders />
@@ -52,7 +53,7 @@ export const AllRoutes = () => {
         }
       ></Route>
       <Route
-        path="/products"
+        path='/products'
         element={
           <Sidebar>
             <ProductsAdmin />
@@ -60,7 +61,7 @@ export const AllRoutes = () => {
         }
       ></Route>
       <Route
-        path="/sellers"
+        path='/sellers'
         element={
           <Sidebar>
             <Sellers />
@@ -68,7 +69,7 @@ export const AllRoutes = () => {
         }
       ></Route>
       <Route
-        path="/transactions"
+        path='/transactions'
         element={
           <Sidebar>
             <Transactions />
@@ -76,7 +77,7 @@ export const AllRoutes = () => {
         }
       ></Route>
       <Route
-        path="/users"
+        path='/users'
         element={
           <Sidebar>
             <Users />
@@ -84,7 +85,7 @@ export const AllRoutes = () => {
         }
       ></Route>
       <Route
-        path="/categories"
+        path='/categories'
         element={
           <Sidebar>
             <Categories />
@@ -93,29 +94,30 @@ export const AllRoutes = () => {
       ></Route>
       {/* <Route path="/userpagesprodproducts" element={<Products/>}></Route> */}
 
-      <Route path="/product/:products" element={<Products />}></Route>
+      <Route path='/product/:products' element={<Products />}></Route>
       <Route
-        path="/product/:products/:id"
+        path='/product/:products/:id'
         element={
           <PrivateRouteUser>
             <SingleProduct />
           </PrivateRouteUser>
         }
       ></Route>
-      <Route path="/login" element={<Login />}></Route>
-      <Route path="/signup" element={<Signup />}></Route>
-      <Route path="/adminlogin" element={<AdminLogin />}></Route>
+      <Route path='/login' element={<Login />}></Route>
+      <Route path='/signup' element={<Signup />}></Route>
+      <Route path='/adminlogin' element={<AdminLogin />}></Route>
       <Route
-        path="/cart"
+        path='/cart'
         element={
           <PrivateRouteUser>
             <Cart />
           </PrivateRouteUser>
         }
       ></Route>
+      <Route path='/wishlist' element={<Wishlist />}></Route>
 
       <Route
-        path="/profile"
+        path='/profile'
         element={
           <PrivateRouteUser>
             <Profile />
@@ -123,7 +125,7 @@ export const AllRoutes = () => {
         }
       ></Route>
       <Route
-        path="/payment"
+        path='/payment'
         element={
           <PrivateRouteUser>
             <Payment />
@@ -131,5 +133,5 @@ export const AllRoutes = () => {
         }
       ></Route>
     </Routes>
-  );
-};
+  )
+}
