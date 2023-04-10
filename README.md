@@ -165,7 +165,11 @@ with Firebase Authentication
 - GitHub: [@TrilochanprasadBH](https://github.com/TrilochanprasadBH)
 
 <br/>
+# Test Card Number 
 
+- number: 4111 1111 1111 1111
+- cvv : Random Number
+- expiry date : any Future Date
 
 ## Getting Started
 
