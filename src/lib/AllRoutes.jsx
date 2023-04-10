@@ -114,7 +114,14 @@ export const AllRoutes = () => {
           </PrivateRouteUser>
         }
       ></Route>
-      <Route path='/wishlist' element={<Wishlist />}></Route>
+      <Route
+        path='/wishlist'
+        element={
+          <PrivateRouteUser>
+            <Wishlist />
+          </PrivateRouteUser>
+        }
+      ></Route>
 
       <Route
         path='/profile'
