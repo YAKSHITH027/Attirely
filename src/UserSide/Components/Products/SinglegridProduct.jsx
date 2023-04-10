@@ -6,24 +6,52 @@ import React, { useState } from 'react'
 import { AiOutlineHeart } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom'
 import SingleProductImageSlider from './SingleProductImageSlider'
-
-const SinglegridProduct = ({
-  id,
-  brand,
-  images,
-  title,
-  offerPrice,
-  originalPrice,
-  discount,
-  rating,
-  ratingCount,
-  products,
-}) => {
+import { useDispatch, useSelector } from 'react-redux'
+import { addToWishlist } from '../../../Redux/Wishlist/wishlist.actions'
+import { useToast } from '@chakra-ui/react'
+const SinglegridProduct = (props) => {
+  const {
+    id,
+    brand,
+    images,
+    title,
+    offerPrice,
+    originalPrice,
+    discount,
+    rating,
+    ratingCount,
+    products,
+  } = props
   const [show, setShow] = useState(false)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const toast = useToast()
+  const userData = useSelector((store) => {
+    return store.userAuthReducer.user
+  })
+  const allWishlistData = useSelector((store) => {
+    return store.wishlistReducer.wishlist
+  })
+
+  const userId = userData?.uid
   const handleClick = (e) => {
+    if (!userId) {
+      navigate('/login')
+      return
+    }
     if (e.target.closest('.wishlistBtn')) {
-      console.log('button clicked')
+      // let btn = e.currentTarget.querySelector('.wishlistBtn')
+      // console.log(btn.id)
+
+      dispatch(addToWishlist(userId, props, id))
+      toast({
+        title: 'Product is Added to the Wishlist',
+        description: 'Shop More ...',
+        status: 'success',
+        duration: 4000,
+        position: 'top',
+        isClosable: true,
+      })
       return
     }
     navigate(`/product/${products}/${id}`)
@@ -31,6 +59,7 @@ const SinglegridProduct = ({
   return (
     <Box
       onClick={handleClick}
+      cursor={'pointer'}
       className='shadow'
       transition={'all 0.3s'}
       height={{ base: '300px', md: '350px' }}
@@ -90,6 +119,8 @@ const SinglegridProduct = ({
               <Button
                 variant={'unstyled'}
                 className='wishlistBtn'
+                id={id}
+                isDisabled={allWishlistData.find((item) => item.id === id)}
                 width={{ base: '9rem', md: '11.5rem' }}
                 outline={'1px solid grey'}
               >

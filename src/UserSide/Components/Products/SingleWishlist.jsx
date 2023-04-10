@@ -1,19 +1,73 @@
-import { Box, Button, Flex, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Text, useToast } from '@chakra-ui/react'
 import React from 'react'
 import SingleProductImageSlider from './SingleProductImageSlider'
+import { useDispatch, useSelector } from 'react-redux'
+import { removeFromWishlist } from '../../../Redux/Wishlist/wishlist.actions'
+import { addToCart } from '../../../Redux/Cart/cart.actions'
 
-const SingleWishlist = ({
-  id,
-  brand,
-  images,
-  title,
-  offerPrice,
-  originalPrice,
-  discount,
-  rating,
-  ratingCount,
-  products,
-}) => {
+const SingleWishlist = (props) => {
+  const {
+    id,
+    brand,
+    images,
+    title,
+    offerPrice,
+    originalPrice,
+    discount,
+    rating,
+    size,
+    ratingCount,
+    products,
+  } = props
+  const dispatch = useDispatch()
+  const toast = useToast()
+  const userData = useSelector((store) => {
+    return store.userAuthReducer.user
+  })
+  let allCartItems = useSelector((store) => {
+    return store.cartReducer.cart
+  })
+
+  const userId = userData?.uid
+  const handleRemove = () => {
+    dispatch(removeFromWishlist(userId, id))
+    toast({
+      title: 'Product is Removed from the wishlist',
+      description: 'Shop More ...',
+      status: 'success',
+      duration: 4000,
+      position: 'top',
+      isClosable: true,
+    })
+  }
+  const handleAddToCart = () => {
+    let item = {
+      id,
+      brand,
+      images,
+      title,
+      offerPrice,
+      originalPrice,
+      discount,
+      rating,
+      size,
+      ratingCount,
+    }
+    item.qtt = 1
+    allCartItems = [...allCartItems, item]
+    // get userid from authReducer
+    console.log(allCartItems)
+    dispatch(addToCart(userId, allCartItems))
+    dispatch(removeFromWishlist(userId, id))
+    toast({
+      title: 'Product is Added to the Cart',
+      description: 'Shop More ...',
+      status: 'success',
+      duration: 4000,
+      position: 'top',
+      isClosable: true,
+    })
+  }
   return (
     <Box
       className='shadow'
@@ -69,10 +123,15 @@ const SingleWishlist = ({
         </Text>
       </Box>
       <Flex justify={'space-between'}>
-        <Button colorScheme='pink' size={'sm'}>
+        <Button colorScheme='pink' size={'sm'} onClick={handleAddToCart}>
           Add to Cart
         </Button>
-        <Button variant={'outline'} colorScheme='red' size='sm'>
+        <Button
+          onClick={handleRemove}
+          variant={'outline'}
+          colorScheme='red'
+          size='sm'
+        >
           Remove
         </Button>
       </Flex>

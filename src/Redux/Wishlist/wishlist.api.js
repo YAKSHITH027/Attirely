@@ -7,6 +7,8 @@ import {
   query,
   getDocs,
   setDoc,
+  addDoc,
+  deleteDoc,
 } from 'firebase/firestore'
 import { db } from '../../lib/firebase'
 
@@ -16,10 +18,11 @@ export const wishlistAPI = async (id) => {
     const wishlistRef = collection(db, 'wishlist')
     const q = query(wishlistRef, where('userId', '==', id))
     const querySnapshot = await getDocs(q)
-    let result
+    let result = []
     querySnapshot.forEach((doc) => {
-      result = doc.data()
+      result.push(doc.data().item)
     })
+
     return result
   } catch (error) {
     console.log(error)
@@ -27,12 +30,28 @@ export const wishlistAPI = async (id) => {
 }
 
 // add to cart
-export const addToWishlistAPI = async (id, wishlistData) => {
+export const addToWishlistAPI = async (id, product, productId) => {
   try {
-    await setDoc(doc(db, 'wishlist', id), {
-      wishList: wishlistData, // this should be array of objects cart
+    await await addDoc(collection(db, 'wishlist'), {
+      item: product,
+      productId: productId,
       userId: id, //"userId which you get from authreducer",
     })
+  } catch (error) {
+    console.log(error)
+  }
+}
+// delete wishlist
+export const removeFromWishlistAPI = async (id, productid) => {
+  try {
+    const q = query(
+      collection(db, 'wishlist'),
+      where('userId', '==', id),
+      where('productId', '==', productid)
+    )
+    const querySnapshot = await getDocs(q)
+    const docSnapshot = querySnapshot.docs[0]
+    await deleteDoc(docSnapshot.ref)
   } catch (error) {
     console.log(error)
   }

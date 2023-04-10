@@ -9,207 +9,227 @@ import {
   Stack,
   Text,
   useToast,
-} from "@chakra-ui/react";
-import { BiStar } from "react-icons/bi";
+} from '@chakra-ui/react'
+import { BiStar } from 'react-icons/bi'
 
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 
-import { addToCart, getCart } from "../../../Redux/Cart/cart.actions";
-import Footer from "../../Components/Home/Footer";
-import Navbar from "../../Components/Home/Navbar";
-import SimilarProducts from "../../Components/Products/SimilarProducts";
+import { addToCart, getCart } from '../../../Redux/Cart/cart.actions'
+import Footer from '../../Components/Home/Footer'
+import Navbar from '../../Components/Home/Navbar'
+import SimilarProducts from '../../Components/Products/SimilarProducts'
+import { addToWishlist } from '../../../Redux/Wishlist/wishlist.actions'
 
 const SingleProduct = () => {
-  let { products, id } = useParams();
-  const dispatch = useDispatch();
-  const toast = useToast();
+  let { products, id } = useParams()
+  const dispatch = useDispatch()
+  const toast = useToast()
   let allCartItems = useSelector((store) => {
-    return store.cartReducer.cart;
-  });
+    return store.cartReducer.cart
+  })
   //firebase userid
   const userData = useSelector((store) => {
-    return store.userAuthReducer.user;
-  });
+    return store.userAuthReducer.user
+  })
+  const allWishlistData = useSelector((store) => {
+    return store.wishlistReducer.wishlist
+  })
 
-  const userid = userData?.uid;
+  const userid = userData?.uid
 
-  const [singleProd, setSingleProd] = useState({});
-  const [isLoading, setLoading] = useState(true);
+  const [singleProd, setSingleProd] = useState({})
+  const [isLoading, setLoading] = useState(true)
 
   const getSingleProuduct = async () => {
     let res = await axios.get(
       `https://rc201-jsondata-serverapi.onrender.com/${products}/${id}`
-    );
-    setSingleProd(res.data);
-    setLoading(false);
-  };
+    )
+    setSingleProd(res.data)
+    setLoading(false)
+  }
   const handleAdd = (item) => {
-    item.qtt = 1;
-    allCartItems = [...allCartItems, item];
+    item.qtt = 1
+    allCartItems = [...allCartItems, item]
     // get userid from authReducer
-    dispatch(addToCart(userid, allCartItems));
-  };
+    dispatch(addToCart(userid, allCartItems))
+  }
+  const handleAddToWishlist = () => {
+    dispatch(addToWishlist(userid, singleProd, singleProd.id))
+    toast({
+      title: 'Product is Added to the Wishlist',
+      description: 'Shop More ...',
+      status: 'success',
+      duration: 4000,
+      position: 'top',
+      isClosable: true,
+    })
+  }
 
   useEffect(() => {
-    getSingleProuduct();
-  }, [id]);
+    getSingleProuduct()
+  }, [id])
 
   return (
     <div>
       <Navbar />
       {isLoading ? (
         <Flex
-          justify={"center"}
-          flexDir={{ base: "column", md: "row" }}
-          width="87vw"
-          marginX="auto"
-          my="2rem"
+          justify={'center'}
+          flexDir={{ base: 'column', md: 'row' }}
+          width='87vw'
+          marginX='auto'
+          my='2rem'
         >
           <Box
-            width={{ base: "95%", lg: "30%" }}
-            height={{ base: "60vh", lg: "80vh" }}
+            width={{ base: '95%', lg: '30%' }}
+            height={{ base: '60vh', lg: '80vh' }}
           >
-            <Skeleton height={"100%"} width="100%" borderRadius={"xl"} />
+            <Skeleton height={'100%'} width='100%' borderRadius={'xl'} />
           </Box>
-          <Flex width="65%" px={"3rem"} flexDir="column" gap="2rem" py="2rem">
-            <Skeleton height="30px" width="150px" />
-            <Skeleton height="18px" width="250px" />
-            <Skeleton height="18px" width="150px" />
-            <Skeleton height="20px" width="200px" />
-            <Skeleton height="20px" />
-            <Skeleton height="20px" />
+          <Flex width='65%' px={'3rem'} flexDir='column' gap='2rem' py='2rem'>
+            <Skeleton height='30px' width='150px' />
+            <Skeleton height='18px' width='250px' />
+            <Skeleton height='18px' width='150px' />
+            <Skeleton height='20px' width='200px' />
+            <Skeleton height='20px' />
+            <Skeleton height='20px' />
             <Flex
-              gap={{ base: "3px", md: "2rem" }}
-              px={{ md: "2rem" }}
-              width="full"
+              gap={{ base: '3px', md: '2rem' }}
+              px={{ md: '2rem' }}
+              width='full'
             >
-              <Skeleton height="40px" width="160px" borderRadius={"xl"} />
-              <Skeleton height="40px" width="160px" borderRadius={"xl"} />
+              <Skeleton height='40px' width='160px' borderRadius={'xl'} />
+              <Skeleton height='40px' width='160px' borderRadius={'xl'} />
             </Flex>
-            <Skeleton height="17px" />
-            <Skeleton height="17px" />
+            <Skeleton height='17px' />
+            <Skeleton height='17px' />
           </Flex>
         </Flex>
       ) : (
         <Flex
-          flexDir={{ base: "column", md: "row" }}
-          justify={"center"}
-          width="87vw"
-          marginX="auto"
-          my="2rem"
+          flexDir={{ base: 'column', md: 'row' }}
+          justify={'center'}
+          width='87vw'
+          marginX='auto'
+          my='2rem'
         >
           <Flex
-            marginX={"auto"}
-            justify={"center"}
-            width={{ base: "90%", lg: "30%" }}
-            height={{ base: "60vh", lg: "80vh" }}
+            marginX={'auto'}
+            justify={'center'}
+            width={{ base: '90%', lg: '30%' }}
+            height={{ base: '60vh', lg: '80vh' }}
           >
             <Image
               src={singleProd.images[0]}
-              width="100%"
-              height={"100%"}
-              borderRadius="xl"
+              width='100%'
+              height={'100%'}
+              borderRadius='xl'
             />
           </Flex>
           <Box
-            width={{ base: "95%", md: "65%" }}
-            px={{ base: "0.2rem", md: "3rem" }}
+            width={{ base: '95%', md: '65%' }}
+            px={{ base: '0.2rem', md: '3rem' }}
           >
-            <Heading py="1rem">{singleProd.brand}</Heading>
-            <Text fontSize={"1.5rem"}>{singleProd.title}</Text>
-            <Flex p={"1.1rem"} borderBottomWidth="2px" gap="1rem">
-              <Flex borderWidth={"2px"} p="4px" borderRadius="md">
-                <Flex align={"center"} borderRightWidth="2px" pr={"9px"}>
-                  {singleProd.rating} <BiStar fontSize={"1.1rem"} />
+            <Heading py='1rem'>{singleProd.brand}</Heading>
+            <Text fontSize={'1.5rem'}>{singleProd.title}</Text>
+            <Flex p={'1.1rem'} borderBottomWidth='2px' gap='1rem'>
+              <Flex borderWidth={'2px'} p='4px' borderRadius='md'>
+                <Flex align={'center'} borderRightWidth='2px' pr={'9px'}>
+                  {singleProd.rating} <BiStar fontSize={'1.1rem'} />
                 </Flex>
-                <Text pl={"9px"}>{singleProd.ratingCount} Ratings</Text>
+                <Text pl={'9px'}>{singleProd.ratingCount} Ratings</Text>
               </Flex>
             </Flex>
-            <Flex fontSize={"1.5rem"} py="1rem" gap="1.5rem" align={"center"}>
+            <Flex fontSize={'1.5rem'} py='1rem' gap='1.5rem' align={'center'}>
               <Text>₹{singleProd.offerPrice}</Text>
-              <Text textDecoration={"line-through"} fontSize="1.1rem">
+              <Text textDecoration={'line-through'} fontSize='1.1rem'>
                 MRP {singleProd.originalPrice}
               </Text>
-              <Text color={"orange.500"} fontSize="1.1rem">
+              <Text color={'orange.500'} fontSize='1.1rem'>
                 ({singleProd.discount}% OFF)
               </Text>
             </Flex>
-            <Text color={"green.600"}>inclusive of all taxes</Text>
-            <Text fontSize={"1.5rem"}>Select Size</Text>
-            <Flex gap="2" my="1rem">
+            <Text color={'green.600'}>inclusive of all taxes</Text>
+            <Text fontSize={'1.5rem'}>Select Size</Text>
+            <Flex gap='2' my='1rem'>
               <Center
-                border={"1px"}
-                width="3rem"
-                height={"3rem"}
-                borderRadius={"50%"}
+                border={'1px'}
+                width='3rem'
+                height={'3rem'}
+                borderRadius={'50%'}
               >
                 S
               </Center>
               <Center
-                border={"1px"}
-                width="3rem"
-                height={"3rem"}
-                borderRadius={"50%"}
+                border={'1px'}
+                width='3rem'
+                height={'3rem'}
+                borderRadius={'50%'}
               >
                 M
               </Center>
               <Center
-                border={"1px"}
-                width="3rem"
-                height={"3rem"}
-                borderRadius={"50%"}
+                border={'1px'}
+                width='3rem'
+                height={'3rem'}
+                borderRadius={'50%'}
               >
                 L
               </Center>
               <Center
-                border={"1px"}
-                width="3rem"
-                height={"3rem"}
-                borderRadius={"50%"}
+                border={'1px'}
+                width='3rem'
+                height={'3rem'}
+                borderRadius={'50%'}
               >
                 XL
               </Center>
               <Center
-                border={"1px"}
-                width="3rem"
-                height={"3rem"}
-                borderRadius={"50%"}
+                border={'1px'}
+                width='3rem'
+                height={'3rem'}
+                borderRadius={'50%'}
               >
                 XXL
               </Center>
             </Flex>
-            <Flex p={{ base: "0.2rem", md: "2rem" }} gap="1rem">
+            <Flex p={{ base: '0.2rem', md: '2rem' }} gap='1rem'>
               <Button
-                colorScheme={"pink"}
-                py="0.5rem"
-                px="4rem"
+                colorScheme={'pink'}
+                py='0.5rem'
+                px='4rem'
                 isDisabled={allCartItems.find(
                   (item) => item.id == singleProd.id
                 )}
                 onClick={() => {
-                  handleAdd(singleProd);
+                  handleAdd(singleProd)
                   toast({
-                    title: "Product is Added to the cart",
-                    description: "Shop More ...",
-                    status: "success",
+                    title: 'Product is Added to the cart',
+                    description: 'Shop More ...',
+                    status: 'success',
                     duration: 4000,
-                    position: "top",
+                    position: 'top',
                     isClosable: true,
-                  });
+                  })
                 }}
               >
                 ADD TO BAG
               </Button>
-              <Button py="0.5rem" px="4rem">
-                {" "}
+              <Button
+                py='0.5rem'
+                px='4rem'
+                onClick={handleAddToWishlist}
+                isDisabled={allWishlistData.find((item) => item.id === id)}
+              >
+                {' '}
                 WISHLIST
               </Button>
             </Flex>
             <Text>100% Original Products</Text>
-            <Text py="6px">Pay on delivery might be available</Text>
+            <Text py='6px'>Pay on delivery might be available</Text>
             <Text>Easy 30 days returns and exchanges</Text>
           </Box>
         </Flex>
@@ -218,10 +238,10 @@ const SingleProduct = () => {
 
       <Footer />
     </div>
-  );
-};
+  )
+}
 
-export default SingleProduct;
+export default SingleProduct
 
 //  const dispatch = useDispatch();
 //  let data = [
